@@ -1,0 +1,23 @@
+﻿@page
+@model JPOS.Controller.Pages.LoginPageModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="">
+    <h1 class="display-4">Login</h1>
+
+    <form method="POST">
+        <p>
+            <label>Email</label>
+            <input type="text" name="Email" /> <br />
+        </p>
+        <p>
+            <label>Password</label>
+            <input type="password" name="Password" />
+        </p>
+        <button type="submit" name="btnLogin">Login</button>
+
+        You don't have account?<a asp-page="RegisterPage">Back to Login</a>
+    </form>
+</div>

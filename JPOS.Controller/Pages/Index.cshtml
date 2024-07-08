@@ -1,10 +1,118 @@
 ﻿@page
-@model IndexModel
+@model JPOS.Controller.Pages.IndexModel
 @{
     ViewData["Title"] = "Home page";
+    var isAuthenticated = HttpContext.Session.GetString("UserName");
 }
+<header>
+    @if (isAuthenticated != null)
+    {
+        <span>Welcome + @isAuthenticated</span>
+    }
+    else
+    {
+        <a style="padding: 0px 10px 0px 950px" asp-page="/Login">Login</a> <a asp-page="/Register">Register</a>
+    }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+</header>
+
+<body>
+    <div class="cont" style="display: flex; justify-content: center;">
+        <h2 class="back" style="background-color: rgb(241, 234, 217); flex: 1; text-align: center; font-size: 15px; padding: 10px; margin-top: 0; font-family: 'Roboto', sans-serif;">
+            Giao hàng miễn phí cho các đơn hàng trên $ 2000
+        </h2>
+
+        <h1>Product</h1>
+
+        <p>
+            <a asp-page="Create">Create New</a>
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Product[0].CreateBy)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Product[0].PriceMaterial)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Product[0].PriceDesign)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Product[0].ProcessPrice)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Product[0].CreateDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Product[0].Status)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Product[0].Image)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Product[0].ProductName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Product[0].Description)
+                    </th>
+                    @*            <th>
+                    @Html.DisplayNameFor(model => model.Product[0].Category)
+                    </th>
+                    <th>
+                    @Html.DisplayNameFor(model => model.Product[0].Design)
+                    </th>*@
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Product)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreateBy)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PriceMaterial)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PriceDesign)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProcessPrice)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreateDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Image)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProductName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        @*            <td>
+                    @Html.DisplayFor(modelItem => item.Category.CatId)
+                    </td>
+                    <td>
+                    @Html.DisplayFor(modelItem => item.Design.DesignId)
+                    </td>*@
+                        <td>
+                            <a asp-page="./Edit" asp-route-id="@item.ProductId">Edit</a> |
+                            <a asp-page="./Details" asp-route-id="@item.ProductId">Details</a> |
+                            <a asp-page="./Delete" asp-route-id="@item.ProductId">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+
+

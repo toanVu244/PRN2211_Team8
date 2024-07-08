@@ -59,22 +59,30 @@ namespace JPOS.Service.Implementations
 
         public async Task<List<ProductModel>?> GetAllProduct()
         {
-            List<Product> listProduct = await _unitOfWork.Products.GetAllAsync();
-            List<ProductModel> products = new List<ProductModel>();
-            foreach (var product in listProduct)
-            {
-                var productModel = new ProductModel
+            
+            try {
+                List<Product> listProduct = await _unitOfWork.Products.GetAllAsync();
+                List<ProductModel> products = new List<ProductModel>();
+                foreach (var product in listProduct)
                 {
-                    ProductId = product.ProductId,
-                    ProductName = product.ProductName,
-                    Description = product.Description,
-                    Image = product.Image,
-                    Status = product.Status,
-                    ProcessPrice = product.ProcessPrice,
-                };
-                products.Add(productModel);
+                    var productModel = new ProductModel
+                    {
+                        ProductId = product.ProductId,
+                        ProductName = product.ProductName,
+                        Description = product.Description,
+                        Image = product.Image,
+                        Status = product.Status,
+                        ProcessPrice = product.ProcessPrice,
+                    };
+                    products.Add(productModel);
+                }
+                return products;
+            } catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
-            return products;
+            
+ 
         }
 
         public async Task<ProductModel?> GetProductByID(int? id)

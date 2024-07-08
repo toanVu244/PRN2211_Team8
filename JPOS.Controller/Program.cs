@@ -5,20 +5,25 @@ using JPOS.Service.Interfaces;
 using JPOS.Model.Entities;
 using Microsoft.EntityFrameworkCore;
 using JPOS.Service.Tools;
+using JPOS.Model.Models.AppConfig;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddAutoMapper(typeof(ApplicationMapper));
+builder.Services.AddSession();
 builder.Services.AddDbContext<JPOS_ProjectContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DB"));
     options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
 });
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IUserServices, UserServices>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+builder.Services.AddSingleton(builder.Configuration.GetSection("Jwt").Get<AppConfig>());
+var appConfig = builder.Configuration.GetSection("Jwt").Get<AppConfig>();
 
 var app = builder.Build();
 
@@ -34,6 +39,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseSession();
 
 app.UseAuthorization();
 
