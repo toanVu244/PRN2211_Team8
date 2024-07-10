@@ -1,0 +1,46 @@
+﻿@page
+@model JPOS.Controller.Pages.RegisterPageModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<body style="margin: 0; padding-top:0; height: 100vh; background-color: #f4f4f9; position: relative;">
+    <div style="width: 350px; padding: 10px; border: 1px solid #ccc; border-radius: 8px; background-color: #fff; box-shadow: 0 4px 8px rgba(0,0,0,0.1); position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+        <h4 style="font-size: 18px; font-weight: bold; margin-bottom: 10px; text-align: center;">Register</h4>
+        <hr style="border: 0; height: 1px; background-color: #ddd; margin-bottom: 10px;">
+        <form method="post">
+            <div style="color: #dc3545; margin-bottom: 6px;"></div>
+            <div style="margin-bottom: 10px;">
+                <label for="username" style="display: block; margin-bottom: 4px; font-weight: bold;">Username</label>
+                <input id="username" name="User.Username" type="text" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px;">
+                <span style="color: #dc3545; font-size: 12px;"></span>
+            </div>
+            <div style="margin-bottom: 10px;">
+                <label for="password" style="display: block; margin-bottom: 4px; font-weight: bold;">Password</label>
+                <input id="password" name="User.Password" type="password" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px;">
+                <span style="color: #dc3545; font-size: 12px;"></span>
+            </div>
+            <div style="margin-bottom: 10px;">
+                <label for="fullname" style="display: block; margin-bottom: 4px; font-weight: bold;">Full Name</label>
+                <input id="fullname" name="User.FullName" type="text" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px;">
+                <span style="color: #dc3545; font-size: 12px;"></span>
+            </div>
+            <div style="margin-bottom: 10px;">
+                <label for="phone" style="display: block; margin-bottom: 4px; font-weight: bold;">Phone Number</label>
+                <input id="phone" name="User.PhoneNum" type="text" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px;">
+                <span style="color: #dc3545; font-size: 12px;"></span>
+            </div>
+            <div style="margin-bottom: 10px;">
+                <label for="address" style="display: block; margin-bottom: 4px; font-weight: bold;">Address</label>
+                <input id="address" name="User.Address" type="text" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px;">
+                <span style="color: #dc3545; font-size: 12px;"></span>
+            </div>
+            <div style="margin-bottom: 12px;">
+                <input type="submit" value="Create" style="width: 100%; padding: 8px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">
+            </div>
+        </form>
+        <div style="text-align: center; font-size: 12px;">
+            You already have an account? <a href="LoginPage" style="color: #007bff; text-decoration: none;">Back to Login</a>
+        </div>
+    </div>
+</body>

@@ -9,6 +9,7 @@ namespace JPOS.Service.Tools
     {
         public ApplicationMapper()
         {
+            CreateMap<MaterialModel, Material>().ReverseMap();
             CreateMap<Material, MaterialModel>().ReverseMap();
             CreateMap<Policy, PolicyModel>().ReverseMap();
             CreateMap<Request, RequestModel>().ReverseMap();

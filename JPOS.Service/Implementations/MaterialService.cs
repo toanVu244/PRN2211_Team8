@@ -41,9 +41,20 @@ namespace JPOS.Service.Implementations
             }
         }
 
-        public Task<bool?> DeleteMaterial(int id)
+        public async Task<bool?> DeleteMaterial(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var material = await _unitOfWork.Materials.GetByIdAsync(id);
+                material.Status = "Unavailable";
+                return await _unitOfWork.Materials.UpdateMaterial(id,material);
+            }
+            catch (Exception ex)
+            {
+                throw;
+                
+            }
+
         }
        
         public async Task<List<Material>?> GetAllmaterial()
@@ -80,7 +91,7 @@ namespace JPOS.Service.Implementations
             try
             {
                 if(material != null) { 
-                return await _unitOfWork.Materials.UpdateMaterial(material.MatID,_map.Map<Material>(material));
+                return await _unitOfWork.Materials.UpdateMaterial(material.MaterialId,_map.Map<Material>(material));
                 }
                 return false;
             }catch (Exception ex)
