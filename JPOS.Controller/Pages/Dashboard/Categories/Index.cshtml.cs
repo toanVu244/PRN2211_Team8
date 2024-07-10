@@ -31,10 +31,10 @@ namespace JPOS.Controller.Pages.Dashboard.Categories
 
         public async Task<IActionResult> OnPostCreateAsync([FromForm] Category category)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return BadRequest(ModelState);
+            //}
 
             var result = await _categoryService.CreateCategoryAsync(category);
             if (result)

@@ -7,18 +7,19 @@ $(document).ready(function () {
     $('#addCategoryForm').submit(function (event) {
         event.preventDefault();
 
-        var formData = {
-            CatName: $('#CatName').val(),
-            Description: $('#Description').val()
-        };
+        var formData = $(this).serialize(); // Serialize the form data
 
         $.ajax({
             type: 'POST',
             url: '/Dashboard/Categories/Index?handler=Create',
             data: formData,
             success: function (response) {
-                $('#addCategoryModal').modal('hide');
-                loadContent('/Dashboard/Categories/Index?handler=Partial');
+                if (response.success) {
+                    $('#addCategoryModal').modal('hide');
+                    loadContent('/Dashboard/Categories/Index?handler=Partial');
+                } else {
+                    alert('Error adding category');
+                }
             },
             error: function (error) {
                 alert('Error adding category');
@@ -26,3 +27,5 @@ $(document).ready(function () {
         });
     });
 });
+
+

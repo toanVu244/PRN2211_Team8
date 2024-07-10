@@ -13,17 +13,21 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSession();
 builder.Services.AddRazorPages();
 builder.Services.AddAutoMapper(typeof(ApplicationMapper));
+
 builder.Services.AddDbContext<JPOS_ProjectContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DB"));
     options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
 });
+
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IUserServices, UserServices>(); 
 builder.Services.AddScoped<IMaterialService, MaterialService>();
 builder.Services.AddScoped<ICategoryService, CatergoryService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+
 builder.Services.AddSingleton(builder.Configuration.GetSection("Jwt").Get<AppConfig>());
 var appConfig = builder.Configuration.GetSection("Jwt").Get<AppConfig>();
 
