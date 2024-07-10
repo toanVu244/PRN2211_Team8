@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - Dashboard</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="https://kit.fontawesome.com/d8c09fa8ce.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="dashboard">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <a asp-page="/Dashboard/Index" class="sidebar-title">Dashboard</a>
+            </div>
+            <ul>
+                <li><a asp-page="/Dashboard/Orders/Index"><i class="fa-solid fa-cart-shopping"></i> Orders</a></li>
+                <li><a asp-page="/Dashboard/Categories/Index"><i class="fa-solid fa-list"></i> Categories</a></li>
+                <li><a asp-page="/Dashboard/Products/Index"><i class="fa-solid fa-bag-shopping"></i> Products</a></li>
+                <li><a asp-page="/Dashboard/Customers/Index"><i class="fa-regular fa-user"></i> Customers</a></li>
+                <li><a asp-page="/Dashboard/Statistics/Index"><i class="fa-solid fa-square-poll-vertical"></i> Statistics</a></li>
+                <li><a asp-page="/Dashboard/Design/Index"><i class="fa-solid fa-pen-nib"></i> Design</a></li>
+                <li><a asp-page="/Dashboard/Materials/Index"><i class="fa-solid fa-database"></i> Materials</a></li>
+            </ul>
+        </nav>
+        <div class="content">
+            @RenderBody()
+        </div>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</body>
+</html>

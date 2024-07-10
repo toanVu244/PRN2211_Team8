@@ -1,4 +1,4 @@
-using JPOS.Model.Repositories.Interfaces;
+﻿using JPOS.Model.Repositories.Interfaces;
 using JPOS.Model;
 using JPOS.Service.Implementations;
 using JPOS.Service.Interfaces;
@@ -49,5 +49,12 @@ app.UseAuthorization();
 app.UseSession();
 
 app.MapRazorPages();
+
+//thêm chỗ này để start phát là vào dashboard, nào merge thì xóa nha
+app.MapGet("/", context =>
+{
+    context.Response.Redirect("/Dashboard");
+    return Task.CompletedTask;
+});
 
 app.Run();
