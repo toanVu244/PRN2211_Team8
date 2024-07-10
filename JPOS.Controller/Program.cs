@@ -21,6 +21,7 @@ builder.Services.AddDbContext<JPOS_ProjectContext>(options =>
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IUserServices, UserServices>(); 
 builder.Services.AddScoped<IMaterialService, MaterialService>();
+builder.Services.AddScoped<ICategoryService, CatergoryService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddSingleton(builder.Configuration.GetSection("Jwt").Get<AppConfig>());
@@ -49,12 +50,5 @@ app.UseAuthorization();
 app.UseSession();
 
 app.MapRazorPages();
-
-//thêm chỗ này để start phát là vào dashboard, nào merge thì xóa nha
-app.MapGet("/", context =>
-{
-    context.Response.Redirect("/Dashboard");
-    return Task.CompletedTask;
-});
 
 app.Run();

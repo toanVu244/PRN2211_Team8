@@ -1,0 +1,71 @@
+﻿@model IList<JPOS.Model.Entities.Category>
+@{
+    Layout = null;
+}
+
+<div class="container mt-4">
+    <h2 class="mb-3">Categories</h2>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <button class="btn btn-primary">Add Category</button>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Count == 0)
+            {
+                <tr>
+                    <td colspan="4" class="text-center">Not Found</td>
+                </tr>
+            }
+            else
+            {
+                @foreach (var category in Model)
+                {
+                    <tr>
+                        <td>@category.CatId</td>
+                        <td>@category.CatName</td>
+                        <td>@category.Description</td>
+                        <td>
+                            <a href="#" class="btnEdit">Edit</a>
+                            <a href="#" class="btnDelete">Delete</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- Add Category Modal -->
+<div class="modal fade" id="addCategoryModal" tabindex="-1" role="dialog" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addCategoryModalLabel">Add New Category</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="addCategoryForm">
+                    <div class="form-group">
+                        <label for="CatName">Name</label>
+                        <input type="text" class="form-control" id="CatName" name="CatName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Description">Description</label>
+                        <input type="text" class="form-control" id="Description" name="Description" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
