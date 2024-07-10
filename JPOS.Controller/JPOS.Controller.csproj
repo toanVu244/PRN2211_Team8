@@ -25,4 +25,13 @@
     <ProjectReference Include="..\JPOS.Service\JPOS.Service.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\Dashboard\Customers\" />
+    <Folder Include="Pages\Dashboard\Design\" />
+    <Folder Include="Pages\Dashboard\Materials\" />
+    <Folder Include="Pages\Dashboard\Statistics\" />
+    <Folder Include="Pages\Dashboard\Products\" />
+    <Folder Include="Pages\Dashboard\Orders\" />
+  </ItemGroup>
+
 </Project>
