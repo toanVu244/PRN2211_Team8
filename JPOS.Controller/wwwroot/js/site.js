@@ -3,29 +3,11 @@
 
 // Write your JavaScript code.
 
-$(document).ready(function () {
-    $('#addCategoryForm').submit(function (event) {
-        event.preventDefault();
-
-        var formData = $(this).serialize(); // Serialize the form data
-
-        $.ajax({
-            type: 'POST',
-            url: '/Dashboard/Categories/Index?handler=Create',
-            data: formData,
-            success: function (response) {
-                if (response.success) {
-                    $('#addCategoryModal').modal('hide');
-                    loadContent('/Dashboard/Categories/Index?handler=Partial');
-                } else {
-                    alert('Error adding category');
-                }
-            },
-            error: function (error) {
-                alert('Error adding category');
-            }
-        });
+function loadContent(url) {
+    $('#content-area').html('<div class="loading">Loading...</div>');
+    $('#content-area').load(url, function (response, status, xhr) {
+        if (status == "error") {
+            $('#content-area').html("<p>Sorry, there was an error loading the content.</p>");
+        }
     });
-});
-
-
+}
