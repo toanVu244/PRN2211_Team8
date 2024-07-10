@@ -11132,19 +11132,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\thien.nguyen\\.nuget\\packages\\": {}
+    "C:\\Users\\nghia\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\thien.nguyen\\Documents\\GitHub\\PRN2211_Team8\\JPOS.Controller\\JPOS.Controller.csproj",
+      "projectUniqueName": "D:\\SourceCode\\dotNet\\PRN221_GroupAssignment\\PRN2211_Team8\\JPOS.Controller\\JPOS.Controller.csproj",
       "projectName": "JPOS.Controller",
-      "projectPath": "C:\\Users\\thien.nguyen\\Documents\\GitHub\\PRN2211_Team8\\JPOS.Controller\\JPOS.Controller.csproj",
-      "packagesPath": "C:\\Users\\thien.nguyen\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\thien.nguyen\\Documents\\GitHub\\PRN2211_Team8\\JPOS.Controller\\obj\\",
+      "projectPath": "D:\\SourceCode\\dotNet\\PRN221_GroupAssignment\\PRN2211_Team8\\JPOS.Controller\\JPOS.Controller.csproj",
+      "packagesPath": "C:\\Users\\nghia\\.nuget\\packages\\",
+      "outputPath": "D:\\SourceCode\\dotNet\\PRN221_GroupAssignment\\PRN2211_Team8\\JPOS.Controller\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\thien.nguyen\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\nghia\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -11158,11 +11163,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\thien.nguyen\\Documents\\GitHub\\PRN2211_Team8\\JPOS.Model\\JPOS.Model.csproj": {
-              "projectPath": "C:\\Users\\thien.nguyen\\Documents\\GitHub\\PRN2211_Team8\\JPOS.Model\\JPOS.Model.csproj"
+            "D:\\SourceCode\\dotNet\\PRN221_GroupAssignment\\PRN2211_Team8\\JPOS.Model\\JPOS.Model.csproj": {
+              "projectPath": "D:\\SourceCode\\dotNet\\PRN221_GroupAssignment\\PRN2211_Team8\\JPOS.Model\\JPOS.Model.csproj"
             },
-            "C:\\Users\\thien.nguyen\\Documents\\GitHub\\PRN2211_Team8\\JPOS.Service\\JPOS.Service.csproj": {
-              "projectPath": "C:\\Users\\thien.nguyen\\Documents\\GitHub\\PRN2211_Team8\\JPOS.Service\\JPOS.Service.csproj"
+            "D:\\SourceCode\\dotNet\\PRN221_GroupAssignment\\PRN2211_Team8\\JPOS.Service\\JPOS.Service.csproj": {
+              "projectPath": "D:\\SourceCode\\dotNet\\PRN221_GroupAssignment\\PRN2211_Team8\\JPOS.Service\\JPOS.Service.csproj"
             }
           }
         }
@@ -11171,6 +11176,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -11219,6 +11229,24 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[6.0.32, 6.0.32]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[6.0.32, 6.0.32]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[6.0.32, 6.0.32]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[6.0.32, 6.0.32]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -11227,7 +11255,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303\\RuntimeIdentifierGraph.json"
       }
     }
   }

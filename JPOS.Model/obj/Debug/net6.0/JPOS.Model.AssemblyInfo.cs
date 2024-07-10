@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("JPOS.Model")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ba83461d1f89266bb6365140d2cd3b62d56372b4")]
 [assembly: System.Reflection.AssemblyProductAttribute("JPOS.Model")]
 [assembly: System.Reflection.AssemblyTitleAttribute("JPOS.Model")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
