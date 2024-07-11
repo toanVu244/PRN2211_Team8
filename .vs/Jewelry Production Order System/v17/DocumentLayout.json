@@ -1,0 +1,562 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{958DBEFB-816F-4C40-9AC8-CA9B8080897A}|JPOS.Controller\\JPOS.Controller.csproj|c:\\users\\admin\\desktop\\prn221\\prn2211_team8\\jpos.controller\\pages\\designpage\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{958DBEFB-816F-4C40-9AC8-CA9B8080897A}|JPOS.Controller\\JPOS.Controller.csproj|solutionrelative:jpos.controller\\pages\\designpage\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{958DBEFB-816F-4C40-9AC8-CA9B8080897A}|JPOS.Controller\\JPOS.Controller.csproj|c:\\users\\admin\\desktop\\prn221\\prn2211_team8\\jpos.controller\\pages\\designpage\\delete.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{958DBEFB-816F-4C40-9AC8-CA9B8080897A}|JPOS.Controller\\JPOS.Controller.csproj|solutionrelative:jpos.controller\\pages\\designpage\\delete.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{958DBEFB-816F-4C40-9AC8-CA9B8080897A}|JPOS.Controller\\JPOS.Controller.csproj|C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\jpos.controller\\pages\\designpage\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{958DBEFB-816F-4C40-9AC8-CA9B8080897A}|JPOS.Controller\\JPOS.Controller.csproj|solutionrelative:jpos.controller\\pages\\designpage\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{958DBEFB-816F-4C40-9AC8-CA9B8080897A}|JPOS.Controller\\JPOS.Controller.csproj|c:\\users\\admin\\desktop\\prn221\\prn2211_team8\\jpos.controller\\pages\\designpage\\details.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{958DBEFB-816F-4C40-9AC8-CA9B8080897A}|JPOS.Controller\\JPOS.Controller.csproj|solutionrelative:jpos.controller\\pages\\designpage\\details.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{90AF0EE2-EF8C-496D-BA00-F606F3863260}|JPOS.Service\\JPOS.Service.csproj|C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\jpos.service\\implementations\\designservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{90AF0EE2-EF8C-496D-BA00-F606F3863260}|JPOS.Service\\JPOS.Service.csproj|solutionrelative:jpos.service\\implementations\\designservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{90AF0EE2-EF8C-496D-BA00-F606F3863260}|JPOS.Service\\JPOS.Service.csproj|C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\jpos.service\\interfaces\\idesignservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{90AF0EE2-EF8C-496D-BA00-F606F3863260}|JPOS.Service\\JPOS.Service.csproj|solutionrelative:jpos.service\\interfaces\\idesignservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{958DBEFB-816F-4C40-9AC8-CA9B8080897A}|JPOS.Controller\\JPOS.Controller.csproj|C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\jpos.controller\\pages\\product\\details.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{958DBEFB-816F-4C40-9AC8-CA9B8080897A}|JPOS.Controller\\JPOS.Controller.csproj|solutionrelative:jpos.controller\\pages\\product\\details.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{958DBEFB-816F-4C40-9AC8-CA9B8080897A}|JPOS.Controller\\JPOS.Controller.csproj|C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\jpos.controller\\pages\\product\\edit.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{958DBEFB-816F-4C40-9AC8-CA9B8080897A}|JPOS.Controller\\JPOS.Controller.csproj|solutionrelative:jpos.controller\\pages\\product\\edit.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{958DBEFB-816F-4C40-9AC8-CA9B8080897A}|JPOS.Controller\\JPOS.Controller.csproj|C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\jpos.controller\\pages\\designpage\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{958DBEFB-816F-4C40-9AC8-CA9B8080897A}|JPOS.Controller\\JPOS.Controller.csproj|solutionrelative:jpos.controller\\pages\\designpage\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{958DBEFB-816F-4C40-9AC8-CA9B8080897A}|JPOS.Controller\\JPOS.Controller.csproj|C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\jpos.controller\\pages\\designpage\\create.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{958DBEFB-816F-4C40-9AC8-CA9B8080897A}|JPOS.Controller\\JPOS.Controller.csproj|solutionrelative:jpos.controller\\pages\\designpage\\create.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{958DBEFB-816F-4C40-9AC8-CA9B8080897A}|JPOS.Controller\\JPOS.Controller.csproj|C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\jpos.controller\\pages\\product\\delete.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{958DBEFB-816F-4C40-9AC8-CA9B8080897A}|JPOS.Controller\\JPOS.Controller.csproj|solutionrelative:jpos.controller\\pages\\product\\delete.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{958DBEFB-816F-4C40-9AC8-CA9B8080897A}|JPOS.Controller\\JPOS.Controller.csproj|C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\jpos.controller\\pages\\designpage\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{958DBEFB-816F-4C40-9AC8-CA9B8080897A}|JPOS.Controller\\JPOS.Controller.csproj|solutionrelative:jpos.controller\\pages\\designpage\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{958DBEFB-816F-4C40-9AC8-CA9B8080897A}|JPOS.Controller\\JPOS.Controller.csproj|C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\jpos.controller\\pages\\product\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{958DBEFB-816F-4C40-9AC8-CA9B8080897A}|JPOS.Controller\\JPOS.Controller.csproj|solutionrelative:jpos.controller\\pages\\product\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{958DBEFB-816F-4C40-9AC8-CA9B8080897A}|JPOS.Controller\\JPOS.Controller.csproj|C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\jpos.controller\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{958DBEFB-816F-4C40-9AC8-CA9B8080897A}|JPOS.Controller\\JPOS.Controller.csproj|solutionrelative:jpos.controller\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{90AF0EE2-EF8C-496D-BA00-F606F3863260}|JPOS.Service\\JPOS.Service.csproj|C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\jpos.service\\implementations\\blogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{90AF0EE2-EF8C-496D-BA00-F606F3863260}|JPOS.Service\\JPOS.Service.csproj|solutionrelative:jpos.service\\implementations\\blogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{90AF0EE2-EF8C-496D-BA00-F606F3863260}|JPOS.Service\\JPOS.Service.csproj|C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\jpos.service\\implementations\\catergoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{90AF0EE2-EF8C-496D-BA00-F606F3863260}|JPOS.Service\\JPOS.Service.csproj|solutionrelative:jpos.service\\implementations\\catergoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{90AF0EE2-EF8C-496D-BA00-F606F3863260}|JPOS.Service\\JPOS.Service.csproj|C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\jpos.service\\implementations\\userservicecs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{90AF0EE2-EF8C-496D-BA00-F606F3863260}|JPOS.Service\\JPOS.Service.csproj|solutionrelative:jpos.service\\implementations\\userservicecs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{90AF0EE2-EF8C-496D-BA00-F606F3863260}|JPOS.Service\\JPOS.Service.csproj|C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\jpos.service\\implementations\\requestservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{90AF0EE2-EF8C-496D-BA00-F606F3863260}|JPOS.Service\\JPOS.Service.csproj|solutionrelative:jpos.service\\implementations\\requestservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{90AF0EE2-EF8C-496D-BA00-F606F3863260}|JPOS.Service\\JPOS.Service.csproj|C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\jpos.service\\implementations\\vnpayservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{90AF0EE2-EF8C-496D-BA00-F606F3863260}|JPOS.Service\\JPOS.Service.csproj|solutionrelative:jpos.service\\implementations\\vnpayservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23462B13-CEBD-4C57-AFA1-3D358A675737}|JPOS.Model\\JPOS.Model.csproj|C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\jpos.model\\models\\productmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{23462B13-CEBD-4C57-AFA1-3D358A675737}|JPOS.Model\\JPOS.Model.csproj|solutionrelative:jpos.model\\models\\productmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 2067,
+          "SelectedChildIndex": 17,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:3:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:2:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:8:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:8:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:9:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:7:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:4:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:5:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:2:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Controller\\Pages\\DesignPage\\Details.cshtml",
+              "RelativeDocumentMoniker": "JPOS.Controller\\Pages\\DesignPage\\Details.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Controller\\Pages\\DesignPage\\Details.cshtml",
+              "RelativeToolTip": "JPOS.Controller\\Pages\\DesignPage\\Details.cshtml",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAABAAAABPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-07-11T04:00:49.099Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "DesignService.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Service\\Implementations\\DesignService.cs",
+              "RelativeDocumentMoniker": "JPOS.Service\\Implementations\\DesignService.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Service\\Implementations\\DesignService.cs",
+              "RelativeToolTip": "JPOS.Service\\Implementations\\DesignService.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAADcAAAAYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-09T09:47:16.44Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Controller\\Pages\\DesignPage\\Create.cshtml",
+              "RelativeDocumentMoniker": "JPOS.Controller\\Pages\\DesignPage\\Create.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Controller\\Pages\\DesignPage\\Create.cshtml",
+              "RelativeToolTip": "JPOS.Controller\\Pages\\DesignPage\\Create.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAABPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-07-09T09:55:35.698Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Index.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Controller\\Pages\\DesignPage\\Index.cshtml.cs",
+              "RelativeDocumentMoniker": "JPOS.Controller\\Pages\\DesignPage\\Index.cshtml.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Controller\\Pages\\DesignPage\\Index.cshtml.cs",
+              "RelativeToolTip": "JPOS.Controller\\Pages\\DesignPage\\Index.cshtml.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-09T09:37:51.507Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Create.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Controller\\Pages\\DesignPage\\Create.cshtml.cs",
+              "RelativeDocumentMoniker": "JPOS.Controller\\Pages\\DesignPage\\Create.cshtml.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Controller\\Pages\\DesignPage\\Create.cshtml.cs",
+              "RelativeToolTip": "JPOS.Controller\\Pages\\DesignPage\\Create.cshtml.cs",
+              "ViewState": "AQIAABMAAAAAAAAAAAAQwCYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-09T09:48:09.335Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Controller\\Pages\\DesignPage\\Index.cshtml",
+              "RelativeDocumentMoniker": "JPOS.Controller\\Pages\\DesignPage\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Controller\\Pages\\DesignPage\\Index.cshtml",
+              "RelativeToolTip": "JPOS.Controller\\Pages\\DesignPage\\Index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-07-09T10:04:21.673Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Delete.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Controller\\Pages\\Product\\Delete.cshtml.cs",
+              "RelativeDocumentMoniker": "JPOS.Controller\\Pages\\Product\\Delete.cshtml.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Controller\\Pages\\Product\\Delete.cshtml.cs",
+              "RelativeToolTip": "JPOS.Controller\\Pages\\Product\\Delete.cshtml.cs",
+              "ViewState": "AQIAACYAAAAAAAAAAAAgwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-10T06:03:41.169Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Index.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Controller\\Pages\\Product\\Index.cshtml.cs",
+              "RelativeDocumentMoniker": "JPOS.Controller\\Pages\\Product\\Index.cshtml.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Controller\\Pages\\Product\\Index.cshtml.cs",
+              "RelativeToolTip": "JPOS.Controller\\Pages\\Product\\Index.cshtml.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-09T09:31:10.605Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 416,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Controller\\appsettings.json",
+              "RelativeDocumentMoniker": "JPOS.Controller\\appsettings.json",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Controller\\appsettings.json",
+              "RelativeToolTip": "JPOS.Controller\\appsettings.json",
+              "ViewState": "AQIAAAIAAAAAAAAAAAAxwBsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-07-09T07:21:21.014Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Details.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Controller\\Pages\\DesignPage\\Details.cshtml.cs",
+              "RelativeDocumentMoniker": "JPOS.Controller\\Pages\\DesignPage\\Details.cshtml.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Controller\\Pages\\DesignPage\\Details.cshtml.cs",
+              "RelativeToolTip": "JPOS.Controller\\Pages\\DesignPage\\Details.cshtml.cs",
+              "ViewState": "AQIAABIAAAAAAAAAAAAQwCwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-10T06:01:23.61Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IDesignService.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Service\\Interfaces\\IDesignService.cs",
+              "RelativeDocumentMoniker": "JPOS.Service\\Interfaces\\IDesignService.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Service\\Interfaces\\IDesignService.cs",
+              "RelativeToolTip": "JPOS.Service\\Interfaces\\IDesignService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-11T03:59:27.906Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Details.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Controller\\Pages\\Product\\Details.cshtml.cs",
+              "RelativeDocumentMoniker": "JPOS.Controller\\Pages\\Product\\Details.cshtml.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Controller\\Pages\\Product\\Details.cshtml.cs",
+              "RelativeToolTip": "JPOS.Controller\\Pages\\Product\\Details.cshtml.cs",
+              "ViewState": "AQIAABAAAAAAAAAAAAAEwB8AAABDAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-09T07:21:21.032Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Edit.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Controller\\Pages\\Product\\Edit.cshtml.cs",
+              "RelativeDocumentMoniker": "JPOS.Controller\\Pages\\Product\\Edit.cshtml.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Controller\\Pages\\Product\\Edit.cshtml.cs",
+              "RelativeToolTip": "JPOS.Controller\\Pages\\Product\\Edit.cshtml.cs",
+              "ViewState": "AQIAADUAAAAAAAAAAAAEwDsAAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-09T07:21:21.028Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "BlogService.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Service\\Implementations\\BlogService.cs",
+              "RelativeDocumentMoniker": "JPOS.Service\\Implementations\\BlogService.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Service\\Implementations\\BlogService.cs",
+              "RelativeToolTip": "JPOS.Service\\Implementations\\BlogService.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAABMAAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-09T07:21:21.017Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "CatergoryService.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Service\\Implementations\\CatergoryService.cs",
+              "RelativeDocumentMoniker": "JPOS.Service\\Implementations\\CatergoryService.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Service\\Implementations\\CatergoryService.cs",
+              "RelativeToolTip": "JPOS.Service\\Implementations\\CatergoryService.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-09T07:21:21.019Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "RequestService.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Service\\Implementations\\RequestService.cs",
+              "RelativeDocumentMoniker": "JPOS.Service\\Implementations\\RequestService.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Service\\Implementations\\RequestService.cs",
+              "RelativeToolTip": "JPOS.Service\\Implementations\\RequestService.cs",
+              "ViewState": "AQIAABEAAAAAAAAAAIAxwBoAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-09T07:21:21.021Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "UserServicecs.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Service\\Implementations\\UserServicecs.cs",
+              "RelativeDocumentMoniker": "JPOS.Service\\Implementations\\UserServicecs.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Service\\Implementations\\UserServicecs.cs",
+              "RelativeToolTip": "JPOS.Service\\Implementations\\UserServicecs.cs",
+              "ViewState": "AQIAAHwAAAAAAAAAAIAzwHQAAAAXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-09T07:21:21.022Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "VnPayService.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Service\\Implementations\\VnPayService.cs",
+              "RelativeDocumentMoniker": "JPOS.Service\\Implementations\\VnPayService.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Service\\Implementations\\VnPayService.cs",
+              "RelativeToolTip": "JPOS.Service\\Implementations\\VnPayService.cs",
+              "ViewState": "AQIAADwAAAAAAAAAAAAUwE4AAAACAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-09T07:21:21.026Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "ProductModel.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Model\\Models\\ProductModel.cs",
+              "RelativeDocumentMoniker": "JPOS.Model\\Models\\ProductModel.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Model\\Models\\ProductModel.cs",
+              "RelativeToolTip": "JPOS.Model\\Models\\ProductModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-09T07:21:21.033Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 584,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e506b91c-c606-466a-90a9-123d1d1e12b3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:134:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:135:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:136:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:137:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:11:0:{2456bd12-ecf7-4988-a4a6-67d49173f565}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:133:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:141:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:142:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:139:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:143:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:144:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:145:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:146:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:147:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 239,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 883,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "FloatingWindowState": {
+        "Id": "ddddba8c-3e39-42d4-b979-5d6f20a78c5f",
+        "Display": 0,
+        "X": 160,
+        "Y": 38,
+        "Width": 1158,
+        "Height": 593,
+        "WindowState": 0
+      },
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Delete.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Controller\\Pages\\DesignPage\\Delete.cshtml.cs",
+              "RelativeDocumentMoniker": "JPOS.Controller\\Pages\\DesignPage\\Delete.cshtml.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Controller\\Pages\\DesignPage\\Delete.cshtml.cs",
+              "RelativeToolTip": "JPOS.Controller\\Pages\\DesignPage\\Delete.cshtml.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-10T05:58:49.2Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

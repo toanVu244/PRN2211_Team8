@@ -19,6 +19,9 @@ namespace JPOS.Service.Implementations
         {
             _unitOfWork = unitOfWork;
         }
+
+        public object Designs => throw new NotImplementedException();
+
         public async Task<bool> CreateDesignAsync(Design design,int idProduct)
         {
             try
@@ -73,6 +76,10 @@ namespace JPOS.Service.Implementations
             return false;
         }
 
+        public void CreateDesignAsync(Design design1, object design2, int v, object idProduct)
+        {
+            throw new NotImplementedException();
+        }
 
         public Task<bool> DeleteDesignAsync(int id)
         {

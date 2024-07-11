@@ -1,24 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ToanVu\\source\\repos\\PRN221_TEAM8\\JPOS.Controller\\JPOS.Controller.csproj": {}
+    "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Controller\\JPOS.Controller.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ToanVu\\source\\repos\\PRN221_TEAM8\\JPOS.Controller\\JPOS.Controller.csproj": {
+    "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Controller\\JPOS.Controller.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ToanVu\\source\\repos\\PRN221_TEAM8\\JPOS.Controller\\JPOS.Controller.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Controller\\JPOS.Controller.csproj",
         "projectName": "JPOS.Controller",
-        "projectPath": "C:\\Users\\ToanVu\\source\\repos\\PRN221_TEAM8\\JPOS.Controller\\JPOS.Controller.csproj",
-        "packagesPath": "C:\\Users\\ToanVu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ToanVu\\source\\repos\\PRN221_TEAM8\\JPOS.Controller\\obj\\",
+        "projectPath": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Controller\\JPOS.Controller.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Controller\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\DevExpress 23.1\\Components\\Offline Packages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\ToanVu\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 23.1.config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,19 +26,18 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\DevExpress 23.1\\Components\\System\\Components\\Packages": {},
-          "C:\\Program Files\\dotnet\\sdk\\7.0.302\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\ToanVu\\source\\repos\\PRN221_TEAM8\\JPOS.Model\\JPOS.Model.csproj": {
-                "projectPath": "C:\\Users\\ToanVu\\source\\repos\\PRN221_TEAM8\\JPOS.Model\\JPOS.Model.csproj"
+              "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Model\\JPOS.Model.csproj": {
+                "projectPath": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Model\\JPOS.Model.csproj"
               },
-              "C:\\Users\\ToanVu\\source\\repos\\PRN221_TEAM8\\JPOS.Service\\JPOS.Service.csproj": {
-                "projectPath": "C:\\Users\\ToanVu\\source\\repos\\PRN221_TEAM8\\JPOS.Service\\JPOS.Service.csproj"
+              "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Service\\JPOS.Service.csproj": {
+                "projectPath": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Service\\JPOS.Service.csproj"
               }
             }
           }
@@ -47,6 +46,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -68,6 +72,10 @@
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[6.0.31, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[6.0.29, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -99,25 +107,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\ToanVu\\source\\repos\\PRN221_TEAM8\\JPOS.Model\\JPOS.Model.csproj": {
+    "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Model\\JPOS.Model.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ToanVu\\source\\repos\\PRN221_TEAM8\\JPOS.Model\\JPOS.Model.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Model\\JPOS.Model.csproj",
         "projectName": "JPOS.Model",
-        "projectPath": "C:\\Users\\ToanVu\\source\\repos\\PRN221_TEAM8\\JPOS.Model\\JPOS.Model.csproj",
-        "packagesPath": "C:\\Users\\ToanVu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ToanVu\\source\\repos\\PRN221_TEAM8\\JPOS.Model\\obj\\",
+        "projectPath": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Model\\JPOS.Model.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Model\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\DevExpress 23.1\\Components\\Offline Packages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\ToanVu\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 23.1.config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -125,7 +133,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\DevExpress 23.1\\Components\\System\\Components\\Packages": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -138,6 +146,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -187,25 +200,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\ToanVu\\source\\repos\\PRN221_TEAM8\\JPOS.Service\\JPOS.Service.csproj": {
+    "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Service\\JPOS.Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ToanVu\\source\\repos\\PRN221_TEAM8\\JPOS.Service\\JPOS.Service.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Service\\JPOS.Service.csproj",
         "projectName": "JPOS.Service",
-        "projectPath": "C:\\Users\\ToanVu\\source\\repos\\PRN221_TEAM8\\JPOS.Service\\JPOS.Service.csproj",
-        "packagesPath": "C:\\Users\\ToanVu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ToanVu\\source\\repos\\PRN221_TEAM8\\JPOS.Service\\obj\\",
+        "projectPath": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Service\\JPOS.Service.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Service\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\DevExpress 23.1\\Components\\Offline Packages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\ToanVu\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 23.1.config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -213,15 +226,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\DevExpress 23.1\\Components\\System\\Components\\Packages": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\ToanVu\\source\\repos\\PRN221_TEAM8\\JPOS.Model\\JPOS.Model.csproj": {
-                "projectPath": "C:\\Users\\ToanVu\\source\\repos\\PRN221_TEAM8\\JPOS.Model\\JPOS.Model.csproj"
+              "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Model\\JPOS.Model.csproj": {
+                "projectPath": "C:\\Users\\Admin\\Desktop\\PRN221\\PRN2211_Team8\\JPOS.Model\\JPOS.Model.csproj"
               }
             }
           }
@@ -230,6 +243,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -279,7 +297,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     }
