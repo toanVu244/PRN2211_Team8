@@ -1,48 +1,31 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using JPOS.Model.Entities;
-using JPOS.Service.Interfaces;
 
 namespace JPOS.Controller.Pages.Dashboard.Categories
 {
     public class IndexModel : PageModel
     {
-        private readonly ICategoryService _categoryService;
+        private readonly JPOS.Model.Entities.JPOS_ProjectContext _context;
 
-        public IndexModel(ICategoryService categoryService)
+        public IndexModel(JPOS.Model.Entities.JPOS_ProjectContext context)
         {
-            _categoryService = categoryService;
+            _context = context;
         }
 
-        public IList<Category> Category { get; set; } = default!;
+        public IList<Category> Category { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            Category = await _categoryService.GetAllCategoryAsync();
-        }
-
-        public async Task<IActionResult> OnGetPartialAsync()
-        {
-            Category = await _categoryService.GetAllCategoryAsync();
-            return Partial("_CategoriesPartial", Category);
-        }
-
-        public async Task<IActionResult> OnPostCreateAsync([FromForm] Category category)
-        {
-            //if (!ModelState.IsValid)
-            //{
-            //    return BadRequest(ModelState);
-            //}
-
-            var result = await _categoryService.CreateCategoryAsync(category);
-            if (result)
+            if (_context.Categories != null)
             {
-                return new JsonResult(new { success = true });
+                Category = await _context.Categories.ToListAsync();
             }
-
-            return BadRequest("Error creating category");
         }
     }
 }

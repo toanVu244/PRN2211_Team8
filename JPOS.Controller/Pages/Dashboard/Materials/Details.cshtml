@@ -1,0 +1,49 @@
+﻿@page "/Dashboard/Materials/Details"
+@model JPOS.Controller.Pages.Dashboard.Materials.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Material</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Material.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Material.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Material.Price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Material.Price)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Material.Quantity)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Material.Quantity)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Material.TotalPrice)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Material.TotalPrice)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Material.Status)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Material.Status)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Material?.MaterialId">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>
