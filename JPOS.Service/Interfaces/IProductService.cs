@@ -17,5 +17,6 @@ namespace JPOS.Service.Interfaces
         public Task<bool?> UpdateProduct(ProductModel model);
         public Task<ProductDetailModel?> GetProductDetail(int id);
         public Task<bool> CreateProduct(ProductModel model, List<ProductMaterialModel> materialofproduct);
+        Task<bool> DeleteProductAsync(int id);
     }
 }

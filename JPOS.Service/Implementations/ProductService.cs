@@ -156,5 +156,12 @@ namespace JPOS.Service.Implementations
            return false;
             
         }
+
+        public async Task<bool> DeleteProductAsync(int id)
+        {
+            var result = await _unitOfWork.Products.DeleteAsync(id);
+            await _unitOfWork.CompleteAsync();
+            return result;
+        }
     }
 }
