@@ -6,6 +6,8 @@ using JPOS.Model.Entities;
 using Microsoft.EntityFrameworkCore;
 using JPOS.Service.Tools;
 using JPOS.Model.Models.AppConfig;
+using JPOS.Model.Repositories.Implementations;
+using Microsoft.Extensions.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,15 +23,24 @@ builder.Services.AddDbContext<JPOS_ProjectContext>(options =>
 });
 
 builder.Services.AddScoped<IProductService, ProductService>();
-builder.Services.AddScoped<IUserServices, UserServices>(); 
+builder.Services.AddScoped<IUserServices, UserServices>();
 builder.Services.AddScoped<IMaterialService, MaterialService>();
 builder.Services.AddScoped<ICategoryService, CatergoryService>();
+builder.Services.AddScoped<IRequestService, RequestService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
+// Add HttpClient service. Cái này check xem link ảnh có đúng không.
+builder.Services.AddHttpClient();
+
 builder.Services.AddSingleton(builder.Configuration.GetSection("Jwt").Get<AppConfig>());
 var appConfig = builder.Configuration.GetSection("Jwt").Get<AppConfig>();
+
+// Configure logging
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+builder.Logging.AddDebug();
 
 var app = builder.Build();
 
@@ -37,22 +48,30 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
-
-app.MapControllers();
-
 app.UseStaticFiles();
-
 app.UseRouting();
-
 app.UseAuthorization();
-
 app.UseSession();
 
+app.MapControllers();
 app.MapRazorPages();
+
+app.Use(async (context, next) =>
+{
+    try
+    {
+        await next();
+    }
+    catch (Exception ex)
+    {
+        var logger = context.RequestServices.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "An unexpected error occurred.");
+        throw;
+    }
+});
 
 app.Run();

@@ -1,43 +1,44 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using JPOS.Model.Entities;
-using JPOS.Service.Interfaces;
 
 namespace JPOS.Controller.Pages.Dashboard.Categories
 {
     public class CreateModel : PageModel
     {
-        private readonly ICategoryService _categoryService;
+        private readonly JPOS.Model.Entities.JPOS_ProjectContext _context;
 
-        public CreateModel(ICategoryService categoryService)
+        public CreateModel(JPOS.Model.Entities.JPOS_ProjectContext context)
         {
-            _categoryService = categoryService;
+            _context = context;
         }
-
-        [BindProperty]
-        public Category Category { get; set; }
 
         public IActionResult OnGet()
         {
             return Page();
         }
 
+        [BindProperty]
+        public Category Category { get; set; } = default!;
+        
+
+        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
+          if (!ModelState.IsValid || _context.Categories == null || Category == null)
             {
-                return BadRequest(ModelState);
+                return Page();
             }
 
-            var result = await _categoryService.CreateCategoryAsync(Category);
-            if (result)
-            {
-                return new JsonResult(new { success = true });
-            }
+            _context.Categories.Add(Category);
+            await _context.SaveChangesAsync();
 
-            return BadRequest("Error creating category");
+            return RedirectToPage("./Index");
         }
     }
-
 }
