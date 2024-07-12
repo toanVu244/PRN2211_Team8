@@ -28,6 +28,7 @@
   <ItemGroup>
     <Folder Include="Pages\Dashboard\Design\" />
     <Folder Include="Pages\Dashboard\Materials\" />
+    <Folder Include="Pages\Dashboard\Users\" />
     <Folder Include="Pages\Dashboard\Statistics\" />
     <Folder Include="Pages\Dashboard\Products\" />
     <Folder Include="Pages\Dashboard\Orders\" />
