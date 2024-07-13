@@ -1,27 +1,36 @@
-﻿using JPOS.Model.Repositories.Interfaces;
-using JPOS.Model;
-using JPOS.Service.Implementations;
-using JPOS.Service.Interfaces;
+﻿using JPOS.Model;
 using JPOS.Model.Entities;
-using Microsoft.EntityFrameworkCore;
-using JPOS.Service.Tools;
 using JPOS.Model.Models.AppConfig;
 using JPOS.Model.Repositories.Implementations;
-using Microsoft.Extensions.Logging;
+using JPOS.Model.Repositories.Interfaces;
+using JPOS.Service.Implementations;
+using JPOS.Service.Interfaces;
+using JPOS.Service.Tools;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddSession();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30); 
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 builder.Services.AddRazorPages();
 builder.Services.AddAutoMapper(typeof(ApplicationMapper));
 
+// Database Context
 builder.Services.AddDbContext<JPOS_ProjectContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DB"));
     options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
 });
 
+// Register Services
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IUserServices, UserServices>();
 builder.Services.AddScoped<IMaterialService, MaterialService>();
@@ -32,17 +41,8 @@ builder.Services.AddScoped<IProductMaterialService, ProductMaterialService>();
 
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-
 builder.Services.AddHttpClient();
-
-builder.Services.AddSingleton(builder.Configuration.GetSection("Jwt").Get<AppConfig>());
-var appConfig = builder.Configuration.GetSection("Jwt").Get<AppConfig>();
-
-builder.Logging.ClearProviders();
-builder.Logging.AddConsole();
-builder.Logging.AddDebug();
 
 var app = builder.Build();
 
@@ -56,23 +56,9 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
-app.UseAuthorization();
 app.UseSession();
+app.UseMiddleware<HandleRoleMiddleware>();
+app.UseAuthorization();
 app.MapControllers();
 app.MapRazorPages();
-
-app.Use(async (context, next) =>
-{
-    try
-    {
-        await next();
-    }
-    catch (Exception ex)
-    {
-        var logger = context.RequestServices.GetRequiredService<ILogger<Program>>();
-        logger.LogError(ex, "An unexpected error occurred.");
-        throw;
-    }
-});
-
 app.Run();
