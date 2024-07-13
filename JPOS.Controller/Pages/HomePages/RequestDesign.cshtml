@@ -1,0 +1,48 @@
+﻿@page
+@model JPOS.Controller.Pages.HomePages.RequestDesignModel
+@{
+}
+
+<h1>Hi</h1>
+<div class="container">
+    <div class="row">
+        <!-- Picture Column -->
+        <div class="col-md-4">
+            <img id="uploadedImage" src="https://res.cloudinary.com/dkyv1vp1c/image/upload/v1720892223/pojptighvwr9at4yxsjb.png" class="img-fluid" style="height: 300px; object-fit: cover;" alt="" />
+            <div style="margin-top: 1rem;">
+                <input type="file" id="imageUpload" style="display: none;" />
+                <button class="btn btn-primary" type="button" style="background-color: #FF6B6B; color: #FFFFFF;" onclick="document.getElementById('imageUpload').click();">Upload Picture</button>
+            </div>
+        </div>
+
+        <!-- Information Column -->
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h4>Input your request about your Jewelly</h4>
+                    <div> Type here your idea and material you want to use </div>
+                    <div class="input-group">
+                      
+                        <textarea class="form-control" aria-label="With textarea" rows="8"></textarea>
+                    </div>
+                    <div style="margin-top: 1rem;">
+                      
+                        <button class="btn btn-primary" type="button" style="background-color: #FF6B6B; color: #FFFFFF;">Send Request</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        document.getElementById('imageUpload').addEventListener('change', function (event) {
+            var reader = new FileReader();
+            reader.onload = function () {
+                var img = document.getElementById('uploadedImage');
+                img.src = reader.result;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        });
+    </script>
+}

@@ -27,6 +27,10 @@ builder.Services.AddScoped<IUserServices, UserServices>();
 builder.Services.AddScoped<IMaterialService, MaterialService>();
 builder.Services.AddScoped<ICategoryService, CatergoryService>();
 builder.Services.AddScoped<IRequestService, RequestService>();
+builder.Services.AddScoped<ICategoryService, CatergoryService>();
+builder.Services.AddScoped<IProductMaterialService, ProductMaterialService>();
+
+
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
