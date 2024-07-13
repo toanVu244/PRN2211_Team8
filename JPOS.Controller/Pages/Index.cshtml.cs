@@ -1,12 +1,13 @@
 ﻿using JPOS.Model.Models;
 using JPOS.Service.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace JPOS.Controller.Pages
 {
     public class IndexModel : PageModel
-    {
+    {     
         private readonly IProductService _productService;
 
         public IndexModel(IProductService productService)

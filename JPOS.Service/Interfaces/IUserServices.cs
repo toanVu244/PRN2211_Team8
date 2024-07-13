@@ -10,7 +10,7 @@ namespace JPOS.Service.Interfaces
 {
     public interface IUserServices
     {
-        public Task<string> AuthenticateAsync(string username, string password);
+        public Task<User> AuthenticateAsync(string username, string password);
         public Task<List<User>> GetAllUsersAsync();
         public Task<User?> GetUserByIdAsync(string id);
         public Task<bool> CreateUserAsync(User user);

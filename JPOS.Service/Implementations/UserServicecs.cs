@@ -21,48 +21,52 @@ namespace JPOS.Service.Implementations
     public class UserServices : IUserServices
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly AppConfig _appConfig;
+        /*private readonly AppConfig _appConfig;*/
 
-        public UserServices(IUnitOfWork unitOfWork, AppConfig appConfig)
+        public UserServices(IUnitOfWork unitOfWork/*, AppConfig appConfig*/)
         {
             _unitOfWork = unitOfWork;
-            _appConfig = appConfig;
+            /*_appConfig = appConfig;*/
         }
         private string GenerateJwtToken(User user)
         {
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_appConfig.jwtSecret);
-            var tokenDescriptor = new SecurityTokenDescriptor
+            List<Claim> claims = new List<Claim>()
             {
-                Subject = new ClaimsIdentity(new Claim[]
-                {
-                new Claim("userId", user.UserId),
-                new Claim("userName", user.Username),
-                new Claim("role", user.RoleId.ToString()),
-                }),
-                Expires = DateTime.UtcNow.AddDays(7), 
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+                new Claim("UserId", user.UserId.ToString()),
+                new Claim("UserName", user.FullName),
+                new Claim("Email", user.Email),
+                new Claim("Role", user.RoleId.ToString()),
             };
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            return tokenHandler.WriteToken(token);
+
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("c2VydmVwZXJmZWN0bHljaGVlc2VxdWlja2NvYWNoY29sbGVjdHNsb3Bld2lzZWNhbWU="));
+            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+
+            var token = new JwtSecurityToken(
+                issuer: "YourIssuer",
+                audience: "YourAudience",
+                claims: claims,
+                expires: DateTime.Now.AddMinutes(30),
+                signingCredentials: credentials
+                );
+            var accessToken = new JwtSecurityTokenHandler().WriteToken(token);
+            return accessToken;
         }
 
 
-        public async Task<string> AuthenticateAsync(string username, string password)
+        public async Task<User> AuthenticateAsync(string username, string password)
         {
             var hashedInputPasswordString = HashAndTruncatePassword(password);
-            var user = await _unitOfWork.Users.GetUserByUsernameAndPasswordAsync(username, hashedInputPasswordString);
+            var user = await _unitOfWork.Users.GetByUsernameAsync(username);
             
             if (hashedInputPasswordString == user.Password)
             {
                 if (user == null)
-                    return "";
+                    return null;
             }
 
-                var token = GenerateJwtToken(user);
+                /*var token = GenerateJwtToken(user);*/
 
-                return token;
-            
+                return user;           
         }
         public async Task<string> GenerateNextUserIDAsync()
         {
