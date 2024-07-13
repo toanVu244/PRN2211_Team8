@@ -31,13 +31,11 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
-// Add HttpClient service. Cái này check xem link ảnh có đúng không.
 builder.Services.AddHttpClient();
 
 builder.Services.AddSingleton(builder.Configuration.GetSection("Jwt").Get<AppConfig>());
 var appConfig = builder.Configuration.GetSection("Jwt").Get<AppConfig>();
 
-// Configure logging
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
 builder.Logging.AddDebug();
@@ -56,7 +54,6 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthorization();
 app.UseSession();
-
 app.MapControllers();
 app.MapRazorPages();
 

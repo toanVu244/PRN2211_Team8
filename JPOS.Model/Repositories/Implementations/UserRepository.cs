@@ -22,8 +22,9 @@ namespace JPOS.Model.Repositories.Implementations
         }
         public async Task<User?> GetUserByUsernameAndPasswordAsync(string username, string password)
         {
-            return await _context.Users.FirstOrDefaultAsync(u => u.Username == username && u.Password == password).ConfigureAwait(false);
+            return await _context.Users.SingleOrDefaultAsync(u => u.Username == username && u.Password == password);
         }
+
         public async Task<User> GetLastUserAsync()
         {
             var lastUser = await _context.Users
