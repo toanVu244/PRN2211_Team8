@@ -57,16 +57,14 @@ namespace JPOS.Service.Implementations
         {
             var hashedInputPasswordString = HashAndTruncatePassword(password);
             var user = await _unitOfWork.Users.GetByUsernameAsync(username);
-            
-            if (hashedInputPasswordString == user.Password)
+            if (user != null)
             {
-                if (user == null)
-                    return null;
+                if (hashedInputPasswordString == user.Password)
+                {
+                    return user;
+                }
             }
-
-                /*var token = GenerateJwtToken(user);*/
-
-                return user;           
+            return null;
         }
         public async Task<string> GenerateNextUserIDAsync()
         {
