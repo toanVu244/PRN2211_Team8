@@ -3,51 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewData["Title"]</title>
+    <title>@ViewData["Title"] - Dashboard</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <script src="https://kit.fontawesome.com/d8c09fa8ce.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRkEAbMRIBsMiE7nQoTQ6T4E5i4FO/cs8lEFJPTFd" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="dashboard">
-        <nav class="sidebar">
-            <div class="sidebar-header">
-                <a href="/Dashboard" class="sidebar-title">Dashboard</a>
-            </div>
-            <ul>
-                <li><a href="#" onclick="loadContent('/Dashboard/Orders/Index?handler=Partial')"><i class="fa-solid fa-cart-shopping"></i> Orders</a></li>
-                <li><a href="#" onclick="loadContent('/Dashboard/Categories/Index?handler=Partial')"><i class="fa-solid fa-list"></i> Categories</a></li>
-                <li><a href="#" onclick="loadContent('/Dashboard/Products/Index')"><i class="fa-solid fa-bag-shopping"></i> Products</a></li>
-                <li><a href="#" onclick="loadContent('/Dashboard/Customers/Index')"><i class="fa-regular fa-user"></i> Customers</a></li>
-                <li><a href="#" onclick="loadContent('/Dashboard/Statistics/Index')"><i class="fa-solid fa-square-poll-vertical"></i> Statistics</a></li>
-                <li><a href="#" onclick="loadContent('/Dashboard/Design/Index')"><i class="fa-solid fa-pen-nib"></i> Design</a></li>
-                <li><a href="#" onclick="loadContent('/Dashboard/Materials/Index')"><i class="fa-solid fa-database"></i> Materials</a></li>
-            </ul>
-        </nav>
-        <div class="content">
-            <div class="header">
-                <div class="logout">
-                    <a href="/Account/Logout"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                <div class="sidebar-sticky d-flex flex-column" style="height: 100vh;">
+                    <div>
+                        <div class="sidebar-header">
+                            <a>DASHBOARD</a>
+                        </div>
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link @(ViewContext.ActionDescriptor.DisplayName == "/Dashboard/Orders/Index" ? "active" : "")" href="/Dashboard/Orders">
+                                    <i class="fa-solid fa-cart-shopping"></i> Orders
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @(ViewContext.ActionDescriptor.DisplayName == "/Dashboard/Categories/Index" ? "active" : "")" href="/Dashboard/Categories">
+                                    <i class="fa-solid fa-list"></i> Categories
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @(ViewContext.ActionDescriptor.DisplayName == "/Dashboard/Products/Index" ? "active" : "")" href="/Dashboard/Products">
+                                    <i class="fa-solid fa-bag-shopping"></i> Products
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @(ViewContext.ActionDescriptor.DisplayName == "/Dashboard/Users/Index" ? "active" : "")" href="/Dashboard/Users">
+                                    <i class="fa-regular fa-user"></i> Users
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @(ViewContext.ActionDescriptor.DisplayName == "/Dashboard/Statistics/Index" ? "active" : "")" href="/Dashboard/Statistics">
+                                    <i class="fa-solid fa-square-poll-vertical"></i> Statistics
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @(ViewContext.ActionDescriptor.DisplayName == "/Dashboard/Design/Index" ? "active" : "")" href="/Dashboard/Design">
+                                    <i class="fa-solid fa-pen-nib"></i> Design
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @(ViewContext.ActionDescriptor.DisplayName == "/Dashboard/Materials/Index" ? "active" : "")" href="/Dashboard/Materials">
+                                    <i class="fa-solid fa-database"></i> Materials
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mt-auto">
+                        <a class="nav-link" href="/Account/Logout">
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i> Log out
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div id="content-area" class="content-area">
-                @RenderBody()
-            </div>
+            </nav>
+
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                <div>
+                    @RenderBody()
+                </div>
+            </main>
         </div>
     </div>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    <script>
-        function loadContent(url) {
-            $('#content-area').html('<div class="loading">Loading...</div>');
-            $('#content-area').load(url, function (response, status, xhr) {
-                if (status == "error") {
-                    $('#content-area').html("<p>Sorry, there was an error loading the content.</p>");
-                }
-            });
-        }
-    </script>
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

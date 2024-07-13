@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using JPOS.Model.Entities;
 
-namespace JPOS.Controller.Pages.Dashboard.Categories
+namespace JPOS.Controller.Pages.Dashboard.Statistics
 {
     public class IndexModel : PageModel
     {
@@ -18,13 +18,15 @@ namespace JPOS.Controller.Pages.Dashboard.Categories
             _context = context;
         }
 
-        public IList<Category> Category { get;set; } = default!;
+        public IList<Request> Request { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            if (_context.Categories != null)
+            if (_context.Requests != null)
             {
-                Category = await _context.Categories.ToListAsync();
+                Request = await _context.Requests
+                .Include(r => r.Product)
+                .Include(r => r.User).ToListAsync();
             }
         }
     }
