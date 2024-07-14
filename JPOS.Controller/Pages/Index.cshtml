@@ -2,7 +2,7 @@
 @model IndexModel
 @{
     ViewData["Title"] = "Product";
-    var isAuthenticated = HttpContext.Session.GetString("Email");
+    var isAuthenticated = "Admin"; /* HttpContext.Session.GetString("FullName"); */
 }
 <header>
     @if (isAuthenticated != null)
@@ -15,7 +15,7 @@
     }
 </header>
 <body>
-    <div style="height: 100%; width: 200px; position: fixed; top: 70px; left: -20px; background-color: #ffffff; padding-top: 20px;">
+    <div style="height: 100%; width: 200px; position: fixed; top: 70px; left: 0; background-color: #ffffff; padding-top: 20px;">
         <a style="padding: 8px 16px; margin: 10px; display: block; font-size: 14px; font-weight: bold; color: #ffffff; background-color: #28a745; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; text-align: center;"
            onmouseover="this.style.backgroundColor='#218838';"
            onmouseout="this.style.backgroundColor='#28a745';" asp-page="MaterialPage/Index">Material</a>
@@ -48,10 +48,10 @@
                 {
                     <tr>
                         <td>
-                            <img src="https://res.cloudinary.com/dkyv1vp1c/image/upload/v1719498274/qhc3ccgjiove18ldf5fz.jpg" alt="Product Image" style="width:50px;height:auto;" />
+                            <img src="https://res.cloudinary.com/dkyv1vp1c/image/upload/v1719498274/qhc3ccgjiove18ldf5fz.jpg" alt="Product Image" style="width:100px;height:auto;" />
                         </td>
                         <td>@Html.DisplayFor(modelItem => item.ProcessPrice)</td>
-                        <td style="min-width: 450px; max-width:500px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">@Html.DisplayFor(modelItem => item.ProductName)</td>
+                        <td style="min-width: 550px; max-width: 650px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">@Html.DisplayFor(modelItem => item.ProductName)</td>
                         @if(isAuthenticated != null)
                         {
                             <td>

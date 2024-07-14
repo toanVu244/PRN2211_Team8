@@ -3,7 +3,7 @@
     "JPOS.Controller": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "ForgetPasswordPage",
+      "launchUrl": "LoginPage",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
