@@ -71,6 +71,7 @@ namespace JPOS.Service.Implementations
                     Image = product.Image,
                     Status = product.Status,
                     ProcessPrice = product.ProcessPrice,
+                    CategoryId = product.CategoryId
                 };
                 products.Add(productModel);
             }

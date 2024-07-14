@@ -28,16 +28,19 @@ namespace JPOS.Controller.Pages.HomePages
         [BindProperty(SupportsGet = true)]
         public string SearchTerm { get; set; }
 
-        public async Task OnGet()
+        public async Task callData()
         {
-            Product = await productService.GetAllProduct();
-            Category = await categoryService.GetAllCategoryAsync();          
+            Product = await  productService.GetAllProduct();
+            Category = await categoryService.GetAllCategoryAsync();
+        }
+        public async Task OnGet()
+        {         
+         await callData();
         }
 
         public async Task OnPost()
         {
-            Product = await productService.GetAllProduct();
-            Category = await categoryService.GetAllCategoryAsync();
+            await callData();
             if (!string.IsNullOrEmpty(SearchTerm))
             {
                 Product = Product.Where(p => p.ProductName.Contains(SearchTerm)).ToList();
@@ -45,14 +48,16 @@ namespace JPOS.Controller.Pages.HomePages
         }
 
 
-        public async Task OnPostFilterAsync(int cateID)
+        public async Task OnPostCheck(int id)
         {
-
-            Console.WriteLine("checkkkk ok"+ cateID);
-
-            
+            await callData();
+          if(id != 0)
+            {
+                Product = Product.Where(p => p.CategoryId == id).ToList();
+            }                   
         }
-
+       
+       
 
     }
 }

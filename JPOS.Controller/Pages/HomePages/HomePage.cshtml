@@ -4,7 +4,7 @@
 }
 <style>
     .carousel-item img {
-        width: 800px; /* Set the desired width */
+        width: 500px; /* Set the desired width */
         height: 200px; /* Set the desired height */
         object-fit: contain; /* Maintain aspect ratio and fill the container */
     }
@@ -12,13 +12,18 @@
 <div id="carouselExample" class="carousel slide">
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img src="https://res.cloudinary.com/dkyv1vp1c/image/upload/v1720678043/o2_g4jgtc.jpg" class="d-block w-100 " alt="...">
+            <a href="/HomePages/ProductDetail/@Model.Product[0].ProductId">
+                <img src="https://res.cloudinary.com/dkyv1vp1c/image/upload/v1720678043/o2_g4jgtc.jpg" class="d-block w-100 " alt="...">
+            </a>
         </div>
-        @for (int i = 0; i < 5; i += 1)
+        @for (int i = 1; i < 5; i += 1)
         {
             <div class="carousel-item">
-                <img src="https://res.cloudinary.com/dkyv1vp1c/image/upload/v1719498274/qhc3ccgjiove18ldf5fz.jpg" class="d-block w-100 " alt="...">
+                <a href="/HomePages/ProductDetail/@Model.Product[i].ProductId">
+               <img src="https://res.cloudinary.com/dkyv1vp1c/image/upload/v1719498274/qhc3ccgjiove18ldf5fz.jpg" class="d-block w-100 " alt="...">
+                </a>
             </div>
+           
         }
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
@@ -32,10 +37,14 @@
 </div>
 <div class="input-group input-group-prefix input-group-lg">
     <form method="post">
-        <input type="text" name="SearchTerm" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" value="@Model.SearchTerm">
-        <button class="input-group-text" id="inputGroup-sizing-lg" style="background-color: #4CAF50; color: white;" type="submit">Search</button>
+      @*   <input type="text" name="SearchTerm" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" value="@Model.SearchTerm">
+        <button class="input-group-text" id="inputGroup-sizing-lg" style="background-color: #4CAF50; color: white;" type="submit">Search</button> *@
+
+        <div class="input-group mb-3">
+            <input type="text" name="SearchTerm" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2" value="@Model.SearchTerm">
+            <button class="btn btn-outline-primary" type="submit" id="button-addon2">Button</button>
+        </div>
     </form>
-   
 </div>
 <div class="container mt-4">
     <div class="row">
@@ -49,13 +58,23 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>All</td>
+                        <td>
+                            <form method="post" asp-page-handler="Check" asp-page="./HomePage" asp-route-id="0">
+                                <button type="submit">All</button>
+                            </form>
+                        </td>
+                      
                     </tr>
                     @foreach (var category in Model.Category)
                     {
                         <tr>
                             <td>
-                                <button type="submit" asp-page-handler="Filter" asp-route-id="@category.CatId">@category.CatName</button>
+                                <form method="post">
+                                    <button type="submit" asp-page="./Homepage" asp-page-handler="Check" asp-route-id="@category.CatId">
+                                        @category.CatName
+                                    </button>
+                                </form>
+                               
                             </td>
 
                         </tr>

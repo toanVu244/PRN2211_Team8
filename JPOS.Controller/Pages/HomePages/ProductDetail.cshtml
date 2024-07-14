@@ -18,12 +18,12 @@
                     <p class="card-text">Price: @Model.Product.ProcessPrice $</p>
                     @* <p class="card-text"> Category : @Model.category.CatName </p> *@
 
-                    <p>
+                    <div class="mb-3">
                     <p class="card-text">Custom it with your size click </p>
                     <div>
                         <a class="btn btn-primary" href="/HomePages/ProductCustomDetail/@Model.Product.ProductId">Custom</a>
                     </div>
-                </p>
+                </div>
                     <button class="btn btn-primary" type="button">Buy Now</button>
                 </div>
             </div>
@@ -34,12 +34,17 @@
 <div id="carouselExample" class="carousel slide">
     <div class="carousel-inner">
         <div class="carousel-item active">
+            <a href="/HomePages/ProductDetail/@Model.ListProduct[0].ProductId">
             <img src="https://res.cloudinary.com/dkyv1vp1c/image/upload/v1720678043/o2_g4jgtc.jpg" class="d-block w-100 " alt="...">
+            </a>
         </div>
         @for (int i = 0; i < 5; i += 1)
         {
             <div class="carousel-item">
+                <a href="/HomePages/ProductDetail/@Model.ListProduct[i].ProductId">
                 <img src="https://res.cloudinary.com/dkyv1vp1c/image/upload/v1719498274/qhc3ccgjiove18ldf5fz.jpg" class="d-block w-100 " alt="...">
+           </a>
+            
             </div>
         }
 
@@ -55,8 +60,8 @@
 </div>
 <style>
     .carousel-item img {
-        width: 800px; /* Set the desired width */
-        height: 400px; /* Set the desired height */
+        width: 500px; /* Set the desired width */
+        height: 200px; /* Set the desired height */
         object-fit: contain; /* Maintain aspect ratio and fill the container */
     }
 </style>
