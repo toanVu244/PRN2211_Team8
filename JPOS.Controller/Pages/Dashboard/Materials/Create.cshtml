@@ -1,0 +1,46 @@
+﻿@page "/Dashboard/Materials/Create"
+@model JPOS.Controller.Pages.Dashboard.Materials.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Material</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Material.Name" class="control-label"></label>
+                <input asp-for="Material.Name" class="form-control" />
+                <span asp-validation-for="Material.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material.Price" class="control-label"></label>
+                <input asp-for="Material.Price" class="form-control" />
+                <span asp-validation-for="Material.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material.Quantity" class="control-label"></label>
+                <input asp-for="Material.Quantity" class="form-control" />
+                <span asp-validation-for="Material.Quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material.TotalPrice" class="control-label"></label>
+                <input asp-for="Material.TotalPrice" class="form-control" />
+                <span asp-validation-for="Material.TotalPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
