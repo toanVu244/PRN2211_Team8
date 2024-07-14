@@ -54,7 +54,10 @@
                     @foreach (var category in Model.Category)
                     {
                         <tr>
-                            <td>@category.CatName</td>
+                            <td>
+                                <button type="submit" asp-page-handler="Filter" asp-route-id="@category.CatId">@category.CatName</button>
+                            </td>
+
                         </tr>
                     }
                 </tbody>

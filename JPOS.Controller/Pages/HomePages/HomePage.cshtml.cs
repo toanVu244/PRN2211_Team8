@@ -31,27 +31,28 @@ namespace JPOS.Controller.Pages.HomePages
         public async Task OnGet()
         {
             Product = await productService.GetAllProduct();
-            Category = await categoryService.GetAllCategoryAsync();
-            Console.WriteLine(".....................................");
+            Category = await categoryService.GetAllCategoryAsync();          
         }
 
         public async Task OnPost()
         {
             Product = await productService.GetAllProduct();
             Category = await categoryService.GetAllCategoryAsync();
-            Console.WriteLine("nay vo dc r ne");
             if (!string.IsNullOrEmpty(SearchTerm))
             {
                 Product = Product.Where(p => p.ProductName.Contains(SearchTerm)).ToList();
             }
         }
 
-        public Task OnPostSearch()
-        {
-            Console.WriteLine("ahhhhh");
 
-            return Task.CompletedTask;
-           
+        public async Task OnPostFilterAsync(int cateID)
+        {
+
+            Console.WriteLine("checkkkk ok"+ cateID);
+
+            
         }
+
+
     }
 }
