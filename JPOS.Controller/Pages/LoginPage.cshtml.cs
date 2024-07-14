@@ -31,11 +31,6 @@ namespace JPOS.Controller.Pages
             var Jwt = await _memberRepo.AuthenticateAsync(Email, Password);
             if (Jwt != null)
             {
-                user = await _memberRepo.GetUserByEmail(Email);
-                if(user != null) 
-                {
-                    HttpContext.Session.SetString("FullName", user.FullName);
-                }
                 HttpContext.Session.SetString("Email", Email);
                 Response.Redirect("Index");
             }

@@ -9,7 +9,7 @@
       "JPOS.Model/1.0.0": {
         "dependencies": {
           "AutoMapper": "13.0.1",
-          "CloudinaryDotNet": "1.26.2",
+          "CloudinaryDotNet": "1.26.0",
           "Microsoft.EntityFrameworkCore": "6.0.31",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.31",
           "Microsoft.EntityFrameworkCore.Tools": "6.0.31",
@@ -30,7 +30,7 @@
           }
         }
       },
-      "CloudinaryDotNet/1.26.2": {
+      "CloudinaryDotNet/1.26.0": {
         "dependencies": {
           "Newtonsoft.Json": "13.0.3",
           "System.Net.Http": "4.3.4",
@@ -38,8 +38,8 @@
         },
         "runtime": {
           "lib/netstandard2.0/CloudinaryDotNet.dll": {
-            "assemblyVersion": "1.26.2.0",
-            "fileVersion": "1.26.2.0"
+            "assemblyVersion": "1.26.0.0",
+            "fileVersion": "1.26.0.0"
           }
         }
       },
@@ -2577,12 +2577,12 @@
       "path": "automapper/13.0.1",
       "hashPath": "automapper.13.0.1.nupkg.sha512"
     },
-    "CloudinaryDotNet/1.26.2": {
+    "CloudinaryDotNet/1.26.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-JUDOUKa7T+h0nmMhBdBxCkCldN4/DIZLOlh5p30KrcBX6Spral6vxTWhzk6OH2pGd8MGL5R379EsK7tJr/IQpw==",
-      "path": "cloudinarydotnet/1.26.2",
-      "hashPath": "cloudinarydotnet.1.26.2.nupkg.sha512"
+      "sha512": "sha512-x4Q1ASzKqM+3MyuVcUb7EeX/sONIztaXb3TZtKvE+p6c559yP5OxXcRPRTY7fGoliwc/IBpW20V3+hCh4sduuw==",
+      "path": "cloudinarydotnet/1.26.0",
+      "hashPath": "cloudinarydotnet.1.26.0.nupkg.sha512"
     },
     "Humanizer/2.14.1": {
       "type": "package",

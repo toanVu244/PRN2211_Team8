@@ -12,6 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddSession();
 builder.Services.AddRazorPages();
+builder.Services.AddMemoryCache();
 builder.Services.AddAutoMapper(typeof(ApplicationMapper));
 builder.Services.AddDbContext<JPOS_ProjectContext>(options =>
 {
@@ -49,5 +50,6 @@ app.UseAuthorization();
 app.UseSession();
 
 app.MapRazorPages();
+
 
 app.Run();

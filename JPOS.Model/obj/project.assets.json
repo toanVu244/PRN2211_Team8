@@ -18,7 +18,7 @@
           }
         }
       },
-      "CloudinaryDotNet/1.26.2": {
+      "CloudinaryDotNet/1.26.0": {
         "type": "package",
         "dependencies": {
           "Newtonsoft.Json": "13.0.3",
@@ -3779,16 +3779,16 @@
         "lib/net6.0/AutoMapper.xml"
       ]
     },
-    "CloudinaryDotNet/1.26.2": {
-      "sha512": "JUDOUKa7T+h0nmMhBdBxCkCldN4/DIZLOlh5p30KrcBX6Spral6vxTWhzk6OH2pGd8MGL5R379EsK7tJr/IQpw==",
+    "CloudinaryDotNet/1.26.0": {
+      "sha512": "x4Q1ASzKqM+3MyuVcUb7EeX/sONIztaXb3TZtKvE+p6c559yP5OxXcRPRTY7fGoliwc/IBpW20V3+hCh4sduuw==",
       "type": "package",
-      "path": "cloudinarydotnet/1.26.2",
+      "path": "cloudinarydotnet/1.26.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "CloudinaryIcon.png",
         "README.md",
-        "cloudinarydotnet.1.26.2.nupkg.sha512",
+        "cloudinarydotnet.1.26.0.nupkg.sha512",
         "cloudinarydotnet.nuspec",
         "lib/net452/CloudinaryDotNet.dll",
         "lib/net452/CloudinaryDotNet.xml",
@@ -10710,7 +10710,7 @@
   "projectFileDependencyGroups": {
     "net6.0": [
       "AutoMapper >= 13.0.1",
-      "CloudinaryDotNet >= 1.26.2",
+      "CloudinaryDotNet >= 1.26.0",
       "Microsoft.EntityFrameworkCore >= 6.0.31",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.31",
       "Microsoft.EntityFrameworkCore.Tools >= 6.0.31",
@@ -10762,7 +10762,7 @@
           },
           "CloudinaryDotNet": {
             "target": "Package",
-            "version": "[1.26.2, )"
+            "version": "[1.26.0, )"
           },
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",

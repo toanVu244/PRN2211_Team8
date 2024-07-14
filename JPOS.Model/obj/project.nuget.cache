@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "XW7wRPTe83acfzk7VwpyFH7GuejSNf4Wvwr0W7dSgjDiVXyU2Tu3sQcCg0oAXpacal2mYTrC9YeoebtYZUnYwQ==",
+  "dgSpecHash": "3Nry/f0ZGdS6Cl0ahDG9xJpP3Yr68gnRJXgvtgS9WhKMKRMtQjRETEZkPjNL4kfsaFosi9QSMVAExpCOD+dRlw==",
   "success": true,
   "projectFilePath": "C:\\Users\\thien.nguyen\\Documents\\GitHub\\PRN2211_Team8\\JPOS.Model\\JPOS.Model.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\thien.nguyen\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
-    "C:\\Users\\thien.nguyen\\.nuget\\packages\\cloudinarydotnet\\1.26.2\\cloudinarydotnet.1.26.2.nupkg.sha512",
+    "C:\\Users\\thien.nguyen\\.nuget\\packages\\cloudinarydotnet\\1.26.0\\cloudinarydotnet.1.26.0.nupkg.sha512",
     "C:\\Users\\thien.nguyen\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\thien.nguyen\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\thien.nguyen\\.nuget\\packages\\humanizer.core.af\\2.14.1\\humanizer.core.af.2.14.1.nupkg.sha512",
