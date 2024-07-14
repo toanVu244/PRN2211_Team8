@@ -17,6 +17,5 @@ namespace JPOS.Model.Repositories.Interfaces
 
         public Task<List<Request>?> GetRequestByTime( int year,int month);
 
-        Task<bool> AddRequestAsync(Request request);
     }
 }

@@ -15,7 +15,7 @@
                 <div class="card-body">
                     <h4>@Model.Product.ProductName</h4>
                     <p class="card-text">@Model.Product.Description</p>
-                    <p class="card-text">Price: @Model.Product.ProcessPrice $</p>
+                    <p class="card-text">Price: @TempData["TotalMoney"] $</p>
                     @* <p class="card-text"> Category : @Model.category.CatName </p> *@
 
                     <div class="mb-3">
@@ -23,8 +23,8 @@
                     <div>
                         <a class="btn btn-primary" href="/HomePages/ProductCustomDetail/@Model.Product.ProductId">Custom</a>
                     </div>
-                </div>
-                    <button class="btn btn-primary" type="button">Buy Now</button>
+                    </p>
+                        <a class="btn btn-primary" href="/HomePages/Checkout" type="button">Buy Now</a>
                 </div>
             </div>
         </div>

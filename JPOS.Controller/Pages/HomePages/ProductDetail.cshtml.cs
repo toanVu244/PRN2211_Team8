@@ -24,6 +24,8 @@ namespace JPOS.Controller.Pages.HomePages
         public async Task<IActionResult> OnGet(int idProduct)
         {
             Product = await productService.GetProductByID(idProduct);
+            TempData["TotalMoney"] = Product.ProcessPrice + Product.PriceMaterial + Product.PriceDesign;
+            TempData.Keep("TotalMoney");
             ListProduct = await productService.GetAllProduct();
             if (Product == null)
             {

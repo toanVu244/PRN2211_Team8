@@ -7,9 +7,9 @@ namespace JPOS.Model.Entities
 {
     public partial class JPOS_ProjectContext : DbContext
     {
-        /*public JPOS_ProjectContext()
+        public JPOS_ProjectContext()
         {
-        }*/
+        }
 
         public JPOS_ProjectContext(DbContextOptions<JPOS_ProjectContext> options)
             : base(options)
@@ -29,14 +29,14 @@ namespace JPOS.Model.Entities
         public virtual DbSet<Transaction> Transactions { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
 
-        /*protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=.;Database=JPOS_Project;Integrated Security=True;");
+                optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=JPOS_Project;Persist Security Info=True;User ID=sa;Password=12345;Multiple Active Result Sets=True");
             }
-        }*/
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
