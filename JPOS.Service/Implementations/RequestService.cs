@@ -29,7 +29,10 @@ namespace JPOS.Service.Implementations
 
         public async Task<bool> CreateRequestAsync(Request request)
         {
-            var result = await _unitOfWork.Requests.AddRequestAsync(request);
+            /*int nextRequestID = await GenerateNextRequestIDAsync();
+            request.ID = nextRequestID + 1;*/
+
+            var result = await _unitOfWork.Requests.InsertAsync(request);
             await _unitOfWork.CompleteAsync();
             return result;
         }

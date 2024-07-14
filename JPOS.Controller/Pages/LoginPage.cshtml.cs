@@ -1,6 +1,5 @@
 using JPOS.Model.Entities;
 using JPOS.Service.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -8,31 +7,36 @@ namespace JPOS.Controller.Pages
 {
     public class LoginPageModel : PageModel
     {
-        private readonly IUserServices _userService;
+        private readonly IUserServices _memberRepo;
 
         [BindProperty]
         public string Email { get; set; }
         [BindProperty]
         public string Password { get; set; }
 
-        public LoginPageModel(IUserServices userService)
+        public LoginPageModel(IUserServices _context)
         {
-            _userService = userService;
+            _memberRepo = _context;
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        User user { get; set; } = default!;
+
+        public void OnGet()
         {
-            var user = await _userService.AuthenticateAsync(Email, Password);
-            if (user != null)
+        }
+
+        public async void OnPost()
+        {
+
+            var Jwt = await _memberRepo.AuthenticateAsync(Email, Password);
+            if (Jwt != null)
             {
                 HttpContext.Session.SetString("UserId", user.UserId.ToString());
                 HttpContext.Session.SetString("Role", user.RoleId.ToString());
-                
+                HttpContext.Session.SetString("Email", Email);
                 return RedirectToPage("/HomePages/HomePage");
             }
-
-            ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-            return Page();
         }
+
     }
 }

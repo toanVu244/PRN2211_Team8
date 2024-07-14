@@ -57,11 +57,5 @@ namespace JPOS.Model.Repositories.Implementations
             return await _context.SaveChangesAsync() > 0;
 
         }
-
-        public async Task<bool> AddRequestAsync(Request request)
-        {
-            await _context.Requests.AddAsync(request);
-            return await _context.SaveChangesAsync() > 0;
-        }
     }
 }

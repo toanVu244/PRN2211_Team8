@@ -1,0 +1,75 @@
+﻿@page
+@model JPOS.Controller.Pages.MaterialPage.IndexModel
+
+@{
+    ViewData["Title"] = "Material";
+    var isAuthenticated = HttpContext.Session.GetString("Email");
+}
+<header>
+    @if (isAuthenticated != null)
+    {
+        <span style="margin-left: 150px;padding: 20px;font-size:20px">Welcome, @isAuthenticated</span>
+    }
+    else
+    {
+        <a style="padding: 0px 10px 0px 950px" asp-page="/LoginPage">Login</a> <a asp-page="/RegisterPage">Register</a>
+    }
+</header>
+<body>
+<div style="height: 100%; width: 200px; position: fixed; top: 70px; left: -20px; background-color: #ffffff; padding-top: 20px;">
+    <a style="padding: 8px 16px; margin: 10px; display: block; font-size: 14px; font-weight: bold; color: #ffffff; background-color: #28a745; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; text-align: center;"
+       onmouseover="this.style.backgroundColor='#218838';"
+       onmouseout="this.style.backgroundColor='#28a745';" asp-page="Index">Material</a>
+
+    <a style="padding: 8px 16px; margin: 10px; display: block; font-size: 14px; font-weight: bold; color: #ffffff; background-color: #28a745; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; text-align: center;"
+       onmouseover="this.style.backgroundColor='#218838';"
+       onmouseout="this.style.backgroundColor='#28a745';" asp-page="../Index">Product</a>
+</div>
+
+<!-- Nội dung trang -->
+<div style="margin-left: 110px; padding: 20px;">
+    <h2>Materials</h2>
+
+    @if(isAuthenticated != null){
+            <p>
+                <a style="padding: 8px 16px; font-size: 14px; font-weight: bold; color: #ffffff; background-color: #007bff; border: none; border-radius: 4px; cursor: pointer; margin-right: 10px;" onmouseover="this.style.backgroundColor='#0056b3';" onmouseout="this.style.backgroundColor='#007bff';" asp-page="Create">Create New</a>
+            </p>
+        }
+        
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Material[0].Name)</th>
+                <th>@Html.DisplayNameFor(model => model.Material[0].Price)</th>
+                <th>@Html.DisplayNameFor(model => model.Material[0].Quantity)</th>
+                <th>@Html.DisplayNameFor(model => model.Material[0].TotalPrice)</th>
+                <th>@Html.DisplayNameFor(model => model.Material[0].Status)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Material)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+                    <td>@Html.DisplayFor(modelItem => item.TotalPrice)</td>
+                        <td style="min-width: 250px; max-width: 500px;">@Html.DisplayFor(modelItem => item.Status)</td>
+                        @if (isAuthenticated != null)
+                        {
+                            <td>
+                                <a style="padding: 8px 16px; font-size: 14px; font-weight: bold; color: #ffffff; background-color: #007bff; border: none; border-radius: 4px; cursor: pointer;" onmouseover="this.style.backgroundColor='#0056b3';" onmouseout="this.style.backgroundColor='#007bff';" asp-page="/MaterialPage/Edit" asp-route-id="@item.MaterialId">Edit</a> |
+                                <a style="padding: 8px 16px; font-size: 14px; font-weight: bold; color: #ffffff; background-color: #007bff; border: none; border-radius: 4px; cursor: pointer;" onmouseover="this.style.backgroundColor='#0056b3';" onmouseout="this.style.backgroundColor='#007bff';" asp-page="/MaterialPage/Details" asp-route-id="@item.MaterialId">Details</a> |
+                                <a style="padding: 8px 16px; font-size: 14px; font-weight: bold; color: #ffffff; background-color: #007bff; border: none; border-radius: 4px; cursor: pointer;" onmouseover="this.style.backgroundColor='#0056b3';" onmouseout="this.style.backgroundColor='#007bff';" asp-page="/MaterialPage/Delete" asp-route-id="@item.MaterialId">Delete</a>
+                            </td>
+                        }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+</body>
+
+

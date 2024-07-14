@@ -11,60 +11,63 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Net.Mail;
+using System.Net;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace JPOS.Service.Implementations
 {
     public class UserServices : IUserServices
     {
         private readonly IUnitOfWork _unitOfWork;
-        /*private readonly AppConfig _appConfig;*/
+        private readonly AppConfig _appConfig;
+        private readonly IMemoryCache cache;
 
-        public UserServices(IUnitOfWork unitOfWork/*, AppConfig appConfig*/)
+        public UserServices(IUnitOfWork unitOfWork, AppConfig appConfig,IMemoryCache cache)
         {
             _unitOfWork = unitOfWork;
-            /*_appConfig = appConfig;*/
+            _appConfig = appConfig;
+            this.cache = cache;
         }
         private string GenerateJwtToken(User user)
         {
-            List<Claim> claims = new List<Claim>()
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(_appConfig.jwtSecret);
+            var tokenDescriptor = new SecurityTokenDescriptor
             {
-                new Claim("UserId", user.UserId.ToString()),
-                new Claim("UserName", user.FullName),
-                new Claim("Email", user.Email),
-                new Claim("Role", user.RoleId.ToString()),
+                Subject = new ClaimsIdentity(new Claim[]
+                {
+                new Claim("userId", user.UserId),
+                new Claim("userName", user.Username),
+                new Claim("role", user.RoleId.ToString()),
+                }),
+                Expires = DateTime.UtcNow.AddDays(7), 
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
-
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("c2VydmVwZXJmZWN0bHljaGVlc2VxdWlja2NvYWNoY29sbGVjdHNsb3Bld2lzZWNhbWU="));
-            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-
-            var token = new JwtSecurityToken(
-                issuer: "YourIssuer",
-                audience: "YourAudience",
-                claims: claims,
-                expires: DateTime.Now.AddMinutes(30),
-                signingCredentials: credentials
-                );
-            var accessToken = new JwtSecurityTokenHandler().WriteToken(token);
-            return accessToken;
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(token);
         }
 
 
-        public async Task<User> AuthenticateAsync(string username, string password)
+        public async Task<string> AuthenticateAsync(string username, string password)
         {
             var hashedInputPasswordString = HashAndTruncatePassword(password);
-            var user = await _unitOfWork.Users.GetByUsernameAsync(username);
-            if (user != null)
+            var user = await _unitOfWork.Users.GetUserByUsernameAndPasswordAsync(username, hashedInputPasswordString);
+            
+            if (hashedInputPasswordString == user.Password)
             {
-                if (hashedInputPasswordString == user.Password)
-                {
-                    return user;
-                }
+                if (user == null)
+                    return "";
             }
-            return null;
+
+                var token = GenerateJwtToken(user);
+
+                return token;
+            
         }
         public async Task<string> GenerateNextUserIDAsync()
         {
@@ -159,6 +162,118 @@ namespace JPOS.Service.Implementations
             password = password.Substring(0, 16);
 
             return password;
+        }
+
+        public void sendmail(string mail, string body)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(mail) || string.IsNullOrEmpty(body))
+                {
+                    return;
+                }
+                SmtpClient smtpClient = new SmtpClient("smtp.gmail.com")
+                {
+                    Port = 587,
+                    Credentials = new NetworkCredential("jpos.application@gmail.com", "ehvu emtf npjy qjay"),
+                    EnableSsl = true,
+                };
+                MailMessage mailMessage = new MailMessage
+                {
+                    From = new MailAddress("jpos.application@gmail.com"),
+                    Subject = "OTP for reset Password",
+                    Body = "Do not share your OTP - Your OTP : " + body,
+                    IsBodyHtml = false, // Set to true if you're using HTML in the email body
+                };
+
+                // Add recipient email address
+                mailMessage.To.Add(mail);
+
+                // Send the email
+                smtpClient.Send(mailMessage);
+                Console.WriteLine("Email sent successfully!");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+
+        }
+
+        public string GenerateRandomOTP()
+        {
+            Random random = new Random();
+            int otpValue = 0;
+
+            // Loop để đảm bảo rằng mã OTP không bắt đầu bằng số 0
+            while (otpValue < 100000)
+            {
+                otpValue = random.Next(100000, 999999);
+            }
+
+            return otpValue.ToString();
+        }
+
+
+        public async Task<bool> ConfirmEmail(string email)
+        {
+            try
+            {
+                var token = await GetUserByEmail(email);
+                if (token == null)
+                {
+                    return false;
+                }
+                var OTPsave = GenerateRandomOTP();
+                var cacheExpiryOptions = new MemoryCacheEntryOptions
+                {
+                    AbsoluteExpiration = DateTime.Now.AddMinutes(5),
+                    Priority = CacheItemPriority.High,
+                    SlidingExpiration = TimeSpan.FromMinutes(2),
+                    Size = 1024,
+                };
+                cache.Set(email, OTPsave, cacheExpiryOptions);
+                sendmail(email, OTPsave);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false; 
+            }
+
+        }
+
+        public async Task<bool> ResetPassword(string email, string password, string otp)
+        {
+            try
+            {
+                if (otp == null || password == null || otp == null)
+                {
+                    return false;
+                }
+                var token = await GetUserByEmail(email);
+                string getOTPsave = string.Empty;
+                 cache.TryGetValue(email, out getOTPsave);
+                if (token != null && getOTPsave == otp)
+                {
+                    var hashedInputPasswordString = HashAndTruncatePassword(password);
+                    token.Password = hashedInputPasswordString;
+                    await UpdateUserAsync(token);
+
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+
+
         }
     }
 }
