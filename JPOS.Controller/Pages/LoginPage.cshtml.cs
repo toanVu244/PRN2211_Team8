@@ -31,8 +31,10 @@ namespace JPOS.Controller.Pages
             var Jwt = await _memberRepo.AuthenticateAsync(Email, Password);
             if (Jwt != null)
             {
+                HttpContext.Session.SetString("UserId", user.UserId.ToString());
+                HttpContext.Session.SetString("Role", user.RoleId.ToString());
                 HttpContext.Session.SetString("Email", Email);
-                Response.Redirect("Index");
+                return RedirectToPage("/HomePages/HomePage");
             }
         }
 

@@ -89,6 +89,8 @@ namespace JPOS.Service.Implementations
                     Image = product.Image,
                     Status = product.Status,
                     ProcessPrice = product.ProcessPrice,
+                    PriceDesign = product.PriceDesign,
+                    PriceMaterial = product.PriceMaterial
                 };
                 return productModel;
             }

@@ -1,0 +1,81 @@
+﻿@page
+@model JPOS.Controller.Pages.HomePages.Checkout.CheckoutModel
+@{
+    ViewData["NoContainer"] = true;
+}
+<script src="https://www.paypal.com/sdk/js?client-id=@(Model.PaypalClientId)&currency=USD"></script>
+
+<div class="p-5" style="background-color: #08618d;">
+    <div class="mx-auto p-3 bg-light rounded border" style="max-width: 420px;">
+        <h2 class="text-center mb-5">Complete your order</h2>
+            <!-- Địa chỉ -->
+            <div class="mb-3">
+                <label for="inputAddress" class="form-label">Delivery Address</label>
+                <textarea class="form-control" id="inputAddress" rows="3" placeholder="Enter your delivery address" required></textarea>
+            </div>
+
+            <!-- Số điện thoại -->
+            <div class="mb-3">
+                <label for="inputPhone" class="form-label">Phone Number</label>
+                <input type="text" class="form-control" id="inputPhone" placeholder="Enter your phone number" required>
+            </div>
+
+            <!-- Total Amount -->
+            <div class="mb-3">
+                <label class="form-label">Total Money</label>
+                <input type="text" class="form-control" value="@TempData["TotalMoney"] $" readonly>
+            </div>
+
+            <div id="notification-container"></div>
+            <div id="paypal-button-container"></div>
+    </div>
+</div>
+
+<script>
+    let paypal_buttons = paypal.Buttons({
+        createOrder() {
+            return fetch("/HomePages/Checkout?handler=CreateOrder", {
+                method: "POST"
+            })
+                .then((response) => response.json())
+                .then((order) => order.id);
+        },
+        onApprove(data) {
+            paypal_buttons.close();
+            return fetch("/HomePages/Checkout?handler=CompleteOrder", {
+                method: "POST",
+                body: JSON.stringify({ orderID: data.orderID })
+            })
+                .then((response) => response.json())
+                .then((details) => {
+                    if (details === "success") {
+                        document.getElementById("notification-container").innerHTML =
+                            '<div class="alert alert-success" role="alert">The order is created successfully!</div>';
+                    } else {
+                        document.getElementById("notification-container").innerHTML =
+                            '<div class="alert alert-danger" role="alert">Failed to create the order!</div>';
+                    }
+                });
+        },
+        onCancel(data) {
+            document.getElementById("notification-container").innerHTML =
+                '<div class="alert alert-danger" role="alert">Order Canceled!</div>';
+            return fetch("/HomePages/Checkout?handler=CancelOrder", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    orderID: data.orderID
+                })
+            });
+        },
+        onError(err) {
+            document.getElementById("notification-container").innerHTML =
+                '<div class="alert alert-danger" role="alert">Error occurred during payment!</div>';
+        }
+    });
+
+    paypal_buttons.render('#paypal-button-container');
+</script>
+
