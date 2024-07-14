@@ -20,5 +20,12 @@ namespace JPOS.Service.Interfaces
         public Task<bool> UserRegister(RegisterModel model);
         public Task<User?> GetUserByEmail(string email);
         public string HashAndTruncatePassword(string password);
+        public void sendmail(string mail, string body);
+
+        public string GenerateRandomOTP();
+
+        public Task<bool> ConfirmEmail(string email);
+
+        public Task<bool> ResetPassword(string email, string password, string otp);
     }
 }
