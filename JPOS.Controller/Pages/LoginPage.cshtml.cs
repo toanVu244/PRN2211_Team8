@@ -28,7 +28,7 @@ namespace JPOS.Controller.Pages
                 HttpContext.Session.SetString("UserId", user.UserId.ToString());
                 HttpContext.Session.SetString("Role", user.RoleId.ToString());
                 
-                return RedirectToPage("/Index");
+                return RedirectToPage("/HomePages/HomePage");
             }
 
             ModelState.AddModelError(string.Empty, "Invalid login attempt.");
