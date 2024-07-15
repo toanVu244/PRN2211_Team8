@@ -91,16 +91,6 @@ namespace JPOS.Controller.Pages.HomePages
                     if (jsonResponse != null)
                     {
                         orderId = jsonResponse["id"]?.ToString() ?? "";
-
-                        //Insert into db
-
-                        /*request.UserId = UID;
-                        request.Description = Description;
-                        request.CreateDate = DateTime.Now;
-                        request.Status = "Pending";
-                        request.ProductId = Int32.Parse(PID);
-                        request.Type = Int32.Parse(Type);
-                        _requestService.CreateRequestAsync(request);*/
                     }
                 }
             }
@@ -115,46 +105,50 @@ namespace JPOS.Controller.Pages.HomePages
 
         public async Task<JsonResult> OnPostCompleteOrder([FromBody] JsonObject data)
         {
-            if (data == null || data["orderID"] == null)
+            int requestID = Int32.Parse(TempData["RequestID"]?.ToString() ?? "");
+            if (requestID != null)
             {
-                return new JsonResult("");
-            }
-
-            var orderID = data["orderID"]!.ToString();
-
-            string accessToken = GetPaypalAccessToken();
-
-            string url = PaypalUrl + "/v2/checkout/orders/" + orderID + "/capture";
-
-            using (var client = new HttpClient())
-            {
-                client.DefaultRequestHeaders.Add("Authorization", "Bearer " + accessToken);
-                var requestMessage = new HttpRequestMessage(HttpMethod.Post, url);
-                requestMessage.Content = new StringContent("", null, "application/json");
-
-                var responseTask = client.SendAsync(requestMessage);
-                responseTask.Wait();
-
-                var result = responseTask.Result;
-                if (result.IsSuccessStatusCode)
+                if (data == null || data["orderID"] == null)
                 {
-                    var readTask = result.Content.ReadAsStringAsync();
-                    readTask.Wait();
-                    var strResponse = readTask.Result;
-                    var jsonResponse = JsonNode.Parse(strResponse);
+                    return new JsonResult("");
+                }
 
-                    if (jsonResponse != null)
+                var orderID = data["orderID"]!.ToString();
+
+                string accessToken = GetPaypalAccessToken();
+
+                string url = PaypalUrl + "/v2/checkout/orders/" + orderID + "/capture";
+
+                using (var client = new HttpClient())
+                {
+                    client.DefaultRequestHeaders.Add("Authorization", "Bearer " + accessToken);
+                    var requestMessage = new HttpRequestMessage(HttpMethod.Post, url);
+                    requestMessage.Content = new StringContent("", null, "application/json");
+
+                    var responseTask = client.SendAsync(requestMessage);
+                    responseTask.Wait();
+
+                    var result = responseTask.Result;
+                    if (result.IsSuccessStatusCode)
                     {
-                        string paypalOrderStatus = jsonResponse["status"]?.ToString() ?? "";
-                        if (paypalOrderStatus == "COMPLETED")
-                        {
-                            TempData.Clear();
+                        var readTask = result.Content.ReadAsStringAsync();
+                        readTask.Wait();
+                        var strResponse = readTask.Result;
+                        var jsonResponse = JsonNode.Parse(strResponse);
 
-                            //update status
-                            var oldRequest = await _requestService.GetRequestByIDAsync(1);
-                            oldRequest.Status = "Completed";
-                            _requestService.UpdateRequestAsync(oldRequest);
-                            return new JsonResult("success");
+                        if (jsonResponse != null)
+                        {
+                            string paypalOrderStatus = jsonResponse["status"]?.ToString() ?? "";
+                            if (paypalOrderStatus == "COMPLETED")
+                            {
+                                TempData.Clear();
+
+                                //update status
+                                var oldRequest = await _requestService.GetRequestByIDAsync(requestID);
+                                oldRequest.Status = "Completed";
+                                _requestService.UpdateRequestAsync(oldRequest);
+                                return new JsonResult("success");
+                            }
                         }
                     }
                 }

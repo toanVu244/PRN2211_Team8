@@ -46,6 +46,7 @@ namespace JPOS.Controller.Pages.HomePages.Checkout
             string Description = TempData["Description"]?.ToString() ?? "";
             string Status = TempData["Status"]?.ToString() ?? "";
             string PID = TempData["PID"]?.ToString() ?? "";
+            string imageUpload = TempData["imageUpload"]?.ToString() ?? "";
             string Type = TempData["Type"]?.ToString() ?? "";
             TotalMoney = TempData["TotalMoney"]?.ToString() ?? "";
 
@@ -97,14 +98,26 @@ namespace JPOS.Controller.Pages.HomePages.Checkout
                         orderId = jsonResponse["id"]?.ToString() ?? "";
 
                         //Insert into db
-                        
-                        request.UserId = UID;
-                        request.Description = Description;
-                        request.CreateDate = DateTime.Now;
-                        request.Status = "Pending";
-                        request.ProductId = Int32.Parse(PID);
-                        request.Type = Int32.Parse(Type);
-                        _requestService.CreateRequestAsync(request);
+                        if (Type.Equals("3"))
+                        {
+                            request.UserId = UID;
+                            request.Description = Description;
+                            request.CreateDate = DateTime.Now;
+                            request.Status = "Pending";
+                            request.Image = imageUpload;
+                            request.Type = Int32.Parse(Type);
+                            _requestService.CreateRequestAsync(request);
+                        }
+                        else
+                        {
+                            request.UserId = UID;
+                            request.Description = Description;
+                            request.CreateDate = DateTime.Now;
+                            request.Status = "Pending";
+                            request.ProductId = Int32.Parse(PID);
+                            request.Type = Int32.Parse(Type);
+                            _requestService.CreateRequestAsync(request);
+                        }
                     }
                 }
             }

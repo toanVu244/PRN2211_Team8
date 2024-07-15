@@ -1,0 +1,24 @@
+﻿@page
+@model JPOS.Controller.Pages.HomePages.ViewUserProfileModel
+@{
+    ViewData["Title"] = "User Profile";
+}
+
+<h2>User Profile</h2>
+
+<div>
+    <label>Full Name: </label>
+    <span>@Model.UserProfile.FullName</span>
+</div>
+<div>
+    <label>Email: </label>
+    <span>@Model.UserProfile.Email</span>
+</div>
+<div>
+    <label>Phone Number: </label>
+    <span>@Model.UserProfile.PhoneNum</span>
+</div>
+<div>
+    <label>Address: </label>
+    <span>@Model.UserProfile.Address</span>
+</div>

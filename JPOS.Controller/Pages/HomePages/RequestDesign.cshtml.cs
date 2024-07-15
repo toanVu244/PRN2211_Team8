@@ -38,20 +38,19 @@ namespace JPOS.Controller.Pages.HomePages
         {
             string usID = HttpContext.Session.GetString("UserId");
             string imageUpload =await ConvertImageToBase64AndUpload(ImageUpload);
-            Request request = new Request()
-            {
-                CreateDate = DateTime.Now,
-                Description = "Create product type :"+ SelectedCategoryId +" request : "+ RequestText,
-                Status = "Pending",
-                Image = imageUpload,
-                Type = 3,
-                UserId = usID
-            };
 
-           await requestService.CreateRequestAsync(request);
+            TempData["TotalMoney"] = "50";
+            TempData["UID"] = "US00000";
+            TempData["Description"] = "Create product type :" + SelectedCategoryId + " request : " + RequestText;
+            TempData["Status"] = "Pending";
+            TempData["imageUpload"] = imageUpload;
+            TempData["Type"] = "3";
+            TempData.Keep();
+
+            
             Category = await categoryService.GetAllCategoryAsync();
 
-            return Page();
+            return RedirectToPage("/HomePages/Checkout");
         }
 
         private async Task<string> ConvertImageToBase64AndUpload(IFormFile image)
