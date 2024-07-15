@@ -12,11 +12,11 @@ namespace JPOS.Model.Repositories.Interfaces
         public Task<Request?> GetRequestByID(int requestID);
         public Task<Request?> GetLastRequestID();
         public Task<bool> UpdateStatusAsync(int requestId, string status);
-
         public Task<List<Request>> GetRequestByStatus(string status);
 
         public Task<List<Request>?> GetRequestByTime( int year,int month);
 
         Task<bool> AddRequestAsync(Request request);
+        public Task<Request> GetLastRequestAsync();
     }
 }

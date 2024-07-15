@@ -58,6 +58,15 @@ namespace JPOS.Model.Repositories.Implementations
 
         }
 
+        public async Task<Request> GetLastRequestAsync()
+        {
+            var lastRequest = await _context.Requests
+                .OrderByDescending(r => r.Id)
+                .FirstOrDefaultAsync();
+
+            return lastRequest;
+        }
+
         public async Task<bool> AddRequestAsync(Request request)
         {
             await _context.Requests.AddAsync(request);

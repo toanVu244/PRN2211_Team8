@@ -36,9 +36,17 @@ namespace JPOS.Service.Implementations
 
         public async Task<bool> UpdateRequestAsync(Request request)
         {
-            var result = await _unitOfWork.Requests.UpdateAsync(request);
-            await _unitOfWork.CompleteAsync();
-            return result;
+            try
+            {
+                var result = await _unitOfWork.Requests.UpdateAsync(request);
+                await _unitOfWork.CompleteAsync();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw;
+            }
         }
 
         public async Task<bool> DeleteRequestAsync(int RequestID)
@@ -193,6 +201,11 @@ namespace JPOS.Service.Implementations
                 }   
             }
             return data;
+        }
+
+        public Task<Request> GetLastRequest()
+        {
+            return _unitOfWork.Requests.GetLastRequestID();
         }
     }
 }

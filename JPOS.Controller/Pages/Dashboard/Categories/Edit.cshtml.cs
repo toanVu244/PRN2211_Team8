@@ -7,29 +7,30 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using JPOS.Model.Entities;
+using JPOS.Service.Interfaces;
 
 namespace JPOS.Controller.Pages.Dashboard.Categories
 {
     public class EditModel : PageModel
     {
-        private readonly JPOS.Model.Entities.JPOS_ProjectContext _context;
+        private readonly ICategoryService _categoryService;
 
-        public EditModel(JPOS.Model.Entities.JPOS_ProjectContext context)
+        public EditModel(ICategoryService categoryService)
         {
-            _context = context;
+            _categoryService = categoryService;
         }
 
         [BindProperty]
         public Category Category { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
-            if (id == null || _context.Categories == null)
+            if (id == null || _categoryService.GetAllCategoryAsync == null)
             {
                 return NotFound();
             }
 
-            var category =  await _context.Categories.FirstOrDefaultAsync(m => m.CatId == id);
+            var category = await _categoryService.GetCategoryByIdAsync(id);
             if (category == null)
             {
                 return NotFound();
@@ -38,39 +39,18 @@ namespace JPOS.Controller.Pages.Dashboard.Categories
             return Page();
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
-
-            _context.Attach(Category).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
+                await _categoryService.UpdateCategoryAsync(Category);
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception ex)
             {
-                if (!CategoryExists(Category.CatId))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                Console.WriteLine(ex.Message);
+                throw;
             }
-
             return RedirectToPage("./Index");
-        }
-
-        private bool CategoryExists(int id)
-        {
-          return (_context.Categories?.Any(e => e.CatId == id)).GetValueOrDefault();
         }
     }
 }
