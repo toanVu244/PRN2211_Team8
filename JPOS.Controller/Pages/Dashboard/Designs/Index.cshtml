@@ -1,11 +1,11 @@
-﻿@page "/Dashboard/Materials"
-@model JPOS.Controller.Pages.Dashboard.Materials.IndexModel
+﻿@page "/Dashboard/Designs"
+@model JPOS.Controller.Pages.Dashboard.Designs.IndexModel
 
 @{
-    ViewData["Title"] = "Materials";
+    ViewData["Title"] = "Designs";
 }
 
-<h1>Material Management</h1>
+<h1>Design Management</h1>
 
 <hr />
 
@@ -16,28 +16,28 @@
 <table class="table table-striped table-bordered">
     <thead class="thead-dark">
         <tr>
-            <th>@Html.DisplayNameFor(model => model.Materials[0].MaterialId)</th>
-            <th>@Html.DisplayNameFor(model => model.Materials[0].Name)</th>
-            <th>@Html.DisplayNameFor(model => model.Materials[0].Price)</th>
-            <th>@Html.DisplayNameFor(model => model.Materials[0].Quantity)</th>
-            <th>@Html.DisplayNameFor(model => model.Materials[0].TotalPrice)</th>
-            <th>@Html.DisplayNameFor(model => model.Materials[0].Status)</th>
+            <th>@Html.DisplayNameFor(model => model.Designs[0].DesignId)</th>
+            <th>@Html.DisplayNameFor(model => model.Designs[0].CreateBy)</th>
+            <th>@Html.DisplayNameFor(model => model.Designs[0].Picture)</th>
+            <th>@Html.DisplayNameFor(model => model.Designs[0].Description)</th>
+            <th>@Html.DisplayNameFor(model => model.Designs[0].CreateDate)</th>
             <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Materials)
+        @foreach (var item in Model.Designs)
         {
             <tr>
-                <td>@Html.DisplayFor(modelItem => item.MaterialId)</td>
-                <td>@Html.DisplayFor(modelItem => item.Name)</td>
-                <td>@Html.DisplayFor(modelItem => item.Price)</td>
-                <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
-                <td>@Html.DisplayFor(modelItem => item.TotalPrice)</td>
-                <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                <td>@Html.DisplayFor(modelItem => item.DesignId)</td>
+                <td>@Html.DisplayFor(modelItem => item.CreateBy)</td>
                 <td>
-                    <a asp-page="./Edit" asp-route-id="@item.MaterialId" class="btn btn-sm btn-warning">Edit</a>
-                    <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete(@item.MaterialId)">Delete</button>
+                    <img src="@item.Picture" alt="Design Image" width="100" />
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                <td>@Html.DisplayFor(modelItem => item.CreateDate)</td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.DesignId" class="btn btn-sm btn-warning">Edit</a>
+                    <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete(@item.DesignId)">Delete</button>
                 </td>
             </tr>
         }
@@ -55,11 +55,11 @@
                 </button>
             </div>
             <div class="modal-body">
-                Are you sure you want to delete this material?
+                Are you sure you want to delete this design?
             </div>
             <div class="modal-footer">
                 <form id="deleteForm" method="post" asp-page-handler="Delete">
-                    <input type="hidden" name="id" id="deleteMaterialId" />
+                    <input type="hidden" name="id" id="deleteDesignId" />
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                     <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
@@ -71,7 +71,7 @@
 @section Scripts {
     <script>
         function confirmDelete(id) {
-            document.getElementById('deleteMaterialId').value = id;
+            document.getElementById('deleteDesignId').value = id;
             $('#deleteModal').modal('show');
         }
     </script>

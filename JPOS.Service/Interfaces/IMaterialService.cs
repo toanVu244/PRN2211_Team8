@@ -11,7 +11,7 @@ namespace JPOS.Service.Interfaces
     public interface IMaterialService 
     {
         public Task<Material?> GetmaterialByID(int id);
-        public Task<List<Material>?> GetAllmaterial();
+        Task<List<MaterialModel>?> GetAllMaterials();
         public Task<bool?> CreateMaterial(MaterialModel material);
 
         public Task<bool?> UpdateMaterial(MaterialModel material);

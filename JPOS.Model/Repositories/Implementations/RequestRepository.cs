@@ -72,5 +72,11 @@ namespace JPOS.Model.Repositories.Implementations
             await _context.Requests.AddAsync(request);
             return await _context.SaveChangesAsync() > 0;
         }
+
+        public async Task<List<Request>> GetRequestsByUserIdAsync(string userId)
+        {
+            return await _context.Requests.Where(r => r.UserId == userId).ToListAsync();
+        }
+
     }
 }

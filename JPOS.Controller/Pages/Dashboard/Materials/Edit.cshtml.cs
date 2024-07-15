@@ -4,67 +4,68 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using JPOS.Model.Entities;
 using JPOS.Service.Interfaces;
 using JPOS.Model.Models;
-using AutoMapper;
 
 namespace JPOS.Controller.Pages.Dashboard.Materials
 {
     public class EditModel : PageModel
     {
-        private readonly IMaterialService _service;
-        private readonly IMapper mapper;
+        private readonly IMaterialService _materialService;
 
-        public EditModel(IMaterialService _context, IMapper mapper)
+        public EditModel(IMaterialService materialService)
         {
-            _service = _context;
-            this.mapper = mapper;
+            _materialService = materialService;
         }
 
         [BindProperty]
         public MaterialModel Material { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(int id)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _service.GetAllmaterial == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            Material material = await _service.GetmaterialByID(id);
+            var material = await _materialService.GetmaterialByID(id.Value);
             if (material == null)
             {
                 return NotFound();
             }
 
-            Material = mapper.Map<MaterialModel>(material);
+            Material = new MaterialModel
+            {
+                MaterialId = material.MaterialId,
+                Name = material.Name,
+                Price = material.Price,
+                Quantity = material.Quantity,
+                TotalPrice = material.TotalPrice,
+                Status = material.Status
+            };
 
             return Page();
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return Page();
+            //}
 
             try
             {
-               await _service.UpdateMaterial(Material);
+                await _materialService.UpdateMaterial(Material);
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 throw;
             }
-
             return RedirectToPage("./Index");
         }
-
     }
 }

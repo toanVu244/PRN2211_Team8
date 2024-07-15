@@ -41,32 +41,48 @@ namespace JPOS.Service.Implementations
             }
         }
 
+        //public async Task<bool?> DeleteMaterial(int id)
+        //{
+        //    try
+        //    {
+        //        var material = await _unitOfWork.Materials.GetByIdAsync(id);
+        //        material.Status = "Unavailable";
+        //        return await _unitOfWork.Materials.UpdateMaterial(id,material);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw;
+
+        //    }
+
+        //}
+
         public async Task<bool?> DeleteMaterial(int id)
         {
             try
             {
-                var material = await _unitOfWork.Materials.GetByIdAsync(id);
-                material.Status = "Unavailable";
-                return await _unitOfWork.Materials.UpdateMaterial(id,material);
+                return await _unitOfWork.Materials.DeleteMaterial(id);
             }
             catch (Exception ex)
             {
-                throw;
-                
+                Console.WriteLine(ex.Message);
+                return false;
             }
-
         }
-       
-        public async Task<List<Material>?> GetAllmaterial()
+
+
+
+        public async Task<List<MaterialModel>?> GetAllMaterials() 
         {
             try
             {
-               return await _unitOfWork.Materials.GetAllMaterial();
-
-            }catch (Exception ex)
+                var materials = await _unitOfWork.Materials.GetAllMaterial();
+                return _map.Map<List<MaterialModel>>(materials);
+            }
+            catch (Exception ex)
             {
-                Console.WriteLine("get all Material : ", ex.ToString());
-                return new List<Material>();
+                Console.WriteLine("Get All Materials: ", ex.ToString());
+                return new List<MaterialModel>();
             }
         }
 

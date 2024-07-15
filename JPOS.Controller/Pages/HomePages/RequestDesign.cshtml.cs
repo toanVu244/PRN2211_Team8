@@ -39,15 +39,9 @@ namespace JPOS.Controller.Pages.HomePages
             string usID = HttpContext.Session.GetString("UserId");
             string imageUpload =await ConvertImageToBase64AndUpload(ImageUpload);
 
-            TempData["TotalMoney"] = "50";
-            TempData["UID"] = "US00000";
-            TempData["Description"] = "Create product type :" + SelectedCategoryId + " request : " + RequestText;
-            TempData["Status"] = "Pending";
-            TempData["imageUpload"] = imageUpload;
-            TempData["Type"] = "3";
-            TempData.Keep();
-
-            
+            await requestService.CreateRequestAsync(request);
+            TempData["TotalMoney"] = 10;
+            TempData["RID"] = request.Id;
             Category = await categoryService.GetAllCategoryAsync();
 
             return RedirectToPage("/HomePages/Checkout");
