@@ -33,6 +33,7 @@ builder.Services.AddDbContext<JPOS_ProjectContext>(options =>
 // Register Services
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IUserServices, UserServices>();
+builder.Services.AddScoped<IBlogService, BlogService>();
 builder.Services.AddScoped<IMaterialService, MaterialService>();
 builder.Services.AddScoped<ICategoryService, CatergoryService>();
 builder.Services.AddScoped<IRequestService, RequestService>();

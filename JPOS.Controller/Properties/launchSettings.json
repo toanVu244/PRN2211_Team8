@@ -3,7 +3,7 @@
     "JPOS.Controller": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "LoginPage",
+      "launchUrl": "Dashboard/BlogPage/Index",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
