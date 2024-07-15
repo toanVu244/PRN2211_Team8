@@ -70,9 +70,10 @@ namespace JPOS.Service.Implementations
             }
             return null;
         }
+
         public async Task<string> GenerateNextUserIDAsync()
         {
-            var lastUser = await _unitOfWork.Users.GetLastUserAsync();
+            var lastUser = _unitOfWork.Users.GetLastUserAsync();
 
             if (lastUser == null || lastUser.UserId.Length < 3)
             {
@@ -184,6 +185,7 @@ namespace JPOS.Service.Implementations
         public async Task<List<Model.Entities.Role>> GetAllRolesAsync()
         {
             return await _unitOfWork.Users.GetAllRolesAsync();
+        }
 
         public void sendmail(string mail, string body)
         {
