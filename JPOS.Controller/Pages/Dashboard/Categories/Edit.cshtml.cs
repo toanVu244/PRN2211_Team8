@@ -22,15 +22,15 @@ namespace JPOS.Controller.Pages.Dashboard.Categories
         [BindProperty]
         public Category Category { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(int id)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var category = await _categoryService.GetCategoryByIdAsync(id);
-            if (category == null)
+            Category = await _categoryService.GetCategoryByIdAsync(id.Value);
+            if (Category == null)
             {
                 return NotFound();
             }
@@ -40,6 +40,11 @@ namespace JPOS.Controller.Pages.Dashboard.Categories
 
         public async Task<IActionResult> OnPostAsync()
         {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
             try
             {
                 await _categoryService.UpdateCategoryAsync(Category);
