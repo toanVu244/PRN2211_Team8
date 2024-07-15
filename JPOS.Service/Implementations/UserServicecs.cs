@@ -308,14 +308,5 @@ namespace JPOS.Service.Implementations
             await _unitOfWork.CompleteAsync();
             return result;
         }
-
-
-
-        //public async Task<bool> DeleteUserAsync(string id)
-        //{
-        //    var result = await _unitOfWork.Users.DeleteAsync(id);
-        //    await _unitOfWork.CompleteAsync();
-        //    return result;
-        //}
     }
 }
