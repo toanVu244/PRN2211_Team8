@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JPOS.Model.Repositories.Interfaces
+namespace JPOS.Service.Interfaces
 {
-    public interface ITransactionRepo : IGenericRepository<Transaction>
+    public interface ITransactionServices
     {
         public Task<List<Transaction?>> GetTransactionByUserID(string id);
+        public Task<bool> CreateTransaction(Transaction transaction);
     }
 }
