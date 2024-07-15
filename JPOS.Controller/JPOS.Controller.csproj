@@ -27,8 +27,4 @@
     <ProjectReference Include="..\JPOS.Service\JPOS.Service.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Pages\Dashboard\Design\" />
-  </ItemGroup>
-
 </Project>

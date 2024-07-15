@@ -37,6 +37,7 @@ builder.Services.AddScoped<IMaterialService, MaterialService>();
 builder.Services.AddScoped<ICategoryService, CatergoryService>();
 builder.Services.AddScoped<IRequestService, RequestService>();
 builder.Services.AddScoped<ICategoryService, CatergoryService>();
+builder.Services.AddScoped<IDesignService, DesignService>();
 builder.Services.AddScoped<ITransactionServices, TransactionServices>();
 builder.Services.AddScoped<IProductMaterialService, ProductMaterialService>();
 
