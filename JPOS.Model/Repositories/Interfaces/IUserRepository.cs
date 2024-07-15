@@ -14,6 +14,8 @@ namespace JPOS.Model.Repositories.Interfaces
         public Task<User?> GetUserByUsernameAndPasswordAsync(string username, string password);
         public User GetLastUserAsync();
 
+        public User GetLastUserAsyncTest();
+
         public Task<User?> GetUserByEmail(string email);
     }
 

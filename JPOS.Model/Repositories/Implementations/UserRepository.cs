@@ -38,5 +38,10 @@ namespace JPOS.Model.Repositories.Implementations
         {
            return await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
         }
+
+        public User GetLastUserAsyncTest()
+        {
+            return _context.Users.OrderByDescending(u => u.UserId).FirstOrDefault();
+        }
     }
 }

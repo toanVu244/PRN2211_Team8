@@ -8,23 +8,23 @@
 <div class="p-5" style="background-color: #08618d;">
     <div class="mx-auto p-3 bg-light rounded border" style="max-width: 420px;">
         <h2 class="text-center mb-5">Complete your order</h2>
-            <!-- Địa chỉ -->
-            <div class="mb-3">
-                <label for="inputAddress" class="form-label">Delivery Address</label>
-                <textarea class="form-control" id="inputAddress" rows="3" placeholder="Enter your delivery address" required></textarea>
-            </div>
+        <!-- Địa chỉ -->
+        <div class="mb-3">
+            <label for="inputAddress" class="form-label">Delivery Address</label>
+            <textarea class="form-control" id="inputAddress" rows="3" readonly>@Model.DeliveryAddress</textarea>
+        </div>
 
-            <!-- Số điện thoại -->
-            <div class="mb-3">
-                <label for="inputPhone" class="form-label">Phone Number</label>
-                <input type="text" class="form-control" id="inputPhone" placeholder="Enter your phone number" required>
-            </div>
+        <!-- Số điện thoại -->
+        <div class="mb-3">
+            <label for="inputPhone" class="form-label">Phone Number</label>
+            <input type="text" class="form-control" id="inputPhone" value="@Model.PhoneNumber" readonly>
+        </div>
 
-            <!-- Total Amount -->
-            <div class="mb-3">
-                <label class="form-label">Total Money</label>
-                <input type="text" class="form-control" value="@TempData["TotalMoney"] $" readonly>
-            </div>
+        <!-- Total Amount -->
+        <div class="mb-3">
+            <label class="form-label">Total Money</label>
+            <input type="text" class="form-control" value="@TempData["TotalMoney"] $" readonly>
+        </div>
 
             <div id="notification-container"></div>
             <div id="paypal-button-container"></div>
@@ -44,6 +44,7 @@
             paypal_buttons.close();
             return fetch("/HomePages/Checkout?handler=CompleteOrder", {
                 method: "POST",
+                headers: {"Content-Type": "application/json",},
                 body: JSON.stringify({ orderID: data.orderID })
             })
                 .then((response) => response.json())

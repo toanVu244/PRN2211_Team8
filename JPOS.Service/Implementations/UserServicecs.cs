@@ -72,7 +72,7 @@ namespace JPOS.Service.Implementations
         }
         public async Task<string> GenerateNextUserIDAsync()
         {
-            var lastUser = _unitOfWork.Users.GetLastUserAsync();
+            var lastUser = _unitOfWork.Users.GetLastUserAsyncTest();
             int numericPart = int.Parse(lastUser.UserId.Substring(2)); 
 
             int nextNumericPart = numericPart + 1;
@@ -82,26 +82,35 @@ namespace JPOS.Service.Implementations
         }
         public async Task<bool> UserRegister(RegisterModel model)
         {
-            string nextUserID = await GenerateNextUserIDAsync();
-            var hashedInputPasswordString = HashAndTruncatePassword(model.Password);
-            model.Password = hashedInputPasswordString;
-            var newUser = new User
+            try
             {
-                UserId = nextUserID,
-                Username = model.Username,
-                Password = model.Password,
-                FullName = model.FullName,
-                Address = model.Address,
-                PhoneNum = model.PhoneNum,
-                Status = true,
-                RoleId = 1,
-                CreateDate = DateTime.Now,
-                Email = model.Email
-            };
-            var result = await _unitOfWork.Users.InsertAsync(newUser);
-            await _unitOfWork.CompleteAsync();
+                string nextUserID = await GenerateNextUserIDAsync();
+                var hashedInputPasswordString = HashAndTruncatePassword(model.Password);
+                model.Password = hashedInputPasswordString;
+                var newUser = new User
+                {
+                    UserId = nextUserID,
+                    Username = model.Username,
+                    Password = model.Password,
+                    FullName = model.FullName,
+                    Address = model.Address,
+                    PhoneNum = model.PhoneNum,
+                    Status = true,
+                    RoleId = 6,
+                    CreateDate = DateTime.Now,
+                    Email = model.Email
+                };
+                var result = await _unitOfWork.Users.InsertAsync(newUser);
+                await _unitOfWork.CompleteAsync();
 
-            return result;
+                return result;
+            }
+            catch (Exception ex)
+            {
+                // Log the exception or inspect it
+                Console.WriteLine(ex.Message);
+                throw;
+            }          
         }
 
         public async Task<List<User>> GetAllUsersAsync()
