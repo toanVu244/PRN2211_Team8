@@ -6,19 +6,47 @@
 
 <h2>User Profile</h2>
 
-<div>
-    <label>Full Name: </label>
-    <span>@Model.UserProfile.FullName</span>
+<div class="profile-container">
+    <div class="profile-image">
+        <img src="path-to-default-profile-image.jpg" alt="Profile Image" style="width: 150px; height: 150px; object-fit: cover;" />
+    </div>
+    <div class="profile-details">
+        <div>
+            <label>Full Name: </label>
+            <span>@Model.User.FullName</span>
+        </div>
+        <div>
+            <label>Email: </label>
+            <span>@Model.User.Email</span>
+        </div>
+        <div>
+            <label>Phone Number: </label>
+            <span>@Model.User.PhoneNum</span>
+        </div>
+        <div>
+            <label>Address: </label>
+            <span>@Model.User.Address</span>
+        </div>
+    </div>
 </div>
-<div>
-    <label>Email: </label>
-    <span>@Model.UserProfile.Email</span>
+
+<div class="profile-actions mt-4">
+    <a href="./ForgetPasswordPage" class="btn btn-warning">Reset Password</a>
+    <a href="/HomePages/UpdateUserProfile" class="btn btn-primary">Update Profile</a>
 </div>
-<div>
-    <label>Phone Number: </label>
-    <span>@Model.UserProfile.PhoneNum</span>
-</div>
-<div>
-    <label>Address: </label>
-    <span>@Model.UserProfile.Address</span>
-</div>
+
+<style>
+    .profile-container {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .profile-image {
+        margin-right: 20px;
+    }
+
+    .profile-details label {
+        font-weight: bold;
+    }
+</style>

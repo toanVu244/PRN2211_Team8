@@ -18,7 +18,7 @@ namespace JPOS.Controller.Pages.Dashboard.Statistics
             _context = context;
         }
 
-      public Request Request { get; set; } = default!; 
+        public Request Request { get; set; } = default!; 
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
