@@ -37,5 +37,10 @@ namespace JPOS.Model.Repositories.Implementations
         {
            return await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
         }
+
+        public async Task<List<Role>> GetAllRolesAsync()
+        {
+            return await _context.Roles.ToListAsync();
+        }
     }
 }

@@ -67,6 +67,13 @@ namespace JPOS.Service.Implementations
         public async Task<string> GenerateNextUserIDAsync()
         {
             var lastUser = await _unitOfWork.Users.GetLastUserAsync();
+
+            if (lastUser == null || lastUser.UserId.Length < 3)
+            {
+                // In case there are no users yet or UserId length is less than 3
+                return "US00001";
+            }
+
             int numericPart = int.Parse(lastUser.UserId.Substring(2)); 
 
             int nextNumericPart = numericPart + 1;
@@ -157,6 +164,11 @@ namespace JPOS.Service.Implementations
             password = password.Substring(0, 16);
 
             return password;
+        }
+
+        public async Task<List<Model.Entities.Role>> GetAllRolesAsync()
+        {
+            return await _unitOfWork.Users.GetAllRolesAsync();
         }
     }
 }

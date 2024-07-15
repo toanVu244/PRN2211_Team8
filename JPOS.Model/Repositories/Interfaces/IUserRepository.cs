@@ -15,6 +15,7 @@ namespace JPOS.Model.Repositories.Interfaces
         public Task<User> GetLastUserAsync();
 
         public Task<User?> GetUserByEmail(string email);
+        Task<List<Role>> GetAllRolesAsync();
     }
 
 }
