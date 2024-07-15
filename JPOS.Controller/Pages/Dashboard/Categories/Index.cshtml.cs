@@ -20,11 +20,23 @@ namespace JPOS.Controller.Pages.Dashboard.Categories
 
         public IList<Category> Category { get; set; } = default!;
 
+        [BindProperty(SupportsGet = true)]
+        public string SearchTerm { get; set; }
+
         public async Task OnGetAsync()
         {
             if (_categoryService != null)
             {
                 Category = await _categoryService.GetAllCategoryAsync();
+            }
+        }
+
+        public async Task OnPostSearchCategory()
+        {
+            Category = await _categoryService.GetAllCategoryAsync();
+            if (!string.IsNullOrEmpty(SearchTerm))
+            {
+                Category = Category.Where(c => c.CatName.ToLower().Contains(SearchTerm.ToLower())).ToList();
             }
         }
 
