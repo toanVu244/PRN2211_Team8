@@ -17,7 +17,8 @@ namespace JPOS.Controller.Pages.Dashboard.Products
         {
             _productService = productService;
         }
-
+        [BindProperty(SupportsGet = true)]
+        public string SearchTerm { get; set; }
         public IList<ProductViewModel> Product { get; set; } = default!;
 
         public async Task OnGetAsync()
@@ -32,6 +33,7 @@ namespace JPOS.Controller.Pages.Dashboard.Products
                     PriceMaterial = p.PriceMaterial,
                     PriceDesign = p.PriceDesign,
                     ProcessPrice = p.ProcessPrice,
+                    TotalPrice= p.PriceMaterial+p.ProcessPrice+p.PriceDesign ,
                     CreateDate = p.CreateDate,
                     Status = p.Status,
                     Image = p.Image,
@@ -58,6 +60,29 @@ namespace JPOS.Controller.Pages.Dashboard.Products
             }
         }
 
+        public async Task OnPostSearchingProduct()
+        {
+            var products = await _productService.GetAllProduct();
+            Product = products.Select(p => new ProductViewModel
+            {
+                ProductId = p.ProductId,
+                CreateBy = p.CreateBy,
+                PriceMaterial = p.PriceMaterial,
+                PriceDesign = p.PriceDesign,
+                ProcessPrice = p.ProcessPrice,
+                TotalPrice = p.PriceMaterial + p.ProcessPrice + p.PriceDesign,
+                CreateDate = p.CreateDate,
+                Status = p.Status,
+                Image = p.Image,
+                ProductName = p.ProductName,
+                Description = p.Description
+            }).ToList();
+            if (!string.IsNullOrEmpty(SearchTerm))
+            {
+                Product = Product.Where(p => p.ProductName.Contains(SearchTerm)).ToList();
+            }
+        }
+
         public class ProductViewModel
         {
             public int ProductId { get; set; }
@@ -65,6 +90,7 @@ namespace JPOS.Controller.Pages.Dashboard.Products
             public int? PriceMaterial { get; set; }
             public int? PriceDesign { get; set; }
             public int? ProcessPrice { get; set; }
+            public int? TotalPrice { get; set; }
             public DateTime? CreateDate { get; set; }
             public string Status { get; set; }
             public string Image { get; set; }

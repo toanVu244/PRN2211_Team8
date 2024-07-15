@@ -7,24 +7,102 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/JPOS.Controller.styles.css" asp-append-version="true" />
+    <style>
+        .navbar-text {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .user-dropdown img {
+            margin-left: 5px;
+        }
+
+        .dropdown-menu {
+            right: -100px;
+            left: auto;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .dropdown-menu a.dropdown-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            font-size: 14px;
+            color: #333;
+        }
+
+            .dropdown-menu a.dropdown-item:hover {
+                background-color: #f8f9fa;
+            }
+
+        .navbar-nav .nav-item {
+            position: relative;
+        }
+
+        .user-dropdown .nav-link {
+            display: flex;
+            align-items: center;
+        }
+
+            .user-dropdown .nav-link img {
+                margin-left: 5px;
+            }
+    </style>
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-page="/Index">JewelryStore</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/HomePages/Blog">Blog</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
+                    </ul>
+                    <ul class="navbar-nav">
+                        @{
+                            byte[] value;
+                            if (Context.Session.TryGetValue("UserName", out value))
+                            {
+                                var userName = System.Text.Encoding.UTF8.GetString(value);
+                            }
+                        }
+
+                        @if (value != null)
+                        {
+                            <li class="nav-item d-flex align-items-center">
+                                <span class="navbar-text">Hi, @Context.Session.GetString("UserName")</span>
+                                <div class="user-dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <img src="https://i.ibb.co/tbHQsPT/image.png" alt="User Profile" style="width: 30px; height: 30px; border-radius: 50%;" />
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                        <li><a class="dropdown-item" asp-area="" asp-page="/Account/YourProfile">Your Profile</a></li>
+                                        <li><a class="dropdown-item" asp-area="" asp-page="/HomePages/RequestHistory">Request History</a></li>
+                                        <li><a class="dropdown-item" asp-area="" asp-page="/Logout">Logout</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/LoginPage">Login</a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>

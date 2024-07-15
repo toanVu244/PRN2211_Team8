@@ -69,6 +69,8 @@ namespace JPOS.Service.Implementations
                 {
                     ProductId = product.ProductId,
                     ProductName = product.ProductName,
+                    PriceMaterial = product.PriceMaterial,
+                    PriceDesign = product.PriceDesign,
                     Description = product.Description,
                     Image = product.Image,
                     Status = product.Status,

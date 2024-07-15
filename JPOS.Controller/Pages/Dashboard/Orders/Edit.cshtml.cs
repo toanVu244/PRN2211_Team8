@@ -86,7 +86,7 @@ namespace JPOS.Controller.Pages.Dashboard.Orders
             var products = await _productService.GetAllProduct();
 
             Products = new SelectList(products, "ProductId", "ProductName");
-            Statuses = new SelectList(new List<string> { "Pending", "Completed" });
+            Statuses = new SelectList(new List<string> { "Pending", "Processing", "Finished", "CheckedOut" });
         }
     }
 }

@@ -31,9 +31,21 @@ namespace JPOS.Model.Repositories.Implementations
            
         }
 
+        //public async Task<bool?> DeleteMaterial(int id)
+        //{
+        //   throw new NotImplementedException();
+        //}
+
         public async Task<bool?> DeleteMaterial(int id)
         {
-           throw new NotImplementedException();
+            var material = await _context.Materials.FindAsync(id);
+            if (material == null)
+            {
+                return false;
+            }
+
+            _context.Materials.Remove(material);
+            return await _context.SaveChangesAsync() > 0;
         }
 
         public async Task<List<Material>?> GetAllMaterial()

@@ -46,6 +46,7 @@ namespace JPOS.Controller.Pages.HomePages.Checkout
             string Description = TempData["Description"]?.ToString() ?? "";
             string Status = TempData["Status"]?.ToString() ?? "";
             string PID = TempData["PID"]?.ToString() ?? "";
+            string imageUpload = TempData["imageUpload"]?.ToString() ?? "";
             string Type = TempData["Type"]?.ToString() ?? "";
             TotalMoney = TempData["TotalMoney"]?.ToString() ?? "";
 
@@ -97,14 +98,14 @@ namespace JPOS.Controller.Pages.HomePages.Checkout
                         orderId = jsonResponse["id"]?.ToString() ?? "";
 
                         //Insert into db
-                        
+/*                        
                         request.UserId = UID;
                         request.Description = Description;
                         request.CreateDate = DateTime.Now;
                         request.Status = "Pending";
                         request.ProductId = Int32.Parse(PID);
                         request.Type = Int32.Parse(Type);
-                        _requestService.CreateRequestAsync(request);
+                        _requestService.CreateRequestAsync(request);*/
                     }
                 }
             }
@@ -119,6 +120,7 @@ namespace JPOS.Controller.Pages.HomePages.Checkout
 
         public async Task<JsonResult> OnPostCompleteOrder([FromBody] JsonObject data)
         {
+            int requestID = Int32.Parse(TempData["RID"]?.ToString() ?? "");
             if (data == null || data["orderID"] == null)
             {
                 return new JsonResult("");
@@ -155,10 +157,23 @@ namespace JPOS.Controller.Pages.HomePages.Checkout
                             TempData.Clear();
 
                             //update status
-                            var oldRequest = await _requestService.GetLastRequest();
-                            oldRequest.Status = "Completed";
-                            _requestService.UpdateRequestAsync(oldRequest);
-                            return new JsonResult("success");
+                            var oldRequest = await _requestService.GetRequestByIDAsync(requestID);
+                            if(oldRequest.Type == 1 || oldRequest.Type == 2)
+                            {
+                                oldRequest.Status = "Completed";
+                                _requestService.UpdateRequestAsync(oldRequest);
+                                return new JsonResult("success");
+                            }
+                            else if(oldRequest.Type == 3)
+                            {
+                                if(oldRequest.Status == "Finished")
+                                {
+                                    oldRequest.Status = "Completed";
+                                    _requestService.UpdateRequestAsync(oldRequest);
+                                    return new JsonResult("success");
+                                }
+                                return new JsonResult("success");
+                            }
                         }
                     }
                 }
