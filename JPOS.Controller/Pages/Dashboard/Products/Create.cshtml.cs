@@ -8,41 +8,56 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using JPOS.Model.Entities;
 using JPOS.Model.Models;
 using JPOS.Service.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using JPOS.Service.Implementations;
 
 namespace JPOS.Controller.Pages.Dashboard.Products
 {
     public class CreateModel : PageModel
     {
         private readonly IProductService _productService;
+        private readonly ICategoryService categoryService;
+        private readonly IDesignService designService;
+        private readonly IMaterialService materialService;
 
-        public CreateModel(IProductService productService)
+        public CreateModel(IProductService productService, ICategoryService categoryService, IDesignService designService,IMaterialService materialService)
         {
             _productService = productService;
-        }
-
-        public IActionResult OnGet()
-        {
-        /*ViewData["CategoryId"] = new SelectList(_context.Categories, "CatId", "CatId");
-        ViewData["DesignId"] = new SelectList(_context.Designs, "DesignId", "DesignId");*/
-            return Page();
+            this.categoryService = categoryService;
+            this.designService = designService;
+            this.materialService = materialService;
         }
 
         [BindProperty]
         public ProductModel Product { get; set; } = default!;
+
         [BindProperty]
-        public List<ProductMaterialModel> Materials { get; set; } = default;
+        public IFormFile ImageFile { get; set; }    
         
+        public SelectList Material { get; set; }
 
-        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnGet()
         {
-          if (!ModelState.IsValid || _productService.GetAllProduct == null || Product == null)
+
+            ViewData["CategoryId"] = new SelectList(await categoryService.GetAllCategoryAsync(), "CatId", "CatName");
+            ViewData["DesignId"] = new SelectList(await designService.GetAllDesignAsync(), "DesignId", "Picture");
+
+            var materials = await materialService.GetAllmaterial();
+            var materialList = materials.Select(m => new SelectListItem
             {
-                return Page();
-            }
+                Value = m.MaterialId.ToString(),
+                Text = $"{m.Name} - ${m.Price}" // Displaying name and price together
+            });
 
-            bool result = await _productService.CreateProduct(Product,Materials);
+            Material = new SelectList(materialList, "Value", "Text");
 
+            return Page();
+        }
+
+       
+
+        public async Task<IActionResult> OnPostAsync()
+       {       
             return RedirectToPage("./Index");
         }
     }
