@@ -38,6 +38,16 @@ namespace JPOS.Controller.Pages.HomePages
         {
             string usID = HttpContext.Session.GetString("UserId");
             string imageUpload =await ConvertImageToBase64AndUpload(ImageUpload);
+            Request request = new Request()
+            {
+                CreateDate = DateTime.Now,
+                Description = Category + RequestText,
+                Image = imageUpload,
+                Status = "Pending",
+                Type = 3,
+                UserId = usID
+            };
+
 
             await requestService.CreateRequestAsync(request);
             TempData["TotalMoney"] = 10;
