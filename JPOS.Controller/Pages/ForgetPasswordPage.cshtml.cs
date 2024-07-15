@@ -40,7 +40,7 @@ namespace JPOS.Controller.Pages
 
             await _userServices.ResetPassword(Email, Password, OTP);
 
-            return Page();
+            return RedirectToPage("LoginPage");
         }
     }
 }
