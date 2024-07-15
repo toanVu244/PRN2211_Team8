@@ -78,7 +78,7 @@ namespace JPOS.Service.Implementations
             if (lastUser == null || lastUser.UserId.Length < 3)
             {
                 // In case there are no users yet or UserId length is less than 3
-                return "US00001";
+                return "US00000";
             }
 
             int numericPart = int.Parse(lastUser.UserId.Substring(2)); 

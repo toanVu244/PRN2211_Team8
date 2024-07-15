@@ -2,16 +2,12 @@ using JPOS.Model.Entities;
 using JPOS.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Configuration;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
 using System.Text.Json.Nodes;
+using System.Text;
 
-namespace JPOS.Controller.Pages.HomePages.Checkout
+namespace JPOS.Controller.Pages.HomePages
 {
-    [IgnoreAntiforgeryToken]
-    public class CheckoutModel : PageModel
+    public class ConfirmCheckoutModel : PageModel
     {
         private readonly ITransactionServices _transactionServices;
         private readonly IRequestService _requestService;
@@ -23,14 +19,14 @@ namespace JPOS.Controller.Pages.HomePages.Checkout
         public string DeliveryAddress { get; set; } = "";
         public string PhoneNumber { get; set; } = "";
         public Request request = new Request();
-        public CheckoutModel(IConfiguration configuration, ITransactionServices transactionServices, IRequestService requestService)
+        public ConfirmCheckoutModel(IConfiguration configuration, ITransactionServices transactionServices, IRequestService requestService)
         {
             PaypalClientId = configuration["PaypalSettings:ClientId"]!;
             PaypalSecret = configuration["PaypalSettings:Secret"]!;
             PaypalUrl = configuration["PaypalSettings:Url"]!;
             _transactionServices = transactionServices;
             _requestService = requestService;
-            
+
         }
         public void OnGet()
         {
@@ -40,7 +36,7 @@ namespace JPOS.Controller.Pages.HomePages.Checkout
             TempData.Keep();
         }
 
-        public JsonResult OnPostCreateOrder()
+        public JsonResult OnPostCreateOrder(string id)
         {
             string UID = TempData["UID"]?.ToString() ?? "";
             string Description = TempData["Description"]?.ToString() ?? "";
@@ -97,14 +93,14 @@ namespace JPOS.Controller.Pages.HomePages.Checkout
                         orderId = jsonResponse["id"]?.ToString() ?? "";
 
                         //Insert into db
-                        
-                        request.UserId = UID;
+
+                        /*request.UserId = UID;
                         request.Description = Description;
                         request.CreateDate = DateTime.Now;
                         request.Status = "Pending";
                         request.ProductId = Int32.Parse(PID);
                         request.Type = Int32.Parse(Type);
-                        _requestService.CreateRequestAsync(request);
+                        _requestService.CreateRequestAsync(request);*/
                     }
                 }
             }
@@ -150,12 +146,12 @@ namespace JPOS.Controller.Pages.HomePages.Checkout
                     if (jsonResponse != null)
                     {
                         string paypalOrderStatus = jsonResponse["status"]?.ToString() ?? "";
-                        if(paypalOrderStatus == "COMPLETED")
+                        if (paypalOrderStatus == "COMPLETED")
                         {
                             TempData.Clear();
 
                             //update status
-                            var oldRequest = await _requestService.GetLastRequest();
+                            var oldRequest = await _requestService.GetRequestByIDAsync(1);
                             oldRequest.Status = "Completed";
                             _requestService.UpdateRequestAsync(oldRequest);
                             return new JsonResult("success");
@@ -163,7 +159,7 @@ namespace JPOS.Controller.Pages.HomePages.Checkout
                     }
                 }
             }
-            
+
 
             return new JsonResult("");
         }

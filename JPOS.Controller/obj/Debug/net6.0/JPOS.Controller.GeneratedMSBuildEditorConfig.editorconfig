@@ -9,213 +9,209 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = JPOS.Controller
 build_property.RootNamespace = JPOS.Controller
-build_property.ProjectDir = C:\Users\ASUS\Desktop\PRN2211_Team8\JPOS.Controller\
+build_property.ProjectDir = C:\Users\ToanVu\source\repos\PRN221_TEAM8\PRN2211_Team8\JPOS.Controller\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\ASUS\Desktop\PRN2211_Team8\JPOS.Controller
+build_property.MSBuildProjectDirectory = C:\Users\ToanVu\source\repos\PRN221_TEAM8\PRN2211_Team8\JPOS.Controller
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/AccessDeniedPage.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/AccessDeniedPage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjZXNzRGVuaWVkUGFnZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Categories/Create.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Categories/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkXENhdGVnb3JpZXNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Categories/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkXENhdGVnb3JpZXNcRGVsZXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Categories/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkXENhdGVnb3JpZXNcRGV0YWlscy5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Categories/Edit.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Categories/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkXENhdGVnb3JpZXNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Categories/Index.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Categories/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkXENhdGVnb3JpZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Materials/Create.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Materials/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkXE1hdGVyaWFsc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Materials/Delete.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Materials/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkXE1hdGVyaWFsc1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Materials/Details.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Materials/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkXE1hdGVyaWFsc1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Materials/Edit.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Materials/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkXE1hdGVyaWFsc1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Materials/Index.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Materials/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkXE1hdGVyaWFsc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Orders/Create.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Orders/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkXE9yZGVyc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Orders/Edit.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Orders/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkXE9yZGVyc1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Orders/Index.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Orders/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkXE9yZGVyc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Products/Create.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Products/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkXFByb2R1Y3RzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Products/Delete.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Products/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkXFByb2R1Y3RzXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Products/Details.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Products/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkXFByb2R1Y3RzXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Products/Edit.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Products/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkXFByb2R1Y3RzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Products/Index.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Products/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkXFByb2R1Y3RzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Statistics/Create.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Statistics/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkXFN0YXRpc3RpY3NcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Statistics/Delete.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Statistics/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkXFN0YXRpc3RpY3NcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Statistics/Details.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Statistics/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkXFN0YXRpc3RpY3NcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Statistics/Edit.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Statistics/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkXFN0YXRpc3RpY3NcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Statistics/Index.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Statistics/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkXFN0YXRpc3RpY3NcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Users/Create.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Users/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkXFVzZXJzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Users/Delete.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Users/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkXFVzZXJzXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Users/Details.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Users/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkXFVzZXJzXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Users/Edit.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Users/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkXFVzZXJzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Users/Index.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/Users/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkXFVzZXJzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/_ViewStart.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/Dashboard/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkXF9WaWV3U3RhcnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/DesignPage/Create.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/DesignPage/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGVzaWduUGFnZVxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/DesignPage/Delete.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/DesignPage/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGVzaWduUGFnZVxEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/DesignPage/Details.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/DesignPage/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGVzaWduUGFnZVxEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/DesignPage/Edit.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/DesignPage/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGVzaWduUGFnZVxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/DesignPage/Index.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/DesignPage/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGVzaWduUGFnZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/Error.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/ForgetPasswordPage.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/ForgetPasswordPage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRm9yZ2V0UGFzc3dvcmRQYWdlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/HomePages/Checkout.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/HomePages/Checkout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZVBhZ2VzXENoZWNrb3V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/HomePages/HomePage.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/HomePages/ConfirmCheckout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZVBhZ2VzXENvbmZpcm1DaGVja291dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/HomePages/HomePage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZVBhZ2VzXEhvbWVQYWdlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/HomePages/ProductCustomDetail.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/HomePages/ProductCustomDetail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZVBhZ2VzXFByb2R1Y3RDdXN0b21EZXRhaWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/HomePages/ProductDetail.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/HomePages/ProductDetail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZVBhZ2VzXFByb2R1Y3REZXRhaWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/HomePages/RequestDesign.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/HomePages/RequestDesign.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZVBhZ2VzXFJlcXVlc3REZXNpZ24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/Index.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/LoginPage.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/LoginPage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW5QYWdlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/Privacy.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/RegisterPage.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/RegisterPage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0ZXJQYWdlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/Shared/_DashboardLayout.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/Shared/_DashboardLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9EYXNoYm9hcmRMYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/_ViewImports.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/_ViewStart.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ASUS/Desktop/PRN2211_Team8/JPOS.Controller/Pages/Shared/_Layout.cshtml]
+[C:/Users/ToanVu/source/repos/PRN221_TEAM8/PRN2211_Team8/JPOS.Controller/Pages/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-5z6lim0xp0

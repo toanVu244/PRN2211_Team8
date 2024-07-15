@@ -22,16 +22,15 @@ namespace JPOS.Controller.Pages.Dashboard.Categories
         [BindProperty]
         public Category Category { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            Category = await _categoryService.GetCategoryByIdAsync(id.Value);
-
-            if (Category == null)
+            var category = await _categoryService.GetCategoryByIdAsync(id);
+            if (category == null)
             {
                 return NotFound();
             }
@@ -41,42 +40,16 @@ namespace JPOS.Controller.Pages.Dashboard.Categories
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
-
             try
             {
-                var result = await _categoryService.UpdateCategoryAsync(Category);
-
-                if (result)
-                {
-                    return RedirectToPage("./Index");
-                }
-                else
-                {
-                    ModelState.AddModelError(string.Empty, "Unable to save the category. Please try again.");
-                }
+                await _categoryService.UpdateCategoryAsync(Category);
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception ex)
             {
-                if (!CategoryExists(Category.CatId))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                Console.WriteLine(ex.Message);
+                throw;
             }
-
-            return Page();
-        }
-
-        private bool CategoryExists(int id)
-        {
-            return _categoryService.GetCategoryByIdAsync(id) != null;
+            return RedirectToPage("./Index");
         }
     }
 }
