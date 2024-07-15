@@ -9,11 +9,13 @@ namespace JPOS.Controller.Pages.HomePages
     {
         private readonly ICategoryService categoryService;
         private readonly IRequestService requestService;
+        private readonly IProductService productService;
 
-        public RequestDesignModel(ICategoryService categoryService,IRequestService requestService)
+        public RequestDesignModel(ICategoryService categoryService,IRequestService requestService,IProductService productService)
         {
             this.categoryService = categoryService;
             this.requestService = requestService;
+            this.productService = productService;
         }
         public IList<Category> Category { get; set; } = default!;
 
@@ -34,25 +36,33 @@ namespace JPOS.Controller.Pages.HomePages
 
         public async Task<IActionResult> OnPost()
         {
-            
+            string usID = HttpContext.Session.GetString("UserId");
+            string imageUpload =await ConvertImageToBase64AndUpload(ImageUpload);
             Request request = new Request()
             {
                 CreateDate = DateTime.Now,
                 Description = "Create product type :"+ SelectedCategoryId +" request : "+ RequestText,
                 Status = "Pending",
-                Image = null,
+                Image = imageUpload,
                 Type = 3,
-                UserId = HttpContext.Session.GetString("UserID")
-        };
+                UserId = usID
+            };
 
-         //  await requestService.CreateRequestAsync(request);
-             
+           await requestService.CreateRequestAsync(request);
+            Category = await categoryService.GetAllCategoryAsync();
+
             return Page();
         }
 
-        public void convertImage(IFormFile image)
+        private async Task<string> ConvertImageToBase64AndUpload(IFormFile image)
         {
-
+            using (MemoryStream ms = new MemoryStream())
+            {
+                image.CopyTo(ms);
+                byte[] imageBytes = ms.ToArray();
+                string base64String = Convert.ToBase64String(imageBytes);
+                return await productService.UploadImageToCloudinary($"data:{image.ContentType};base64,{base64String}");
+            }
         }
     }
 }

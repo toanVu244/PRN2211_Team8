@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using CloudinaryDotNet.Actions;
+using CloudinaryDotNet;
 using JPOS.Model;
 using JPOS.Model.Entities;
 using JPOS.Model.Models;
@@ -159,5 +161,56 @@ namespace JPOS.Service.Implementations
            return false;
             
         }
+
+
+
+
+        public async Task<string> UploadImageToCloudinary(string design)
+        {
+            try
+            {
+                Account account = new Account(
+                    "dkyv1vp1c",      
+                    "741931712965645",         
+                    "07xC7_CmYUhX3yGwPkdSe08uRM0"       
+                );
+
+                Cloudinary cloudinary = new Cloudinary(account);
+
+                
+                if (design != null && design.StartsWith("data:image/"))
+                {
+                    
+                    string base64Image = design.Split(',')[1];
+                    byte[] imageBytes = Convert.FromBase64String(base64Image);                    
+                    using (MemoryStream stream = new MemoryStream(imageBytes))
+                    {
+                      
+                        var uploadParams = new ImageUploadParams()
+                        {
+                            File = new FileDescription("image.jpg", stream) 
+                        };
+
+                        var uploadResult = await cloudinary.UploadAsync(uploadParams);
+
+                       return uploadResult.Url.ToString();
+                       
+                    }
+                }
+            }
+            catch (Exception ex)
+            {                
+                Console.WriteLine($"Error uploading image to Cloudinary: {ex.Message}");
+            }
+
+            return null; ;
+        }
+
+
+
     }
+
+
+
+
 }
