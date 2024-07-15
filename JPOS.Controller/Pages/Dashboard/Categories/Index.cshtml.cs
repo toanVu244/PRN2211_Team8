@@ -4,28 +4,35 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 using JPOS.Model.Entities;
+using JPOS.Service.Interfaces;
 
 namespace JPOS.Controller.Pages.Dashboard.Categories
 {
     public class IndexModel : PageModel
     {
-        private readonly JPOS.Model.Entities.JPOS_ProjectContext _context;
+        private readonly ICategoryService _categoryService;
 
-        public IndexModel(JPOS.Model.Entities.JPOS_ProjectContext context)
+        public IndexModel(ICategoryService categoryService)
         {
-            _context = context;
+            _categoryService = categoryService;
         }
 
-        public IList<Category> Category { get;set; } = default!;
+        public IList<Category> Category { get; set; } = default!;
 
         public async Task OnGetAsync()
         {
-            if (_context.Categories != null)
+            if (_categoryService != null)
             {
-                Category = await _context.Categories.ToListAsync();
+                Category = await _categoryService.GetAllCategoryAsync();
             }
+        }
+
+        public async Task<IActionResult> OnPostDeleteAsync(int id)
+        {
+            var result = await _categoryService.DeleteCategoryAsync(id);
+
+            return RedirectToPage();
         }
     }
 }

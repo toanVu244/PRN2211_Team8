@@ -6,40 +6,51 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using JPOS.Model.Entities;
+using JPOS.Service.Interfaces;
 
 namespace JPOS.Controller.Pages.Dashboard.Users
 {
     public class CreateModel : PageModel
     {
-        private readonly JPOS.Model.Entities.JPOS_ProjectContext _context;
+        private readonly IUserServices _userService;
 
-        public CreateModel(JPOS.Model.Entities.JPOS_ProjectContext context)
+        public CreateModel(IUserServices userService)
         {
-            _context = context;
-        }
-
-        public IActionResult OnGet()
-        {
-        ViewData["RoleId"] = new SelectList(_context.Roles, "RoleId", "RoleId");
-            return Page();
+            _userService = userService;
         }
 
         [BindProperty]
-        public User User { get; set; } = default!;
-        
+        public User User { get; set; }
 
-        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
+        public SelectList Roles { get; set; }
+
+        public async Task<IActionResult> OnGetAsync()
+        {
+            var roles = await _userService.GetAllRolesAsync();
+            Roles = new SelectList(roles, "RoleId", "RoleName");
+            return Page();
+        }
+
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.Users == null || User == null)
+            //if (!ModelState.IsValid)
+            //{
+            //    var roles = await _userService.GetAllRolesAsync();
+            //    Roles = new SelectList(roles, "RoleId", "RoleName");
+            //    return Page();
+            //}
+
+            User.CreateDate = DateTime.Now;
+
+            var result = await _userService.CreateUserAsync(User);
+
+            if (result)
             {
-                return Page();
+                return RedirectToPage("./Index");
             }
 
-            _context.Users.Add(User);
-            await _context.SaveChangesAsync();
-
-            return RedirectToPage("./Index");
+            ModelState.AddModelError("", "Unable to create user. Please try again.");
+            return Page();
         }
     }
 }

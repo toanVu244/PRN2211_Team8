@@ -20,6 +20,7 @@ namespace JPOS.Service.Interfaces
         public Task<bool> UserRegister(RegisterModel model);
         public Task<User?> GetUserByEmail(string email);
         public string HashAndTruncatePassword(string password);
+        Task<List<Model.Entities.Role>> GetAllRolesAsync();
         public void sendmail(string mail, string body);
 
         public string GenerateRandomOTP();

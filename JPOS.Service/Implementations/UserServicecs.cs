@@ -70,9 +70,17 @@ namespace JPOS.Service.Implementations
             }
             return null;
         }
+
         public async Task<string> GenerateNextUserIDAsync()
         {
-            var lastUser = _unitOfWork.Users.GetLastUserAsyncTest();
+            var lastUser = _unitOfWork.Users.GetLastUserAsync();
+
+            if (lastUser == null || lastUser.UserId.Length < 3)
+            {
+                // In case there are no users yet or UserId length is less than 3
+                return "US00001";
+            }
+
             int numericPart = int.Parse(lastUser.UserId.Substring(2)); 
 
             int nextNumericPart = numericPart + 1;
@@ -174,6 +182,10 @@ namespace JPOS.Service.Implementations
             return password;
         }
 
+        public async Task<List<Model.Entities.Role>> GetAllRolesAsync()
+        {
+            return await _unitOfWork.Users.GetAllRolesAsync();
+        }
 
         public void sendmail(string mail, string body)
         {

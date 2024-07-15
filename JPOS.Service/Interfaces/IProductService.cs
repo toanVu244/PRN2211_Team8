@@ -18,5 +18,6 @@ namespace JPOS.Service.Interfaces
         public Task<ProductDetailModel?> GetProductDetail(int id);
         public Task<bool> CreateProduct(ProductModel model, List<ProductMaterialModel> materialofproduct);
         public Task<string> UploadImageToCloudinary(string design);
+        Task<bool> DeleteProductAsync(int id);
     }
 }

@@ -161,10 +161,10 @@ namespace JPOS.Service.Implementations
 
         public async Task<List<StatisticRequest>?> GetRequestStatistic()
         {
-           /* int targetMonth = DateTime.Now.Month;
-            int targetYear = DateTime.Now.Year;*/
-            int targetMonth = 12;
-            int targetYear = 2012;
+            int targetMonth = DateTime.Now.Month;
+            int targetYear = DateTime.Now.Year;
+            //int targetMonth = 12;
+            //int targetYear = 2012;
             List < StatisticRequest > data = new List<StatisticRequest> ();
           for (int i = 1; i<= targetMonth; i++)
             {
