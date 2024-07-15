@@ -2,45 +2,101 @@
 @model JPOS.Controller.Pages.Dashboard.Materials.CreateModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create Material";
 }
 
-<h1>Create</h1>
+<style>
+    .create-material-container {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
 
-<h4>Material</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Material.Name" class="control-label"></label>
-                <input asp-for="Material.Name" class="form-control" />
-                <span asp-validation-for="Material.Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Material.Price" class="control-label"></label>
-                <input asp-for="Material.Price" class="form-control" />
-                <span asp-validation-for="Material.Price" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Material.Quantity" class="control-label"></label>
-                <input asp-for="Material.Quantity" class="form-control" />
-                <span asp-validation-for="Material.Quantity" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Material.TotalPrice" class="control-label"></label>
-                <input asp-for="Material.TotalPrice" class="form-control" />
-                <span asp-validation-for="Material.TotalPrice" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+        .create-material-container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+        .form-group label {
+            font-weight: bold;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ced4da;
+        }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        padding: 10px 20px;
+        width: 100%;
+        font-size: 16px;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+
+    .back-to-list {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .text-danger {
+        color: red;
+    }
+</style>
+
+<div class="create-material-container">
+    <h1>Create Material</h1>
+    <hr />
+    <form method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Material.Name" class="control-label"></label>
+            <input asp-for="Material.Name" class="form-control" />
+            <span asp-validation-for="Material.Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Material.Price" class="control-label"></label>
+            <input asp-for="Material.Price" class="form-control" />
+            <span asp-validation-for="Material.Price" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Material.Quantity" class="control-label"></label>
+            <input asp-for="Material.Quantity" class="form-control" />
+            <span asp-validation-for="Material.Quantity" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Material.TotalPrice" class="control-label"></label>
+            <input asp-for="Material.TotalPrice" class="form-control" />
+            <span asp-validation-for="Material.TotalPrice" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Material.Status" class="control-label"></label>
+            <input asp-for="Material.Status" class="form-control" />
+            <span asp-validation-for="Material.Status" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+    </form>
+    <a asp-page="Index" class="back-to-list">Back to List</a>
 </div>
 
-<div>
-    <a asp-page="Index">Back to List</a>
-</div>
-
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+}
