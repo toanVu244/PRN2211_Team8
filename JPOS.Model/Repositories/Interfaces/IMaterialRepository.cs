@@ -14,6 +14,6 @@ namespace JPOS.Model.Repositories.Interfaces
         public Task<bool?> CreateMaterial(Material material);
 
         public Task<bool?> UpdateMaterial(int id,Material material);
-        public Task<bool?> DeleteMaterial(int id);
+        Task<bool?> DeleteMaterial(int id);
     }
 }

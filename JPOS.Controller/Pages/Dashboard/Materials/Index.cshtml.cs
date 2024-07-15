@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using JPOS.Model.Entities;
+using JPOS.Model.Models;
 using JPOS.Service.Interfaces;
 
 namespace JPOS.Controller.Pages.Dashboard.Materials
@@ -18,13 +18,13 @@ namespace JPOS.Controller.Pages.Dashboard.Materials
             _materialService = materialService;
         }
 
-        public IList<Material> Material { get; set; } = default!;
+        public IList<MaterialModel> Materials { get; set; } = default!;
 
         public async Task OnGetAsync()
         {
             if (_materialService != null)
             {
-                Material = await _materialService.GetAllmaterial();
+                Materials = await _materialService.GetAllMaterials();
             }
         }
 

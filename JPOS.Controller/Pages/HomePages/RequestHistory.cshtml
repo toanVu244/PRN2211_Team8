@@ -1,0 +1,91 @@
+﻿@page "/HomePages/RequestHistory"
+@model JPOS.Controller.Pages.HomePages.RequestHistoryModel
+
+@{
+    ViewData["Title"] = "Request History";
+}
+
+<h1 class="page-title">Request History</h1>
+
+@if (Model.Requests != null && Model.Requests.Count > 0)
+{
+    <table class="table table-hover table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Description</th>
+                <th>Create Date</th>
+                <th>Status</th>
+                <th>Product ID</th>
+                <th>Image</th>
+                <th>Type</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var request in Model.Requests)
+            {
+                <tr>
+                    <td>@request.Id</td>
+                    <td>@request.Description</td>
+                    <td>@request.CreateDate?.ToString("dd/MM/yyyy")</td>
+                    <td>@request.Status</td>
+                    <td>@request.ProductId</td>
+                    <td>
+                        @if (!string.IsNullOrEmpty(request.Image))
+                        {
+                            <img src="@request.Image" alt="Request Image" class="img-thumbnail" />
+                        }
+                    </td>
+                    <td>@request.Type</td>
+                    <td>
+                        @if (request.Status == "Finished" || request.Status == "Processing")
+                        {
+                            <form method="post" asp-page-handler="Checkout" asp-route-id="@request.Id">
+                                <button type="submit" class="btn btn-primary btn-sm">Checkout</button>
+                            </form>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No requests found.</p>
+}
+
+@section Scripts {
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+}
+
+<style>
+    .page-title {
+        margin-bottom: 20px;
+        font-weight: bold;
+        color: #08618d;
+    }
+
+    .table {
+        margin-top: 20px;
+    }
+
+    .img-thumbnail {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+    }
+
+    .btn-primary {
+        background-color: #08618d;
+        border-color: #08618d;
+    }
+
+        .btn-primary:hover {
+            background-color: #065a74;
+            border-color: #065a74;
+        }
+</style>
