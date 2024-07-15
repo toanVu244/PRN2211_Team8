@@ -49,13 +49,20 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>All</td>
+                        <td>
+                            <form method="post">
+                                <button type="submit" asp-page-handler="Filter" asp-route-id="0">All</button>
+                            </form>
+                        </td>
+                       
                     </tr>
                     @foreach (var category in Model.Category)
                     {
                         <tr>
                             <td>
-                                <button type="submit" asp-page-handler="Filter" asp-route-id="@category.CatId">@category.CatName</button>
+                                <form method="post"> 
+                                    <button type="submit" asp-page-handler="Filter" asp-route-id="@category.CatId">@category.CatName</button>
+                                </form>
                             </td>
 
                         </tr>

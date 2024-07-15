@@ -48,7 +48,7 @@ namespace JPOS.Controller.Pages.HomePages
         }
 
 
-        public async Task OnPostCheck(int id)
+        public async Task OnPostFilter(int id)
         {
             await callData();
           if(id != 0)
