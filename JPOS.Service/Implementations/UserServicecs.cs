@@ -72,7 +72,7 @@ namespace JPOS.Service.Implementations
         }
         public async Task<string> GenerateNextUserIDAsync()
         {
-            var lastUser = _unitOfWork.Users.GetLastUserAsyncTest();
+            var lastUser = _unitOfWork.Users.GetLastUserAsync();
             int numericPart = int.Parse(lastUser.UserId.Substring(2)); 
 
             int nextNumericPart = numericPart + 1;

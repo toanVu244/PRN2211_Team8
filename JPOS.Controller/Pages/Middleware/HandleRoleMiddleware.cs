@@ -14,7 +14,7 @@ public class HandleRoleMiddleware
     public async Task InvokeAsync(HttpContext context)
     {
         var path = context.Request.Path.ToString().ToLower();
-        if (path.StartsWith("/loginpage") || path.StartsWith("/registerpage"))
+        if (path.StartsWith("/loginpage") || path.StartsWith("/registerpage") || path.StartsWith("/forgetpasswordpage"))
         {
             await _next(context);
             return;

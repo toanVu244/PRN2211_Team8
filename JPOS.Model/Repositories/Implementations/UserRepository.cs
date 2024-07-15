@@ -25,13 +25,13 @@ namespace JPOS.Model.Repositories.Implementations
             return await _context.Users.SingleOrDefaultAsync(u => u.Username == username && u.Password == password);
         }
 
-        public async Task<User> GetLastUserAsync()
+        public  User GetLastUserAsync()
         {
-            var lastUser = await _context.Users
+            /*var lastUser = await _context.Users
                 .OrderByDescending(u => u.UserId)
-                .FirstOrDefaultAsync();
+                .FirstOrDefaultAsync();*/
 
-            return lastUser;
+            return _context.Users.OrderByDescending(u => u.UserId).FirstOrDefault();  /*await _context.Users.OrderByDescending(u => u.UserId).FirstOrDefaultAsync();*/
         }
 
         public async Task<User?> GetUserByEmail(string email)
