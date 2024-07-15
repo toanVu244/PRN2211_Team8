@@ -8,6 +8,12 @@
 <h1>Material Management</h1>
 
 <hr />
+<div class="input-group input-group-prefix input-group-lg">
+    <form method="post" asp-page-handler="SearchMaterial">
+        <input type="text" name="SearchTerm" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" value="@Model.SearchTerm">
+        <button class="input-group-text" id="inputGroup-sizing-lg" style="background-color: #4CAF50; color: white;" type="submit">Search</button>
+    </form>
+</div>
 
 <p>
     <a asp-page="Create" class="btn btn-primary">Create New</a>
