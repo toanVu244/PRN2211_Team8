@@ -8,14 +8,14 @@ using JPOS.Model.Entities;
 using JPOS.Service.Interfaces;
 using JPOS.Service.Implementations;
 
-namespace JPOS.Controller.Pages.Dashboard.Blogs
+namespace JPOS.Controller.Pages.HomePages
 {
-    public class IndexModel : PageModel
+    public class BlogModel : PageModel
     {
         private readonly IBlogService _blogService;
         private readonly IUserServices _userService;
 
-        public IndexModel(IBlogService blogService, IUserServices userService)
+        public BlogModel(IBlogService blogService, IUserServices userService)
         {
             _blogService = blogService;
             _userService = userService;
