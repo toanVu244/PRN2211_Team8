@@ -31,5 +31,6 @@ namespace JPOS.Model.Entities
         public virtual ICollection<Policy> Policies { get; set; }
         public virtual ICollection<Request> Requests { get; set; }
         public virtual ICollection<Transaction> Transactions { get; set; }
+        public string UserStatus => Status.HasValue && Status.Value ? "Active" : "Inactive";
     }
 }

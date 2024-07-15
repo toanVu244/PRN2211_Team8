@@ -48,5 +48,16 @@ namespace JPOS.Model.Repositories.Implementations
         {
             return _context.Users.OrderByDescending(u => u.UserId).FirstOrDefault();
         }
+
+        public async Task<bool> HasRelatedRecordsAsync(string userId)
+        {
+            var hasBlogs = await _context.Blogs.AnyAsync(b => b.CreateBy == userId);
+            var hasPolicies = await _context.Policies.AnyAsync(p => p.CreateBy == userId);
+            var hasRequests = await _context.Requests.AnyAsync(r => r.UserId == userId);
+            var hasFeedbacks = await _context.Feedbacks.AnyAsync(f => f.UserId == userId);
+            var hasTransactions = await _context.Transactions.AnyAsync(t => t.UserId == userId);
+
+            return hasBlogs || hasPolicies || hasRequests || hasFeedbacks || hasTransactions;
+        }
     }
 }

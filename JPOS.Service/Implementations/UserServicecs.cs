@@ -152,13 +152,6 @@ namespace JPOS.Service.Implementations
             return result;
         }
 
-        public async Task<bool> DeleteUserAsync(string id)
-        {
-            var result = await _unitOfWork.Users.DeleteAsync(id);
-            await _unitOfWork.CompleteAsync();
-            return result;
-        }
-
         public async Task<User?> GetUserByEmail(string email)
         {
            if (email == null)
@@ -295,6 +288,25 @@ namespace JPOS.Service.Implementations
                 return false;
             }
 
+        }
+
+        public async Task<bool> HasRelatedRecordsAsync(string userId)
+        {
+            return await _unitOfWork.Users.HasRelatedRecordsAsync(userId);
+        }
+
+        public async Task<bool> DeleteUserAsync(string id)
+        {
+            var hasRelatedRecords = await HasRelatedRecordsAsync(id);
+
+            if (hasRelatedRecords)
+            {
+                return false; // User has related records, cannot delete
+            }
+
+            var result = await _unitOfWork.Users.DeleteAsync(id);
+            await _unitOfWork.CompleteAsync();
+            return result;
         }
     }
 }

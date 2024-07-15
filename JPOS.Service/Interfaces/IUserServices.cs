@@ -28,5 +28,7 @@ namespace JPOS.Service.Interfaces
         public Task<bool> ConfirmEmail(string email);
 
         public Task<bool> ResetPassword(string email, string password, string otp);
+
+        Task<bool> HasRelatedRecordsAsync(string userId);
     }
 }

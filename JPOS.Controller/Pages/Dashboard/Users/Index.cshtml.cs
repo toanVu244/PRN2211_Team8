@@ -19,9 +19,37 @@ namespace JPOS.Controller.Pages.Dashboard.Users
             _userService = userService;
         }
 
-        public IList<UserViewModel> Users { get; set; }
+        public IList<UserViewModel> Users { get; set; } = new List<UserViewModel>(); // Khởi tạo thuộc tính Users
 
-        public async Task OnGetAsync()
+        public async Task<IActionResult> OnPostDeleteAsync(string userId)
+        {
+            if (userId == null)
+            {
+                return NotFound();
+            }
+
+            // Kiểm tra xem ID người dùng hiện tại trong session có đang được xóa hay không
+            var currentUserId = HttpContext.Session.GetString("UserId");
+            if (currentUserId == userId)
+            {
+                ModelState.AddModelError(string.Empty, "You cannot delete your own account.");
+                await LoadUsersAsync(); // Tải lại danh sách người dùng
+                return Page();
+            }
+
+            var result = await _userService.DeleteUserAsync(userId);
+
+            if (!result)
+            {
+                ModelState.AddModelError(string.Empty, "User has related data. Please set the status to Inactive instead of deleting.");
+                await LoadUsersAsync(); // Tải lại danh sách người dùng
+                return Page();
+            }
+
+            return RedirectToPage();
+        }
+
+        private async Task LoadUsersAsync()
         {
             var users = await _userService.GetAllUsersAsync();
             var roles = await _userService.GetAllRolesAsync();
@@ -34,35 +62,17 @@ namespace JPOS.Controller.Pages.Dashboard.Users
                 PhoneNum = user.PhoneNum,
                 Address = user.Address,
                 RoleName = roles.FirstOrDefault(role => role.RoleId == user.RoleId)?.RoleName,
-                CreateDate = user.CreateDate ?? DateTime.MinValue, // Handle nullable DateTime
-                Status = user.Status.HasValue && user.Status.Value ? "Active" : "Inactive", // Handle nullable bool
+                CreateDate = user.CreateDate ?? DateTime.MinValue,
+                Status = user.Status.HasValue && user.Status.Value ? "Active" : "Inactive",
                 Email = user.Email
             }).ToList();
         }
 
-        public async Task<IActionResult> OnPostDeleteAsync(string userId)
+        public async Task OnGetAsync()
         {
-            if (userId == null)
-            {
-                return NotFound();
-            }
-
-            var user = await _userService.GetUserByIdAsync(userId);
-
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            var result = await _userService.DeleteUserAsync(userId);
-
-            if (!result)
-            {
-                ModelState.AddModelError(string.Empty, "Unable to delete the user. Please try again.");
-            }
-
-            return RedirectToPage();
+            await LoadUsersAsync();
         }
+
 
         public class UserViewModel
         {
