@@ -18,5 +18,7 @@ namespace JPOS.Model.Repositories.Interfaces
 
         Task<bool> AddRequestAsync(Request request);
         public Task<Request> GetLastRequestAsync();
+
+        Task<List<Request>> GetRequestsByUserIdAsync(string userId);
     }
 }

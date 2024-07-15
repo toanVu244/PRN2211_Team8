@@ -1,0 +1,54 @@
+﻿@page "/HomePages/RequestHistory"
+@model JPOS.Controller.Pages.HomePages.RequestHistoryModel
+
+@{
+    ViewData["Title"] = "Request History";
+}
+
+<h1>Request History</h1>
+
+@if (Model.Requests != null && Model.Requests.Count > 0)
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Description</th>
+                <th>Create Date</th>
+                <th>Status</th>
+                <th>Product ID</th>
+                <th>Image</th>
+                <th>Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var request in Model.Requests)
+            {
+                <tr>
+                    <td>@request.Id</td>
+                    <td>@request.Description</td>
+                    <td>@request.CreateDate?.ToString("dd/MM/yyyy")</td>
+                    <td>@request.Status</td>
+                    <td>@request.ProductId</td>
+                    <td>
+                        @if (!string.IsNullOrEmpty(request.Image))
+                        {
+                            <img src="@request.Image" alt="Request Image" style="width: 100px; height: 100px;" />
+                        }
+                    </td>
+                    <td>@request.Type</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No requests found.</p>
+}
+
+@section Scripts {
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+}

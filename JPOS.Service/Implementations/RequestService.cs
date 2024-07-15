@@ -207,5 +207,11 @@ namespace JPOS.Service.Implementations
         {
             return _unitOfWork.Requests.GetLastRequestID();
         }
+
+        public async Task<List<Request>> GetRequestsByUserIdAsync(string userId)
+        {
+            return await _unitOfWork.Requests.GetRequestsByUserIdAsync(userId);
+        }
+
     }
 }

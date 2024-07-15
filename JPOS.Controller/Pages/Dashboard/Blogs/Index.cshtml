@@ -1,4 +1,116 @@
-﻿@page
+﻿@page "/Dashboard/Blogs"
 @model JPOS.Controller.Pages.Dashboard.Blogs.IndexModel
+
 @{
+    ViewData["Title"] = "Blog Management";
 }
+
+<h1>Blog Management</h1>
+<hr/>
+
+<p>
+    <a asp-page="Create" class="btn btn-primary mb-4">Create New</a>
+</p>
+
+<div class="container">
+    @if (Model.Blogs.Any())
+    {
+        <h2 class="mb-4"><i class="fa-solid fa-thumbtack"></i> Pin Posts</h2>
+        <div class="featured-post mb-5 p-4">
+            <div class="row">
+                <div class="col-md-8">
+                    <h2>@Model.Blogs.FirstOrDefault()?.Title</h2>
+                    <p>@Model.Blogs.FirstOrDefault()?.Content</p>
+                    <p><small>By @Model.Blogs.FirstOrDefault()?.CreatedByName | @Model.Blogs.FirstOrDefault()?.CreateDate?.ToString("dd/MM/yyyy")</small></p>
+                    <a class="btn btn-primary" href="#">Read More</a>
+                </div>
+                <div class="col-md-4">
+                    <img src="https://th.bing.com/th/id/R.c4ac7d236d8850ced371d9e53439415e?rik=FdxvroMbiGpicg&pid=ImgRaw&r=0" class="img-fluid" alt="Featured Post Image">
+                </div>
+            </div>
+        </div>
+
+        <h3 class="mb-4">All Posts</h3>
+
+        <div class="row">
+            @foreach (var blog in Model.Blogs.Skip(1))
+            {
+                <div class="col-md-12 mb-4">
+                    <div class="card h-100">
+                        <div class="row no-gutters">
+                            <div class="col-md-4">
+                                <img src="https://th.bing.com/th/id/R.c4ac7d236d8850ced371d9e53439415e?rik=FdxvroMbiGpicg&pid=ImgRaw&r=0" class="card-img" alt="Post Image">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">@blog.Title</h5>
+                                    <p class="card-text">@blog.Content</p>
+                                    <p><small>By @blog.CreatedByName | @blog.CreateDate?.ToString("dd/MM/yyyy")</small></p>
+                                    <a href="#" class="btn btn-primary">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <p>No blogs available.</p>
+    }
+</div>
+
+@section Scripts {
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+}
+
+<style>
+    .featured-post {
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .card {
+        border: none;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .card-title {
+        font-size: 1.5rem;
+    }
+
+    .card img {
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .card h5 {
+        font-size: 1.25rem;
+    }
+
+    .card-text {
+        margin-bottom: 1rem;
+    }
+
+    .card .btn {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+        .card .btn:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+</style>
