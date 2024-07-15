@@ -43,7 +43,7 @@ namespace JPOS.Controller.Pages.Dashboard.Orders
 
                 Users = new SelectList(users, "UserId", "FullName");
                 Products = new SelectList(products, "ProductId", "ProductName");
-                Statuses = new SelectList(new List<string> { "Pending", "Completed" });
+                Statuses = new SelectList(new List<string> { "Pending", "Processing", "Finished", "CheckedOut"});
 
                 return Page();
             }
