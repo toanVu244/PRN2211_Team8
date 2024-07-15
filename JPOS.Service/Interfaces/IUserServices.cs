@@ -10,7 +10,7 @@ namespace JPOS.Service.Interfaces
 {
     public interface IUserServices
     {
-        public Task<string> AuthenticateAsync(string username, string password);
+        public Task<User> AuthenticateAsync(string username, string password);
         public Task<List<User>> GetAllUsersAsync();
         public Task<User?> GetUserByIdAsync(string id);
         public Task<bool> CreateUserAsync(User user);
@@ -21,5 +21,12 @@ namespace JPOS.Service.Interfaces
         public Task<User?> GetUserByEmail(string email);
         public string HashAndTruncatePassword(string password);
         Task<List<Model.Entities.Role>> GetAllRolesAsync();
+        public void sendmail(string mail, string body);
+
+        public string GenerateRandomOTP();
+
+        public Task<bool> ConfirmEmail(string email);
+
+        public Task<bool> ResetPassword(string email, string password, string otp);
     }
 }

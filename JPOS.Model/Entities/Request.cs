@@ -13,7 +13,6 @@ namespace JPOS.Model.Entities
         public int? ProductId { get; set; }
         public string? Image { get; set; }
         public int? Type { get; set; }
-
         public virtual Product? Product { get; set; }
         public virtual User User { get; set; } = null!;
     }

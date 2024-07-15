@@ -7,11 +7,11 @@ namespace JPOS.Controller.Pages
 {
     public class RegisterPageModel : PageModel
     {
-        private readonly IUserServices _repo;
+        private readonly IUserServices _userService;
 
-        public RegisterPageModel(IUserServices _context)
+        public RegisterPageModel(IUserServices userService)
         {
-            _repo = _context;
+            _userService = userService;
         }
         [BindProperty]
         public RegisterModel User { get; set; } = default!;
@@ -26,7 +26,7 @@ namespace JPOS.Controller.Pages
                 return Page();
             }
 
-            _repo.UserRegister(User);
+            _userService.UserRegister(User);
 
             return RedirectToPage("LoginPage");
         }

@@ -22,15 +22,16 @@ namespace JPOS.Model.Repositories.Implementations
         }
         public async Task<User?> GetUserByUsernameAndPasswordAsync(string username, string password)
         {
-            return await _context.Users.FirstOrDefaultAsync(u => u.Username == username && u.Password == password).ConfigureAwait(false);
+            return await _context.Users.SingleOrDefaultAsync(u => u.Username == username && u.Password == password);
         }
-        public async Task<User> GetLastUserAsync()
-        {
-            var lastUser = await _context.Users
-                .OrderByDescending(u => u.UserId)
-                .FirstOrDefaultAsync();
 
-            return lastUser;
+        public  User GetLastUserAsync()
+        {
+            /*var lastUser = await _context.Users
+                .OrderByDescending(u => u.UserId)
+                .FirstOrDefaultAsync();*/
+
+            return _context.Users.OrderByDescending(u => u.UserId).FirstOrDefault();  /*await _context.Users.OrderByDescending(u => u.UserId).FirstOrDefaultAsync();*/
         }
 
         public async Task<User?> GetUserByEmail(string email)
@@ -41,6 +42,10 @@ namespace JPOS.Model.Repositories.Implementations
         public async Task<List<Role>> GetAllRolesAsync()
         {
             return await _context.Roles.ToListAsync();
+            
+        public User GetLastUserAsyncTest()
+        {
+            return _context.Users.OrderByDescending(u => u.UserId).FirstOrDefault();
         }
     }
 }
