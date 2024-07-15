@@ -25,7 +25,7 @@ namespace JPOS.Controller.Pages
             var user = await _userService.AuthenticateAsync(Email, Password);           
             if (user != null)
             {
-                
+                HttpContext.Session.SetString("UserName", user.Username.ToString());
                 HttpContext.Session.SetString("UserId", user.UserId.ToString());
                 HttpContext.Session.SetString("Role", user.RoleId.ToString());
                 HttpContext.Session.SetString("Email", user.Email.ToString());
