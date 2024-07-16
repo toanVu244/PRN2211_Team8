@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace JPOS.Service.Implementations
 {
-    public class RequestService: IRequestService
+    public class RequestService : IRequestService
     {
         private readonly IUnitOfWork _unitOfWork;
 
@@ -51,7 +51,7 @@ namespace JPOS.Service.Implementations
 
         public async Task<bool> DeleteRequestAsync(int RequestID)
         {
-            var result = await _unitOfWork.Requests.DeleteAsync(RequestID); 
+            var result = await _unitOfWork.Requests.DeleteAsync(RequestID);
             await _unitOfWork.CompleteAsync();
             return (result);
         }
@@ -93,11 +93,12 @@ namespace JPOS.Service.Implementations
 
         public async Task<List<Request>?> GetRequestByStatus(string? status, int role)
         {
-           
-            try { 
-                if(role !=null)
+
+            try
+            {
+                if (role != null)
                 {
-                 /*  1: admin, 2 : manager, 3: sale, 4 : product, 5 : design, 6 : customer */
+                    /*  1: admin, 2 : manager, 3: sale, 4 : product, 5 : design, 6 : customer */
 
                     switch (role)
                     {
@@ -110,7 +111,7 @@ namespace JPOS.Service.Implementations
                                 return await _unitOfWork.Requests.GetRequestByStatus(status); break;
                             }
                         case 3:
-                            {                           
+                            {
                                 if (status.Equals("Processing"))
                                 {
                                     return await _unitOfWork.Requests.GetRequestByStatus("Processing"); break;
@@ -124,7 +125,7 @@ namespace JPOS.Service.Implementations
                                     List<Request> a = await _unitOfWork.Requests.GetRequestByStatus("Processing");
                                     a.AddRange(await _unitOfWork.Requests.GetRequestByStatus("Done"));
                                     return a;
-                                       
+
                                 }
                                 return null;
                             }
@@ -133,16 +134,16 @@ namespace JPOS.Service.Implementations
                                 return await _unitOfWork.Requests.GetRequestByStatus("In-Production"); break;
 
                             }
-                       /* case 5:
-                            {
-                                return _unitOfWork.Requests.GetRequestByStatus(""); break;
+                        /* case 5:
+                             {
+                                 return _unitOfWork.Requests.GetRequestByStatus(""); break;
 
-                            }*/
-                       /* case 6:
-                            {
-                                return _unitOfWork.Requests.GetRequestByStatus(""); break;
+                             }*/
+                        /* case 6:
+                             {
+                                 return _unitOfWork.Requests.GetRequestByStatus(""); break;
 
-                            }*/
+                             }*/
                         default:
                             {
                                 return await _unitOfWork.Requests.GetRequestByStatus(status);
@@ -160,48 +161,70 @@ namespace JPOS.Service.Implementations
 
 
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
 
                 return null;
             }
 
         }
 
-        public async Task<List<StatisticRequest>?> GetRequestStatistic()
-        {
-            int targetMonth = DateTime.Now.Month;
-            int targetYear = DateTime.Now.Year;
-            //int targetMonth = 12;
-            //int targetYear = 2012;
-            List < StatisticRequest > data = new List<StatisticRequest> ();
-          for (int i = 1; i<= targetMonth; i++)
-            {
-                var getAllinMonth =await _unitOfWork.Requests.GetRequestByTime(targetYear, i);
-                if(getAllinMonth.Count>0)
-                {
-                    StatisticRequest statisticRequest = new StatisticRequest();
+        //public async Task<List<StatisticRequest>?> GetRequestStatistic()
+        //{
+        //    int targetMonth = DateTime.Now.Month;
+        //    int targetYear = DateTime.Now.Year;
+        //    List<StatisticRequest> data = new List<StatisticRequest>();
 
-                    foreach ( var b in getAllinMonth)
-                    {
-                        if (b.Type == 1)
-                        {
-                            statisticRequest.OrderExist += 1;
-                        }
-                        if (b.Type == 2)
-                        {
-                            statisticRequest.OrderCustome += 1;
-                        }
-                        if (b.Type == 3)
-                        {
-                            statisticRequest.OrderDesign += 1;
-                        }
-                    }
-                    statisticRequest.Time = "Month "+i;
-                    data.Add(statisticRequest);
-                }   
+        //    for (int i = 1; i <= targetMonth; i++)
+        //    {
+        //        var getAllinMonth = await _unitOfWork.Requests.GetRequestByTime(targetYear, i);
+        //        if (getAllinMonth.Count > 0)
+        //        {
+        //            StatisticRequest statisticRequest = new StatisticRequest();
+
+        //            foreach (var b in getAllinMonth)
+        //            {
+        //                if (b.Type == 1)
+        //                {
+        //                    statisticRequest.OrderExist += 1;
+        //                }
+        //                if (b.Type == 2)
+        //                {
+        //                    statisticRequest.OrderCustome += 1;
+        //                }
+        //                if (b.Type == 3)
+        //                {
+        //                    statisticRequest.OrderDesign += 1;
+        //                }
+        //            }
+        //            statisticRequest.Time = "Month " + i;
+        //            data.Add(statisticRequest);
+        //        }
+        //    }
+        //    return data;
+        //}
+
+        public async Task<List<StatisticRequest>> GetRequestStatistic()
+        {
+            int targetYear = DateTime.Now.Year;
+            List<StatisticRequest> data = new List<StatisticRequest>();
+
+            for (int i = 1; i <= 12; i++)
+            {
+                var getAllInMonth = await _unitOfWork.Requests.GetRequestByTime(targetYear, i);
+                StatisticRequest statisticRequest = new StatisticRequest
+                {
+                    Time = "Month " + i,
+                    OrderExist = getAllInMonth.Count(r => r.Type == 1),
+                    OrderCustome = getAllInMonth.Count(r => r.Type == 2),
+                    OrderDesign = getAllInMonth.Count(r => r.Type == 3)
+                };
+
+                data.Add(statisticRequest);
             }
             return data;
         }
+
 
         public Task<Request> GetLastRequest()
         {
