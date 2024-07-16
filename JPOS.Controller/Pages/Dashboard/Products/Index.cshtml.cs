@@ -36,6 +36,8 @@ namespace JPOS.Controller.Pages.Dashboard.Products
                     TotalPrice= p.PriceMaterial+p.ProcessPrice+p.PriceDesign ,
                     CreateDate = p.CreateDate,
                     Status = p.Status,
+                    CategoryId = p.CategoryId,
+                    DesignId = p.DesignId,
                     Image = p.Image,
                     ProductName = p.ProductName,
                     Description = p.Description
@@ -88,6 +90,8 @@ namespace JPOS.Controller.Pages.Dashboard.Products
             public int ProductId { get; set; }
             public string CreateBy { get; set; }
             public int? PriceMaterial { get; set; }
+            public int? DesignId { get; set; }
+            public int? CategoryId { get; set; }
             public int? PriceDesign { get; set; }
             public int? ProcessPrice { get; set; }
             public int? TotalPrice { get; set; }

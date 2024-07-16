@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using JPOS.Model.Models;
 using JPOS.Service.Interfaces;
 using JPOS.Service.Implementations;
+using JPOS.Model.Entities;
 
 namespace JPOS.Controller.Pages.Dashboard.Materials
 {

@@ -31,10 +31,16 @@ public class HandleRoleMiddleware
             return;
         }
 
-        if (role == "1")
+        if (role == "1" || role == "2" || role == "3" || role == "4"|| role == "5")
         {
-            if (path.StartsWith("/dashboard") || path.StartsWith("/"))
+            if (path.StartsWith("/dashboard") || path.StartsWith("/homepages") || path.StartsWith("/accessdeniedpage"))
             {
+                // Deny access to Users page for roles other than 1
+                if (role != "1" && path.StartsWith("/users"))
+                {
+                    context.Response.Redirect("../AccessDeniedPage");
+                    return;
+                }
                 await _next(context);
                 return;
             }
@@ -42,13 +48,13 @@ public class HandleRoleMiddleware
 
         else if (role == "6")
         {
-            if (path.StartsWith("/"))
+            if (path.StartsWith("/homepages") || path.StartsWith("/accessdeniedpage"))
             {
                 await _next(context);
                 return;
             }
         }
-        context.Response.Redirect("AccessDeniedPage");
+        context.Response.Redirect("../AccessDeniedPage");
         return;
     }
 }

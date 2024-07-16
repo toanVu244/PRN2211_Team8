@@ -42,6 +42,7 @@ builder.Services.AddScoped<IDesignService, DesignService>();
 builder.Services.AddScoped<IBlogService, BlogService>();
 builder.Services.AddScoped<ITransactionServices, TransactionServices>();
 builder.Services.AddScoped<IProductMaterialService, ProductMaterialService>();
+builder.Services.AddScoped<IDesignService, DesignService>();
 
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
