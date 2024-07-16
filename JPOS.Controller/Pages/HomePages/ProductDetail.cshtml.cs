@@ -11,11 +11,13 @@ namespace JPOS.Controller.Pages.HomePages
     {
         private readonly IProductService productService;
         private readonly IMaterialService materialService;
+        private readonly IRequestService requestService;
 
-        public ProductDetailModel(IProductService productService, IMaterialService materialService)
+        public ProductDetailModel(IProductService productService, IMaterialService materialService, IRequestService requestService)
         {
             this.productService = productService;
             this.materialService = materialService;
+            this.requestService = requestService;
         }
         public ProductModel Product { get; set; }
 
@@ -39,6 +41,24 @@ namespace JPOS.Controller.Pages.HomePages
             }
 
             return Page();
+        }
+
+        public async Task<IActionResult> OnPost()
+        {
+            string usID = HttpContext.Session.GetString("UserId");
+            Request request = new Request()
+            {
+                CreateDate = DateTime.Now,
+                Status = "Pending",
+                Type = 1,
+                UserId = usID
+            };
+
+            await requestService.CreateRequestAsync(request);
+            TempData["TotalMoney"] = 10;
+            TempData["RID"] = request.Id;
+
+            return RedirectToPage("/HomePages/Checkout");
         }
     }
 }

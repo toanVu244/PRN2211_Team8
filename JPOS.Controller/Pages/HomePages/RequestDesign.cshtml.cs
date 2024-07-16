@@ -48,10 +48,12 @@ namespace JPOS.Controller.Pages.HomePages
                 UserId = usID
             };
 
-           await requestService.CreateRequestAsync(request);
+            await requestService.CreateRequestAsync(request);
+            TempData["TotalMoney"] = 10;
+            TempData["RID"] = request.Id;
             Category = await categoryService.GetAllCategoryAsync();
 
-            return Page();
+            return RedirectToPage("/HomePages/Checkout");
         }
 
         private async Task<string> ConvertImageToBase64AndUpload(IFormFile image)
