@@ -88,6 +88,9 @@ namespace JPOS.Service.Implementations
                 var product = await _unitOfWork.Products.GetByIdAsync(id);
                 var productModel = new ProductModel
                 {
+
+                    CreateDate = product.CreateDate,
+                    CreateBy = product.CreateBy,
                     ProductId = product.ProductId,
                     ProductName = product.ProductName,
                     Description = product.Description,

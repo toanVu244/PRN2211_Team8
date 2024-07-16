@@ -15,10 +15,17 @@ namespace JPOS.Controller.Pages.Dashboard.Products
     public class EditModel : PageModel
     {
         private readonly IProductService _productService;
+        private readonly ICategoryService categoryService;
+        private readonly IDesignService designService;
+        private readonly IProductMaterialService productMaterialService;
 
-        public EditModel(IProductService productService)
+        public EditModel(IProductService productService,ICategoryService categoryService,
+            IDesignService designService,IProductMaterialService productMaterialService)
         {
             _productService = productService;
+            this.categoryService = categoryService;
+            this.designService = designService;
+            this.productMaterialService = productMaterialService;
         }
 
         [BindProperty]
@@ -37,8 +44,8 @@ namespace JPOS.Controller.Pages.Dashboard.Products
                 return NotFound();
             }
             Product = product;
-/*           ViewData["CategoryId"] = new SelectList(_context.Categories, "CatId", "CatId");
-           ViewData["DesignId"] = new SelectList(_context.Designs, "DesignId", "DesignId");*/
+            ViewData["CategoryId"] = new SelectList(await categoryService.GetAllCategoryAsync(), "CatId", "CatId");
+            ViewData["DesignId"] = new SelectList(await designService.GetAllDesignAsync(), "DesignId", "DesignId");
             return Page();
         }
 
@@ -62,5 +69,7 @@ namespace JPOS.Controller.Pages.Dashboard.Products
 
             return RedirectToPage("./Index");
         }
+
+        
     }
 }

@@ -43,10 +43,10 @@ namespace JPOS.Controller.Pages.Dashboard.Materials
 
         public async Task OnPostSearchMaterial()
         {
-            Material = await _materialService.GetAllmaterial();
+            Materials = await _materialService.GetAllMaterials();
             if (!string.IsNullOrEmpty(SearchTerm))
             {
-                Material = Material.Where(m => m.Name.ToLower().Contains(SearchTerm.ToLower())).ToList();
+                Materials = Materials.Where(m => m.Name.ToLower().Contains(SearchTerm.ToLower())).ToList();
             }
         }
     }
