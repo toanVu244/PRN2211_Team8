@@ -52,7 +52,7 @@ namespace JPOS.Controller.Pages.HomePages
                 }
 
             }
-            return RedirectToPage("/HomePages/ConfirmCheckout");
+            return RedirectToPage("/HomePages/Checkout");
         }
     }
 }

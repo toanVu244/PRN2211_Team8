@@ -41,12 +41,13 @@ namespace JPOS.Controller.Pages.HomePages
             Request request = new Request()
             {
                 CreateDate = DateTime.Now,
-                Description = "Create product type :"+ SelectedCategoryId +" request : "+ RequestText,
-                Status = "Pending",
+                Description = Category + RequestText,
                 Image = imageUpload,
+                Status = "Pending",
                 Type = 3,
                 UserId = usID
             };
+
 
             await requestService.CreateRequestAsync(request);
             TempData["TotalMoney"] = 10;

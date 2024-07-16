@@ -24,7 +24,8 @@ namespace JPOS.Controller.Pages.Dashboard.Orders
         }
 
         public IList<RequestViewModel> Requests { get; set; } = default!;
-
+        [BindProperty(SupportsGet = true)]
+        public string SearchTerm { get; set; }
         public async Task OnGetAsync()
         {
             if (_requestService != null)

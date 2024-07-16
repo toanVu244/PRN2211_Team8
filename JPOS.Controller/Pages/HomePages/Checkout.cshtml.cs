@@ -46,6 +46,7 @@ namespace JPOS.Controller.Pages.HomePages.Checkout
             string Description = TempData["Description"]?.ToString() ?? "";
             string Status = TempData["Status"]?.ToString() ?? "";
             string PID = TempData["PID"]?.ToString() ?? "";
+            string imageUpload = TempData["imageUpload"]?.ToString() ?? "";
             string Type = TempData["Type"]?.ToString() ?? "";
             TotalMoney = TempData["TotalMoney"]?.ToString() ?? "";
 
