@@ -1,33 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using JPOS.Model.Entities;
+using JPOS.Service.Interfaces;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using JPOS.Model.Models;
 
 namespace JPOS.Controller.Pages.Dashboard.Statistics
 {
     public class IndexModel : PageModel
     {
-        private readonly JPOS.Model.Entities.JPOS_ProjectContext _context;
+        private readonly IRequestService _requestService;
 
-        public IndexModel(JPOS.Model.Entities.JPOS_ProjectContext context)
+        public IndexModel(IRequestService requestService)
         {
-            _context = context;
+            _requestService = requestService;
         }
 
-        public IList<Request> Request { get;set; } = default!;
+        public List<StatisticRequest> Statistics { get; set; } = new List<StatisticRequest>();
 
         public async Task OnGetAsync()
         {
-            if (_context.Requests != null)
+            var statistics = await _requestService.GetRequestStatistic();
+            if (statistics != null)
             {
-                Request = await _context.Requests
-                .Include(r => r.Product)
-                .Include(r => r.User).ToListAsync();
+                Statistics = statistics;
             }
+        }
+
+        public async Task<JsonResult> OnGetGetStatisticsAsync()
+        {
+            var statistics = await _requestService.GetRequestStatistic();
+            return new JsonResult(statistics);
         }
     }
 }
