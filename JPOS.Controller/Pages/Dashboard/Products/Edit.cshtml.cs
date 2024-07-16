@@ -44,6 +44,8 @@ namespace JPOS.Controller.Pages.Dashboard.Products
                 return NotFound();
             }
             Product = product;
+            Product.CategoryId = product.CategoryId;
+            Product.DesignId = product.DesignId;
             ViewData["CategoryId"] = new SelectList(await categoryService.GetAllCategoryAsync(), "CatId", "CatId");
             ViewData["DesignId"] = new SelectList(await designService.GetAllDesignAsync(), "DesignId", "DesignId");
             return Page();
