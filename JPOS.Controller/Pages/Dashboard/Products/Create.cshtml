@@ -10,62 +10,81 @@
 <h4>Product</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Product.CreateBy" class="control-label"></label>
-                <input asp-for="Product.CreateBy" class="form-control" />
-                <span asp-validation-for="Product.CreateBy" class="text-danger"></span>
+    <div class="col-md-8">
+        <form method="post" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-6">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Product.ProductName" class="control-label"></label>
+                        <input asp-for="Product.ProductName" class="form-control" />
+                        <span asp-validation-for="Product.ProductName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Product.Description" class="control-label"></label>
+                        <input asp-for="Product.Description" class="form-control" />
+                        <span asp-validation-for="Product.Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Product.PriceDesign" class="control-label"></label>
+                        <input asp-for="Product.PriceDesign" class="form-control" />
+                        <span asp-validation-for="Product.PriceDesign" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Product.ProcessPrice" class="control-label"></label>
+                        <input asp-for="Product.ProcessPrice" class="form-control" />
+                        <span asp-validation-for="Product.ProcessPrice" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Product.CategoryId" class="control-label"></label>
+                        <select asp-for="Product.CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Product.DesignId" class="control-label"></label>
+                        <select asp-for="Product.DesignId" class="form-control" asp-items="ViewBag.DesignId"></select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ImageFile" class="control-label"></label>
+                        <input asp-for="ImageFile" type="file" class="form-control-file" onchange="showImagePreview(event)" />
+                        <span asp-validation-for="ImageFile" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <img id="imagePreview" src="#" alt="Image Preview" class="img-thumbnail" style="display:none;" />
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Product.PriceMaterial" class="control-label"></label>
-                <input asp-for="Product.PriceMaterial" class="form-control" />
-                <span asp-validation-for="Product.PriceMaterial" class="text-danger"></span>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">Materials</label>
+                        <select id="materialList" class="form-control" asp-items="Model.Material"></select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label">Quantity</label>
+                        <input id="quantityInput" type="number" class="form-control" value="1" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label">&nbsp;</label>
+                        <button type="button" class="btn btn-secondary" onclick="addMaterialToList()">Add Material</button>
+                    </div>
+                </div>
             </div>
+
             <div class="form-group">
-                <label asp-for="Product.PriceDesign" class="control-label"></label>
-                <input asp-for="Product.PriceDesign" class="form-control" />
-                <span asp-validation-for="Product.PriceDesign" class="text-danger"></span>
+                <label class="control-label">Selected Materials</label>
+                <ul id="selectedMaterials" class="list-group"></ul>
             </div>
-            <div class="form-group">
-                <label asp-for="Product.ProcessPrice" class="control-label"></label>
-                <input asp-for="Product.ProcessPrice" class="form-control" />
-                <span asp-validation-for="Product.ProcessPrice" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Product.CategoryId" class="control-label"></label>
-                <select asp-for="Product.CategoryId" class ="form-control" asp-items="ViewBag.CategoryId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Product.DesignId" class="control-label"></label>
-                <select asp-for="Product.DesignId" class ="form-control" asp-items="ViewBag.DesignId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Product.CreateDate" class="control-label"></label>
-                <input asp-for="Product.CreateDate" class="form-control" />
-                <span asp-validation-for="Product.CreateDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Product.Status" class="control-label"></label>
-                <input asp-for="Product.Status" class="form-control" />
-                <span asp-validation-for="Product.Status" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Product.Image" class="control-label"></label>
-                <input asp-for="Product.Image" class="form-control" />
-                <span asp-validation-for="Product.Image" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Product.ProductName" class="control-label"></label>
-                <input asp-for="Product.ProductName" class="form-control" />
-                <span asp-validation-for="Product.ProductName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Product.Description" class="control-label"></label>
-                <input asp-for="Product.Description" class="form-control" />
-                <span asp-validation-for="Product.Description" class="text-danger"></span>
-            </div>
+
+            <!-- Hidden inputs to store selected materials -->
+            <div id="selectedMaterialsHiddenInputs"></div>
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -78,5 +97,44 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        function showImagePreview(event) {
+            var input = event.target;
+            var reader = new FileReader();
+            reader.onload = function () {
+                var dataURL = reader.result;
+                var output = document.getElementById('imagePreview');
+                output.src = dataURL;
+                output.style.display = 'block';
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+
+        function addMaterialToList() {
+            var materialSelect = document.getElementById('materialList');
+            var selectedMaterial = materialSelect.options[materialSelect.selectedIndex].text;
+            var materialId = materialSelect.value;
+            var quantity = document.getElementById('quantityInput').value;
+
+            // Create a new list item with material and quantity
+            var li = document.createElement('li');
+            li.className = 'list-group-item';
+            li.appendChild(document.createTextNode(selectedMaterial + ' (Quantity: ' + quantity + ')'));
+
+            // Append the new list item to the selected materials list
+            document.getElementById('selectedMaterials').appendChild(li);
+
+            // Create hidden inputs for the material ID and quantity
+            var hiddenInputsDiv = document.getElementById('selectedMaterialsHiddenInputs');
+            var materialInput = document.createElement('input');
+            materialInput.type = 'hidden';
+            materialInput.name = 'SelectedMaterials';
+            materialInput.value = materialId + ':' + quantity;
+
+            hiddenInputsDiv.appendChild(materialInput);
+        }
+    </script>
 }
