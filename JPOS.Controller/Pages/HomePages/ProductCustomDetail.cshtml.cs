@@ -73,12 +73,13 @@ namespace JPOS.Controller.Pages.HomePages
                 Materials.Add(material);
             }
             var ListmateGetPrice = await materialService.GetAllMaterials();
+            
             foreach (var item in Materials)
             {
                 MaterialModel price = ListmateGetPrice.First(x => x.MaterialId == item.MaterialId);
-                item.Price = item.Quantity * price.Price;
+                item.Price = item.Quantity * price.Price;               
             }
-
+            var sumPrice = Materials.Sum(x => x.Price);
             int newProductId = await productService.DuplicateProduct(productId);
             await productMaterialService.UpdateMaterialProduct(newProductId, Materials);
             var newProduct = await productService.GetProductByID(newProductId);
@@ -94,7 +95,7 @@ namespace JPOS.Controller.Pages.HomePages
             };
 
             await requestService.CreateRequestAsync(request);
-            TempData["TotalMoney"] = TotalPrice;
+            TempData["TotalMoney"] = newProduct.PriceDesign + newProduct.ProcessPrice + sumPrice;
             TempData["RID"] = request.Id;
 
             return RedirectToPage("/HomePages/Checkout");
