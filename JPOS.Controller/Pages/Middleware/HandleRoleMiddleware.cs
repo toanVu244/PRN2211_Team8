@@ -33,7 +33,7 @@ public class HandleRoleMiddleware
 
         if (role == "1")
         {
-            if (path.StartsWith("/dashboard") || path.StartsWith("/"))
+            if (path.StartsWith("/Dashboard/Orders") || path.StartsWith("/"))
             {
                 await _next(context);
                 return;
