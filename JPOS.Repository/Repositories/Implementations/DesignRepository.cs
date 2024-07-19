@@ -1,4 +1,4 @@
-﻿using JPOS.Model.Entities;
+﻿/*using JPOS.Model.Entities;
 using JPOS.Model.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -32,3 +32,4 @@ namespace JPOS.Model.Repositories.Implementations
         }
     }
 }
+*/

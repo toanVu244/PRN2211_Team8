@@ -1,4 +1,4 @@
-﻿using JPOS.Model.Entities;
+﻿/*using JPOS.Model.Entities;
 using JPOS.Model.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -80,3 +80,4 @@ namespace JPOS.Model.Repositories.Implementations
 
     }
 }
+*/

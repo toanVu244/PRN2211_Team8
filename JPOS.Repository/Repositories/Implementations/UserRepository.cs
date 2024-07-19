@@ -1,4 +1,4 @@
-﻿using JPOS.Model.Entities;
+﻿/*using JPOS.Model.Entities;
 using JPOS.Model.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -27,11 +27,11 @@ namespace JPOS.Model.Repositories.Implementations
 
         public User GetLastUserAsync()
         {
-            /*var lastUser = await _context.Users
+            *//*var lastUser = await _context.Users
                 .OrderByDescending(u => u.UserId)
-                .FirstOrDefaultAsync();*/
+                .FirstOrDefaultAsync();*//*
 
-            return _context.Users.OrderByDescending(u => u.UserId).FirstOrDefault();  /*await _context.Users.OrderByDescending(u => u.UserId).FirstOrDefaultAsync();*/
+            return _context.Users.OrderByDescending(u => u.UserId).FirstOrDefault();  *//*await _context.Users.OrderByDescending(u => u.UserId).FirstOrDefaultAsync();*//*
         }
 
         public async Task<User?> GetUserByEmail(string email)
@@ -61,3 +61,4 @@ namespace JPOS.Model.Repositories.Implementations
         }
     }
 }
+*/

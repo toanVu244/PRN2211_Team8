@@ -1,4 +1,4 @@
-﻿using JPOS.Model.Entities;
+﻿/*using JPOS.Model.Entities;
 using JPOS.Model.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
@@ -106,3 +106,4 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         return await _context.FindAsync<T>(id);
     }
 }
+*/
