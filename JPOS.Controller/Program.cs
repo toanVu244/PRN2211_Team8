@@ -1,5 +1,5 @@
 ﻿using JPOS.Model;
-using JPOS.Model.Entities;
+using BusinessObject.Entities;
 using JPOS.Model.Models.AppConfig;
 using JPOS.Model.Repositories.Implementations;
 using JPOS.Model.Repositories.Interfaces;

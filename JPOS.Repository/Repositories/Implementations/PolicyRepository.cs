@@ -1,5 +1,7 @@
-﻿/*using JPOS.Model.Entities;
-using JPOS.Model.Repositories.Interfaces;
+﻿
+using BusinessObject.Entities;
+using JPOS.DAO.EntitiesDAO;
+using JPOS.Repository.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,13 +9,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JPOS.Model.Repositories.Implementations
+namespace JPOS.Repository.Repositories.Implementations
 {
     public class PolicyRepository : GenericRepository<Policy>, IPolicyRepository
     {
-        private readonly JPOS_ProjectContext _context;
+        private readonly JPOS_DatabaseContext _context;
 
-        public PolicyRepository(JPOS_ProjectContext context) : base(context)
+        public PolicyRepository(JPOS_DatabaseContext context) : base(context)
         {
             _context = context;
         }
@@ -21,7 +23,7 @@ namespace JPOS.Model.Repositories.Implementations
         public async Task<bool?> CreatePolicy(Policy policy)
         {
             await _context.Policies.AddAsync(policy);
-            return _context.SaveChanges() >0 ;
+            return _context.SaveChanges() > 0;
         }
 
         public Task<bool?> DeletePolicy(int id)
@@ -31,7 +33,7 @@ namespace JPOS.Model.Repositories.Implementations
 
         public async Task<List<Policy>?> GetAllPolicy()
         {
-           return await _context.Policies.ToListAsync();
+            return await _context.Policies.ToListAsync();
         }
 
         public async Task<Policy?> GetPolicyById(int id)
@@ -41,18 +43,17 @@ namespace JPOS.Model.Repositories.Implementations
 
         public async Task<bool?> UpdatePolicy(int id, Policy policy)
         {
-           var oldPolicy = await _context.Policies.FirstOrDefaultAsync(x =>x.PolicyId == id);
+            var oldPolicy = await _context.Policies.FirstOrDefaultAsync(x => x.PolicyId == id);
             if (oldPolicy != null)
             {
                 oldPolicy.PolicyId = id;
                 oldPolicy.Title = policy.Title;
                 oldPolicy.CreateDate = DateTime.Now;
                 oldPolicy.Content = policy.Content;
-                 _context.Policies.Update(policy);
-              return  _context.SaveChanges() >0;
+                _context.Policies.Update(policy);
+                return _context.SaveChanges() > 0;
             }
             return false;
         }
     }
 }
-*/

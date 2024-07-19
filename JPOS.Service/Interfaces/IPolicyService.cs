@@ -1,4 +1,4 @@
-﻿using JPOS.Model.Entities;
+﻿using BusinessObject.Entities;
 using JPOS.Model.Models;
 using System;
 using System.Collections.Generic;

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using JPOS.Model.Entities;
+using BusinessObject.Entities;
 using JPOS.Model.Models;
 using JPOS.Service.Interfaces;
 

@@ -1,5 +1,7 @@
-﻿/*using JPOS.Model.Entities;
-using JPOS.Model.Repositories.Interfaces;
+﻿
+using BusinessObject.Entities;
+using JPOS.DAO.EntitiesDAO;
+using JPOS.Repository.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,12 +9,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JPOS.Model.Repositories.Implementations
+namespace JPOS.Repository.Repositories.Implementations
 {
     public class UserRepository : GenericRepository<User>, IUserRepository
     {
-        private readonly JPOS_ProjectContext _context;
-        public UserRepository(JPOS_ProjectContext context) : base(context)
+        private readonly JPOS_DatabaseContext _context;
+        public UserRepository(JPOS_DatabaseContext context) : base(context)
         {
             _context = context;
         }
@@ -25,13 +27,12 @@ namespace JPOS.Model.Repositories.Implementations
             return await _context.Users.SingleOrDefaultAsync(u => u.Username == username && u.Password == password);
         }
 
-        public User GetLastUserAsync()
+        public async Task<User> GetLastUserAsync()
         {
-            *//*var lastUser = await _context.Users
+            var lastUser = await _context.Users
                 .OrderByDescending(u => u.UserId)
-                .FirstOrDefaultAsync();*//*
-
-            return _context.Users.OrderByDescending(u => u.UserId).FirstOrDefault();  *//*await _context.Users.OrderByDescending(u => u.UserId).FirstOrDefaultAsync();*//*
+                .FirstOrDefaultAsync();
+            return _context.Users.OrderByDescending(u => u.UserId).FirstOrDefault(); 
         }
 
         public async Task<User?> GetUserByEmail(string email)
@@ -61,4 +62,3 @@ namespace JPOS.Model.Repositories.Implementations
         }
     }
 }
-*/

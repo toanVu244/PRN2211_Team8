@@ -1,5 +1,5 @@
 ﻿using JPOS.Model;
-using JPOS.Model.Entities;
+using BusinessObject.Entities;
 using JPOS.Model.Models;
 using JPOS.Model.Models.AppConfig;
 using JPOS.Service.Interfaces;
@@ -8,29 +8,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JPOS.Repository.Repositories.Interfaces;
 
 namespace JPOS.Service.Implementations
 {
     public class RequestService : IRequestService
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IRequestRepository _requestrepository;
 
-        public RequestService(IUnitOfWork unitOfWork)
+        public RequestService(IRequestRepository requestrepository)
         {
-            _unitOfWork = unitOfWork;
+            _requestrepository = requestrepository;
         }
 
         public async Task<int> GenerateNextRequestIDAsync()
         {
-            var lastRequest = await _unitOfWork.Requests.GetLastRequestID();
+            var lastRequest = await _requestrepository.GetLastRequestID();
 
             return lastRequest.Id;
         }
 
         public async Task<bool> CreateRequestAsync(Request request)
         {
-            var result = await _unitOfWork.Requests.AddRequestAsync(request);
-            await _unitOfWork.CompleteAsync();
+            var result = await _requestrepository.AddRequestAsync(request);
             return result;
         }
 
@@ -38,8 +38,7 @@ namespace JPOS.Service.Implementations
         {
             try
             {
-                var result = await _unitOfWork.Requests.UpdateAsync(request);
-                await _unitOfWork.CompleteAsync();
+                var result = await _requestrepository.UpdateAsync(request);
                 return result;
             }
             catch (Exception ex)
@@ -51,19 +50,18 @@ namespace JPOS.Service.Implementations
 
         public async Task<bool> DeleteRequestAsync(int RequestID)
         {
-            var result = await _unitOfWork.Requests.DeleteAsync(RequestID);
-            await _unitOfWork.CompleteAsync();
+            var result = await _requestrepository.DeleteAsync(RequestID);
             return (result);
         }
 
         public async Task<List<Request>> GetAllRequestAsync()
         {
-            return await _unitOfWork.Requests.GetAllAsync();
+            return await _requestrepository.GetAllAsync();
         }
 
         public async Task<Request> GetRequestByIDAsync(int RequestID)
         {
-            return await _unitOfWork.Requests.GetByIdAsync(RequestID);
+            return await _requestrepository.GetByIdAsync(RequestID);
         }
 
         public Task<bool> TrackingRequestAsync(int requestID)
@@ -74,20 +72,15 @@ namespace JPOS.Service.Implementations
 
         public async Task<bool> CancelRequestAsync(int requestId)
         {
-            var request = await _unitOfWork.Requests.GetByIdAsync(requestId);
+           /* Request request = await _requestrepository.GetByIdAsync(requestId);
             request.Status = "Canceled";
-            var result = await _unitOfWork.Requests.UpdateAsync(request);
-            await _unitOfWork.CompleteAsync();
-            return result;
+            var result = await _requestrepository.UpdateAsync(request);
+            return result;*/
         }
 
         public async Task<bool> ApproveRequestAsync(int requestId, string status)
         {
-            var result = await _unitOfWork.Requests.UpdateStatusAsync(requestId, status);
-            if (result)
-            {
-                await _unitOfWork.CompleteAsync();
-            }
+            var result = await _requestrepository.UpdateStatusAsync(requestId, status);          
             return result;
         }
 
@@ -98,32 +91,32 @@ namespace JPOS.Service.Implementations
             {
                 if (role != null)
                 {
-                    /*  1: admin, 2 : manager, 3: sale, 4 : product, 5 : design, 6 : customer */
-
+/*                    1: admin, 2 : manager, 3: sale, 4 : product, 5 : design, 6 : customer
+*/
                     switch (role)
                     {
                         case 1:
                             {
-                                return await _unitOfWork.Requests.GetRequestByStatus(status); break;
+                                return await _requestrepository.GetRequestByStatus(status); break;
                             }
                         case 2:
                             {
-                                return await _unitOfWork.Requests.GetRequestByStatus(status); break;
+                                return await _requestrepository.GetRequestByStatus(status); break;
                             }
                         case 3:
                             {
                                 if (status.Equals("Processing"))
                                 {
-                                    return await _unitOfWork.Requests.GetRequestByStatus("Processing"); break;
+                                    return await _requestrepository.GetRequestByStatus("Processing"); break;
                                 }
                                 if (status.Equals("Done"))
                                 {
-                                    return await _unitOfWork.Requests.GetRequestByStatus("Done"); break;
+                                    return await _requestrepository.GetRequestByStatus("Done"); break;
                                 }
                                 if (status.Equals("All"))
                                 {
-                                    List<Request> a = await _unitOfWork.Requests.GetRequestByStatus("Processing");
-                                    a.AddRange(await _unitOfWork.Requests.GetRequestByStatus("Done"));
+                                    List<Request> a = await _requestrepository.GetRequestByStatus("Processing");
+                                    a.AddRange(await _requestrepository.GetRequestByStatus("Done"));
                                     return a;
 
                                 }
@@ -131,22 +124,22 @@ namespace JPOS.Service.Implementations
                             }
                         case 4:
                             {
-                                return await _unitOfWork.Requests.GetRequestByStatus("In-Production"); break;
+                                return await _requestrepository.GetRequestByStatus("In-Production"); break;
 
                             }
-                        /* case 5:
-                             {
-                                 return _unitOfWork.Requests.GetRequestByStatus(""); break;
+                        case 5:
+                            {
+                                return await _requestrepository.GetRequestByStatus(""); break;
 
-                             }*/
-                        /* case 6:
-                             {
-                                 return _unitOfWork.Requests.GetRequestByStatus(""); break;
+                            }
+                        case 6:
+                            {
+                                return await _requestrepository.GetRequestByStatus(""); break;
 
-                             }*/
+                            }
                         default:
                             {
-                                return await _unitOfWork.Requests.GetRequestByStatus(status);
+                                return await _requestrepository.GetRequestByStatus(status);
 
                             }
                     }
@@ -177,7 +170,7 @@ namespace JPOS.Service.Implementations
 
         //    for (int i = 1; i <= targetMonth; i++)
         //    {
-        //        var getAllinMonth = await _unitOfWork.Requests.GetRequestByTime(targetYear, i);
+        //        var getAllinMonth = await _requestrepository.Requests.GetRequestByTime(targetYear, i);
         //        if (getAllinMonth.Count > 0)
         //        {
         //            StatisticRequest statisticRequest = new StatisticRequest();
@@ -211,7 +204,7 @@ namespace JPOS.Service.Implementations
 
             for (int i = 1; i <= 12; i++)
             {
-                var getAllInMonth = await _unitOfWork.Requests.GetRequestByTime(targetYear, i);
+                var getAllInMonth = await _requestrepository.GetRequestByTime(targetYear, i);
                 StatisticRequest statisticRequest = new StatisticRequest
                 {
                     Time = "Month " + i,
@@ -228,12 +221,12 @@ namespace JPOS.Service.Implementations
 
         public Task<Request> GetLastRequest()
         {
-            return _unitOfWork.Requests.GetLastRequestID();
+            return _requestrepository.GetLastRequestID();
         }
 
         public async Task<List<Request>> GetRequestsByUserIdAsync(string userId)
         {
-            return await _unitOfWork.Requests.GetRequestsByUserIdAsync(userId);
+            return await _requestrepository.GetRequestsByUserIdAsync(userId);
         }
 
     }

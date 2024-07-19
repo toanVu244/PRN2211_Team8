@@ -1,4 +1,4 @@
-﻿using JPOS.Model.Entities;
+﻿using BusinessObject.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +11,8 @@ namespace JPOS.Service.Interfaces
     {
         public Task<List<ProductMaterial>?> GetmaterialByProductID(int id);
 
-        public Task<bool?> AddMaterialProduct(List<ProductMaterial> listdata );
+        public Task<bool?> AddMaterialProduct(List<ProductMaterial> listdata);
 
-        public Task<bool> UpdateMaterialProduct(int id,List<ProductMaterial> newUpdate);
+        public Task<bool> UpdateMaterialProduct(int id, List<ProductMaterial> newUpdate);
     }
 }

@@ -1,5 +1,5 @@
-﻿using AutoMapper;
-using JPOS.Model.Entities;
+﻿/*using AutoMapper;
+using BusinessObject.Entities;
 using JPOS.Model.Models;
 
 
@@ -21,3 +21,4 @@ namespace JPOS.Service.Tools
         }
     }
 }
+*/

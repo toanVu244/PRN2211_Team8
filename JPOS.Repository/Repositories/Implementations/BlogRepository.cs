@@ -1,5 +1,7 @@
-﻿/*using JPOS.Model.Entities;
-using JPOS.Model.Repositories.Interfaces;
+﻿
+using BusinessObject.Entities;
+using JPOS.DAO.EntitiesDAO;
+using JPOS.Repository.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,13 +9,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JPOS.Model.Repositories.Implementations
+namespace JPOS.Repository.Repositories.Implementations
 {
-    public class BlogRepository: GenericRepository<Blog>, IBlogRepository
+    public class BlogRepository : GenericRepository<Blog>, IBlogRepository
     {
-        private readonly JPOS_ProjectContext _context;
+        private readonly JPOS_DatabaseContext _context;
 
-        public BlogRepository(JPOS_ProjectContext context):base(context)
+        public BlogRepository(JPOS_DatabaseContext context) : base(context)
         {
             _context = context;
         }
@@ -24,4 +26,3 @@ namespace JPOS.Model.Repositories.Implementations
         }
     }
 }
-*/

@@ -1,20 +1,21 @@
 ﻿using JPOS.Model;
-using JPOS.Model.Entities;
+using BusinessObject.Entities;
 using JPOS.Service.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JPOS.Repository.Repositories.Interfaces;
 
 namespace JPOS.Service.Implementations
 {
     public class ProductMaterialService : IProductMaterialService
     {
-        private readonly IUnitOfWork _unitOfWork;
-        public ProductMaterialService(IUnitOfWork unitOfWork)
+        private readonly IProductMaterialRepository _productmaterialrepository;
+        public ProductMaterialService(IProductMaterialRepository productmaterialrepository)
         {
-            _unitOfWork = unitOfWork;
+            _productmaterialrepository = productmaterialrepository;
         }
         public Task<bool?> AddMaterialProduct(List<ProductMaterial> listdata)
         {
@@ -23,26 +24,27 @@ namespace JPOS.Service.Implementations
 
         public Task<List<ProductMaterial>?> GetmaterialByProductID(int id)
         {
-            return _unitOfWork.ProductMaterials.GetMaterialsByProductID(id);
+            return _productmaterialrepository.GetMaterialsByProductID(id);
         }
 
         public async Task<bool> UpdateMaterialProduct(int id, List<ProductMaterial> newUpdate)
         {
-            if ( newUpdate != null)
+            if (newUpdate != null)
             {
                 foreach (var item in newUpdate)
                 {
                     item.ProductId = id;
-                    await _unitOfWork.ProductMaterials.UpdateAsync(item);
+                    await _productmaterialrepository.UpdateAsync(item);
                 }
 
                 return true;
 
             }
-            else { 
-            return false;
+            else
+            {
+                return false;
             }
-           
+
         }
     }
 }

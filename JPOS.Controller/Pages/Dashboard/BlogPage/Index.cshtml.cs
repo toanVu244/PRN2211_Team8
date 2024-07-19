@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using JPOS.Model.Entities;
 using JPOS.Service.Interfaces;
 using JPOS.Service.Implementations;
+using BusinessObject.Entities;
 
 namespace JPOS.Controller.Pages.Dashboard.BlogPage
 {

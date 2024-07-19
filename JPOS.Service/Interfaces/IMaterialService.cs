@@ -1,4 +1,4 @@
-﻿using JPOS.Model.Entities;
+﻿using BusinessObject.Entities;
 using JPOS.Model.Models;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace JPOS.Service.Interfaces
 {
-    public interface IMaterialService 
+    public interface IMaterialService
     {
         public Task<Material?> GetmaterialByID(int id);
         Task<List<MaterialModel>?> GetAllMaterials();

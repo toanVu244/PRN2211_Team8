@@ -1,13 +1,13 @@
-﻿/*using JPOS.Model.Entities;
-using JPOS.Model.Repositories.Interfaces;
+﻿using JPOS.DAO.EntitiesDAO;
+using JPOS.Repository.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 public class GenericRepository<T> : IGenericRepository<T> where T : class
 {
-    private readonly JPOS_ProjectContext _context;
+    private readonly JPOS_DatabaseContext _context;
 
-    public GenericRepository(JPOS_ProjectContext context) 
+    public GenericRepository(JPOS_DatabaseContext context)
     {
         _context = context;
     }
@@ -17,7 +17,8 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         try
         {
             return await _context.Set<T>().ToListAsync();
-        }catch (Exception e)
+        }
+        catch (Exception e)
         {
             Console.WriteLine(e.Message);
         }
@@ -39,8 +40,8 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
         try
         {
-        _context.Update<T>(entity);
-        return await _context.SaveChangesAsync() > 0;
+            _context.Update<T>(entity);
+            return await _context.SaveChangesAsync() > 0;
         }
         catch (Exception ex)
         {
@@ -106,4 +107,3 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         return await _context.FindAsync<T>(id);
     }
 }
-*/

@@ -1,25 +1,25 @@
 ﻿using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
-using JPOS.Model;
-using JPOS.Model.Entities;
+using BusinessObject.Entities;
 using JPOS.Service.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JPOS.Repository.Repositories.Interfaces;
 
 namespace JPOS.Service.Implementations
 {
     public class DesignService : IDesignService
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IDesignRepository _designrepository;
 
-        public DesignService(IUnitOfWork unitOfWork)
+        public DesignService(IDesignRepository designrepository)
         {
-            _unitOfWork = unitOfWork;
+            _designrepository = designrepository;
         }
-        public async Task<bool> CreateDesignAsync(Design design,int idProduct)
+        public async Task<bool> CreateDesignAsync(Design design, int idProduct)
         {
             try
             {
@@ -52,13 +52,13 @@ namespace JPOS.Service.Implementations
                         // Update design.Picture with Cloudinary image URL
                         design.Picture = uploadResult.Url.ToString();
 
-                        // Insert the design into database using your _unitOfWork or repository
-                        if (await _unitOfWork.Designs.InsertAsync(design))
+                        // Insert the design into database using your _designrepository or repository
+                        if (await _designrepository.InsertAsync(design))
                         {
-                           /* var designupdate = await _unitOfWork.Designs.GetLastDesign();
-                            var updateProduct = await _unitOfWork.Products.GetByIdAsync(idProduct);
-                            updateProduct.DesignID = designupdate.DesignID;
-                            await _unitOfWork.Products.UpdateAsync(updateProduct);*/
+                            var designupdate = await _designrepository.GetLastDesign();
+                            var updateProduct = await _designrepository.GetByIdAsync(idProduct);
+                            updateProduct.DesignId = designupdate.DesignId;
+                            await _designrepository.UpdateAsync(updateProduct);
                             return true;
                         }
                     }
@@ -80,8 +80,8 @@ namespace JPOS.Service.Implementations
         }
 
         public async Task<List<Design>?> GetAllDesignAsync()
-        { 
-           return await _unitOfWork.Designs.GetAllDesign();
+        {
+            return await _designrepository.GetAllDesign();
         }
 
         public Task<Design> GetDesignByIdAsync(int id)
@@ -123,14 +123,9 @@ namespace JPOS.Service.Implementations
                         // Update design.Picture with Cloudinary image URL
                         design.Picture = uploadResult.Url.ToString();
 
-                        // Insert the design into database using your _unitOfWork or repository
-                        if (await _unitOfWork.Designs.UpdateAsync(design))
-                        {
-                          
-                            return await _unitOfWork.CompleteAsync() >= 0;
-                           
-                           
-                        }
+                        // Insert the design into database using your _designrepository or repository
+                      return await _designrepository.UpdateAsync(design);
+                       
                     }
                 }
             }
@@ -143,7 +138,7 @@ namespace JPOS.Service.Implementations
         }
 
 
-       
-        }
+
     }
+}
 

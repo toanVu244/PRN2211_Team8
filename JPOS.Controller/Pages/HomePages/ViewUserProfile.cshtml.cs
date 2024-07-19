@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using JPOS.Model.Models;
 using JPOS.Service.Interfaces;
-using JPOS.Model.Entities;
+using BusinessObject.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace JPOS.Controller.Pages.HomePages

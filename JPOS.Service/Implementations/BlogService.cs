@@ -1,6 +1,6 @@
-﻿using JPOS.Model;
-using JPOS.Model.Entities;
-using JPOS.Model.Models.AppConfig;
+﻿using BusinessObject.Entities;
+using BusinessObject.Entities;
+using JPOS.Repository.Repositories.Interfaces;
 using JPOS.Service.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -12,42 +12,38 @@ namespace JPOS.Service.Implementations
 {
     public class BlogService : IBlogService
     {
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly AppConfig _appConfig;
+        private readonly IBlogRepository _blogrepository;
 
-        public BlogService(IUnitOfWork unitOfWork)
+        public BlogService(IBlogRepository blogrepository)
         {
-            _unitOfWork = unitOfWork;
+            _blogrepository = blogrepository;
         }
 
         public async Task<bool> CreateBlogAsync(Blog blog)
         {
-            var result = await _unitOfWork.Blogs.InsertAsync(blog);
-            await _unitOfWork.CompleteAsync();
+            var result = await _blogrepository.InsertAsync(blog);
             return result;
         }
 
         public async Task<bool> DeleteBlogAsync(int id)
         {
-            var result = await _unitOfWork.Blogs.DeleteAsync(id);
-            await _unitOfWork.CompleteAsync();
+            var result = await _blogrepository.DeleteAsync(id);
             return result;
         }
 
         public async Task<List<Blog>> GetAllBlogAsync()
         {
-            return await _unitOfWork.Blogs.GetAllAsync();
+            return await _blogrepository.GetAllAsync();
         }
 
         public async Task<Blog> GetBlogByIdAsync(int id)
         {
-            return await _unitOfWork.Blogs.GetByIdAsync(id);
+            return await _blogrepository.GetByIdAsync(id);
         }
 
         public async Task<bool> UpdateBlogAsync(Blog blog)
         {
-            var result = await _unitOfWork.Blogs.UpdateAsync(blog);
-            await _unitOfWork.CompleteAsync();
+            var result = await _blogrepository.UpdateAsync(blog);
             return result;
         }
     }

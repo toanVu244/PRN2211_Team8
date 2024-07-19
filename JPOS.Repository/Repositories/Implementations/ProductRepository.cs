@@ -1,5 +1,7 @@
-﻿/*using JPOS.Model.Entities;
-using JPOS.Model.Repositories.Interfaces;
+﻿
+using BusinessObject.Entities;
+using JPOS.DAO.EntitiesDAO;
+using JPOS.Repository.Repositories.Interfaces;
 using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -8,20 +10,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JPOS.Model.Repositories.Implementations
+namespace JPOS.Repository.Repositories.Implementations
 {
     public class ProductRepository : GenericRepository<Product>, IProductRepository
     {
-        private readonly JPOS_ProjectContext _context;
+        private readonly JPOS_DatabaseContext _context;
 
-        public ProductRepository(JPOS_ProjectContext context) : base(context)
+        public ProductRepository(JPOS_DatabaseContext context) : base(context)
         {
             _context = context;
         }
 
         public async Task<List<Product>?> GetAllproduct()
         {
-           return await _context.Products.ToListAsync();
+            return await _context.Products.ToListAsync();
         }
 
         public async Task<Product?> GetLastproduct()
@@ -47,4 +49,3 @@ namespace JPOS.Model.Repositories.Implementations
         }
     }
 }
-*/

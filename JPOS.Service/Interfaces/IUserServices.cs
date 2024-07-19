@@ -1,4 +1,4 @@
-﻿using JPOS.Model.Entities;
+﻿using BusinessObject.Entities;
 using JPOS.Model.Models;
 using System;
 using System.Collections.Generic;
@@ -20,8 +20,8 @@ namespace JPOS.Service.Interfaces
         public Task<bool> UserRegister(RegisterModel model);
         public Task<User?> GetUserByEmail(string email);
         public string HashAndTruncatePassword(string password);
-        Task<List<Model.Entities.Role>> GetAllRolesAsync();
-        public void sendmail(string mail, string body);
+/*        Task<List<Model.Entities.Role>> GetAllRolesAsync();
+*/        public void sendmail(string mail, string body);
 
         public string GenerateRandomOTP();
 

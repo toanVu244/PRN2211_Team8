@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JPOS.Model.Repositories.Interfaces
+namespace JPOS.Repository.Repositories.Interfaces
 {
     public interface IGenericRepository<T> where T : class
     {

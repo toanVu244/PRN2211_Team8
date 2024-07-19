@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using JPOS.Model;
-using JPOS.Model.Entities;
+using BusinessObject.Entities;
 using JPOS.Model.Models;
 using JPOS.Model.Models.AppConfig;
 using JPOS.Service.Interfaces;
@@ -9,18 +9,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JPOS.Repository.Repositories.Interfaces;
 
 namespace JPOS.Service.Implementations
 {
     public class MaterialService : IMaterialService
     {
 
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IMaterialRepository _materialrepository;
         private readonly IMapper _map;
 
-        public MaterialService(IUnitOfWork unitOfWork, IMapper map)
+        public MaterialService(IMaterialRepository materialrepository, IMapper map)
         {
-            _unitOfWork = unitOfWork;
+            _materialrepository = materialrepository;
             _map = map;
         }
         public async Task<bool?> CreateMaterial(MaterialModel material)
@@ -31,13 +32,14 @@ namespace JPOS.Service.Implementations
                 {
                     return false;
                 }
-               return await _unitOfWork.Materials.CreateMaterial(_map.Map<Material>(material));
+                return await _materialrepository.CreateMaterial(_map.Map<Material>(material));
 
 
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine("Create Material service : ", ex.ToString());
-                return false;   
+                return false;
             }
         }
 
@@ -45,9 +47,9 @@ namespace JPOS.Service.Implementations
         //{
         //    try
         //    {
-        //        var material = await _unitOfWork.Materials.GetByIdAsync(id);
+        //        var material = await _materialrepository.Materials.GetByIdAsync(id);
         //        material.Status = "Unavailable";
-        //        return await _unitOfWork.Materials.UpdateMaterial(id,material);
+        //        return await _materialrepository.Materials.UpdateMaterial(id,material);
         //    }
         //    catch (Exception ex)
         //    {
@@ -61,7 +63,7 @@ namespace JPOS.Service.Implementations
         {
             try
             {
-                return await _unitOfWork.Materials.DeleteMaterial(id);
+                return await _materialrepository.DeleteMaterial(id);
             }
             catch (Exception ex)
             {
@@ -72,11 +74,11 @@ namespace JPOS.Service.Implementations
 
 
 
-        public async Task<List<MaterialModel>?> GetAllMaterials() 
+        public async Task<List<MaterialModel>?> GetAllMaterials()
         {
             try
             {
-                var materials = await _unitOfWork.Materials.GetAllMaterial();
+                var materials = await _materialrepository.GetAllMaterial();
                 return _map.Map<List<MaterialModel>>(materials);
             }
             catch (Exception ex)
@@ -88,14 +90,16 @@ namespace JPOS.Service.Implementations
 
         public async Task<Material?> GetmaterialByID(int id)
         {
-            try { 
-                if(id == null)
+            try
+            {
+                if (id == null)
                 {
                     return new Material();
                 }
-                return await _unitOfWork.Materials.GetMaterialById(id);
-            
-            }catch (Exception ex)
+                return await _materialrepository.GetMaterialById(id);
+
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine("get a Material service : ", ex.ToString());
                 return new Material();
@@ -106,11 +110,13 @@ namespace JPOS.Service.Implementations
         {
             try
             {
-                if(material != null) { 
-                return await _unitOfWork.Materials.UpdateMaterial(material.MaterialId,_map.Map<Material>(material));
+                if (material != null)
+                {
+                    return await _materialrepository.UpdateMaterial(material.MaterialId, _map.Map<Material>(material));
                 }
                 return false;
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine("update Material : ", ex.ToString());
                 return false;

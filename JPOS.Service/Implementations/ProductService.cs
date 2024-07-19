@@ -2,7 +2,7 @@
 using CloudinaryDotNet.Actions;
 using CloudinaryDotNet;
 using JPOS.Model;
-using JPOS.Model.Entities;
+using BusinessObject.Entities;
 using JPOS.Model.Models;
 using JPOS.Service.Interfaces;
 using Microsoft.CodeAnalysis;
@@ -11,32 +11,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JPOS.Repository.Repositories.Interfaces;
 
 namespace JPOS.Service.Implementations
 {
     public class ProductService : IProductService
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IProductRepository _productrepository;
         private readonly IMapper _mapper;
+        private readonly IProductMaterialRepository productMaterialRepository;
 
-        public ProductService(IUnitOfWork unitOfWork,IMapper mapper)
+        public ProductService(IProductRepository productrepository, IMapper mapper,IProductMaterialRepository productMaterialRepository)
         {
-            _unitOfWork = unitOfWork;
+            _productrepository = productrepository;
             _mapper = mapper;
+            this.productMaterialRepository = productMaterialRepository;
         }
 
         public async Task<bool> CreateProduct(ProductModel model, List<ProductMaterialModel> materialofproduct)
         {
-           if (model == null)
+            if (model == null)
             {
                 return false;
             }
-            await _unitOfWork.Products.InsertAsync(_mapper.Map<Product>(model));
-            var GetIdProduct = await _unitOfWork.Products.GetLastproduct();
+            await _productrepository.InsertAsync(_mapper.Map<Product>(model));
+            var GetIdProduct = await _productrepository.GetLastproduct();
             for (int i = 0; i < materialofproduct.Count(); i++)
             {
                 materialofproduct[i].ProductID = GetIdProduct.ProductId;
-                await _unitOfWork.ProductMaterials.InsertAsync(_mapper.Map<ProductMaterial>(materialofproduct[i]));
+                await productMaterialRepository.InsertAsync(_mapper.Map<ProductMaterial>(materialofproduct[i]));
             }
 
             return true;
@@ -44,24 +47,24 @@ namespace JPOS.Service.Implementations
 
         public async Task<int> DuplicateProduct(int id)
         {
-            var product = await _unitOfWork.Products.GetByIdAsync(id);
-            var listProductMaterial = await _unitOfWork.ProductMaterials.GetMaterialsByProductID(product.ProductId);
+            var product = await _productrepository.GetByIdAsync(id);
+            var listProductMaterial = await productMaterialRepository.GetMaterialsByProductID(product.ProductId);
             product.ProductId = 0;
             product.Status = "Pending";
-            await _unitOfWork.Products.InsertAsync(product);
-            var LastProduct = await _unitOfWork.Products.GetLastproduct();          
+            await _productrepository.InsertAsync(product);
+            var LastProduct = await _productrepository.GetLastproduct();
             for (int i = 0; i < listProductMaterial.Count; i++)
             {
                 listProductMaterial[i].ProductId = LastProduct.ProductId;
                 listProductMaterial[i].ProductMaterialId = 0;
-                await _unitOfWork.ProductMaterials.InsertAsync(listProductMaterial[i]);
+                await productMaterialRepository.InsertAsync(listProductMaterial[i]);
             }
             return LastProduct.ProductId;
         }
 
         public async Task<List<ProductModel>?> GetAllProduct()
         {
-            List<Product> listProduct = await _unitOfWork.Products.GetAllAsync();
+            List<Product> listProduct = await _productrepository.GetAllAsync();
             List<ProductModel> products = new List<ProductModel>();
             foreach (var product in listProduct)
             {
@@ -84,8 +87,9 @@ namespace JPOS.Service.Implementations
 
         public async Task<ProductModel?> GetProductByID(int? id)
         {
-            if (id != null) {
-                var product = await _unitOfWork.Products.GetByIdAsync(id);
+            if (id != null)
+            {
+                var product = await _productrepository.GetByIdAsync(id);
                 var productModel = new ProductModel
                 {
 
@@ -102,7 +106,7 @@ namespace JPOS.Service.Implementations
                 };
                 return productModel;
             }
-           return null;
+            return null;
         }
 
         public async Task<ProductModel?> GetProductByRequest(string key)
@@ -111,7 +115,7 @@ namespace JPOS.Service.Implementations
             {
                 return null;
             }
-            var product =await _unitOfWork.Products.GetproductByRequest(key);
+            var product = await _productrepository.GetproductByRequest(key);
             var productModel = new ProductModel
             {
                 ProductId = product.ProductId,
@@ -126,7 +130,7 @@ namespace JPOS.Service.Implementations
 
         public async Task<ProductDetailModel?> GetProductDetail(int productId)
         {
-            var product = await _unitOfWork.Products.GetProductWithMaterialsAsync(productId);
+            var product = await _productrepository.GetProductWithMaterialsAsync(productId);
             if (product == null)
             {
                 return null;
@@ -157,14 +161,12 @@ namespace JPOS.Service.Implementations
 
         public async Task<bool?> UpdateProduct(ProductModel model)
         {
-           if(model != null)
+            if (model != null)
             {
-                await _unitOfWork.Products.UpdateAsync(_mapper.Map<Product>(model));
-                await _unitOfWork.CompleteAsync();
-                return true;
+                await _productrepository.UpdateAsync(_mapper.Map<Product>(model));                return true;
             }
-           return false;
-            
+            return false;
+
         }
 
 
@@ -175,36 +177,36 @@ namespace JPOS.Service.Implementations
             try
             {
                 Account account = new Account(
-                    "dkyv1vp1c",      
-                    "741931712965645",         
-                    "07xC7_CmYUhX3yGwPkdSe08uRM0"       
+                    "dkyv1vp1c",
+                    "741931712965645",
+                    "07xC7_CmYUhX3yGwPkdSe08uRM0"
                 );
 
                 Cloudinary cloudinary = new Cloudinary(account);
 
-                
+
                 if (design != null && design.StartsWith("data:image/"))
                 {
-                    
+
                     string base64Image = design.Split(',')[1];
-                    byte[] imageBytes = Convert.FromBase64String(base64Image);                    
+                    byte[] imageBytes = Convert.FromBase64String(base64Image);
                     using (MemoryStream stream = new MemoryStream(imageBytes))
                     {
-                      
+
                         var uploadParams = new ImageUploadParams()
                         {
-                            File = new FileDescription("image.jpg", stream) 
+                            File = new FileDescription("image.jpg", stream)
                         };
 
                         var uploadResult = await cloudinary.UploadAsync(uploadParams);
 
-                       return uploadResult.Url.ToString();
-                       
+                        return uploadResult.Url.ToString();
+
                     }
                 }
             }
             catch (Exception ex)
-            {                
+            {
                 Console.WriteLine($"Error uploading image to Cloudinary: {ex.Message}");
             }
 
@@ -215,8 +217,7 @@ namespace JPOS.Service.Implementations
 
         public async Task<bool> DeleteProductAsync(int id)
         {
-            var result = await _unitOfWork.Products.DeleteAsync(id);
-            await _unitOfWork.CompleteAsync();
+            var result = await _productrepository.DeleteAsync(id);
             return result;
         }
     }

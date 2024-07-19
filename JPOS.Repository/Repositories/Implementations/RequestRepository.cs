@@ -1,17 +1,19 @@
-﻿/*using JPOS.Model.Entities;
-using JPOS.Model.Repositories.Interfaces;
+﻿
+using JPOS.Repository.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using BusinessObject.Entities;
+using JPOS.DAO.EntitiesDAO;
 
-namespace JPOS.Model.Repositories.Implementations
+namespace JPOS.Repository.Repositories.Implementations
 {
     public class RequestRepository : GenericRepository<Request>, IRequestRepository
     {
-        private readonly JPOS_ProjectContext _context;
-        public RequestRepository(JPOS_ProjectContext context): base(context)
+        private readonly JPOS_DatabaseContext _context;
+        public RequestRepository(JPOS_DatabaseContext context) : base(context)
         {
             _context = context;
         }
@@ -19,7 +21,7 @@ namespace JPOS.Model.Repositories.Implementations
         public async Task<Request?> GetLastRequestID()
         {
             var lastRequest = await _context.Requests
-                .OrderByDescending(r=>r.Id)
+                .OrderByDescending(r => r.Id)
                 .FirstOrDefaultAsync();
             return lastRequest;
         }
@@ -29,10 +31,10 @@ namespace JPOS.Model.Repositories.Implementations
             return await _context.Requests.FirstOrDefaultAsync(r => r.Id == requestID);
         }
 
-            public async Task<List<Request>> GetRequestByStatus(string status)
-            {
+        public async Task<List<Request>> GetRequestByStatus(string status)
+        {
             return await _context.Requests.Where(r => r.Status == status).ToListAsync();
-            }
+        }
 
         public async Task<List<Request>?> GetRequestByTime(int year, int month)
         {
@@ -80,4 +82,3 @@ namespace JPOS.Model.Repositories.Implementations
 
     }
 }
-*/
