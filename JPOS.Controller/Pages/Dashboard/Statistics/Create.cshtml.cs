@@ -6,22 +6,21 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using BusinessObject.Entities;
+using JPOS.Service.Interfaces;
 
 namespace JPOS.Controller.Pages.Dashboard.Statistics
 {
     public class CreateModel : PageModel
     {
-        private readonly JPOS.Model.Entities.JPOS_ProjectContext _context;
+        private readonly IRequestService _requestService;
 
-        public CreateModel(JPOS.Model.Entities.JPOS_ProjectContext context)
+        public CreateModel(IRequestService requestService)
         {
-            _context = context;
+            _requestService = requestService;
         }
 
         public IActionResult OnGet()
         {
-        ViewData["ProductId"] = new SelectList(_context.Products, "ProductId", "ProductId");
-        ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserId");
             return Page();
         }
 
@@ -32,13 +31,12 @@ namespace JPOS.Controller.Pages.Dashboard.Statistics
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.Requests == null || Request == null)
+          if (!ModelState.IsValid || _requestService.GetAllRequestAsync ==null || Request == null)
             {
                 return Page();
             }
 
-            _context.Requests.Add(Request);
-            await _context.SaveChangesAsync();
+            _requestService.CreateRequestAsync(Request);
 
             return RedirectToPage("./Index");
         }

@@ -12,11 +12,18 @@ namespace JPOS.Repository.Repositories.Implementations
 {
     public class CategoryRepository : GenericRepository<Category>, ICategoryRepository
     {
-        private readonly JPOS_DatabaseContext _context;
+        private static CategoryRepository _instance;
 
-        public CategoryRepository(JPOS_DatabaseContext context) : base(context)
+        public static CategoryRepository Instance
         {
-            _context = context;
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new CategoryRepository();
+                }
+                return _instance;
+            }
         }
 
         public async Task<Category> GetCategoryByID(int cateId)

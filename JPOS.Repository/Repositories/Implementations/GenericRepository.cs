@@ -5,12 +5,26 @@ using System.Linq.Expressions;
 
 public class GenericRepository<T> : IGenericRepository<T> where T : class
 {
-    private readonly JPOS_DatabaseContext _context;
+    public readonly JPOS_ProjectContext _context;
+    public static GenericRepository<T> _instance;
 
-    public GenericRepository(JPOS_DatabaseContext context)
+    public GenericRepository()
     {
-        _context = context;
+        _context = new JPOS_ProjectContext();
     }
+
+    public static GenericRepository<T> Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = new GenericRepository<T>();
+            }
+            return _instance;
+        }
+    }
+
 
     public async Task<List<T>> GetAllAsync()
     {

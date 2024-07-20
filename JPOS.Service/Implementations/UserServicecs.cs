@@ -1,5 +1,4 @@
-﻿using CloudinaryDotNet.Actions;
-using JPOS.Model;
+﻿using JPOS.Model;
 using BusinessObject.Entities;
 using JPOS.Model.Models;
 using JPOS.Model.Models.AppConfig;
@@ -20,19 +19,23 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using JPOS.Repository.Repositories.Interfaces;
+using JPOS.DAO.EntitiesDAO;
+using JPOS.Repository.Repositories.Implementations;
 
 namespace JPOS.Service.Implementations
 {
     public class UserServices : IUserServices
     {
-        private readonly IUserRepository _userrepository;
+/*        private readonly IUserRepository _userrepository;*/
         private readonly IMemoryCache cache;
 
-        public UserServices(IUserRepository userrepository, IMemoryCache memoryCache)
+        public UserServices()
         {
-            _userrepository = userrepository;
-            cache = memoryCache;
+/*            var context = new JPOS_ProjectContext();
+            _userrepository = UserRepository.Instance.;*/
+            cache = new MemoryCache(new MemoryCacheOptions());
         }
+
         private string GenerateJwtToken(User user)
         {
             List<Claim> claims = new List<Claim>()
@@ -61,7 +64,7 @@ namespace JPOS.Service.Implementations
         public async Task<User> AuthenticateAsync(string username, string password)
         {
             var hashedInputPasswordString = HashAndTruncatePassword(password);
-            var user = await _userrepository.GetByUsernameAsync(username);
+            var user = await UserRepository.Instance.GetByUsernameAsync(username);
             if (user != null)
             {
                 if (hashedInputPasswordString == user.Password)
@@ -74,7 +77,7 @@ namespace JPOS.Service.Implementations
 
         public async Task<string> GenerateNextUserIDAsync()
         {
-            User lastUser = await _userrepository.GetLastUserAsync();
+            User lastUser = await UserRepository.Instance.GetLastUserAsync();
 
             if (lastUser == null || lastUser.UserId.Length < 3)
             {
@@ -109,7 +112,7 @@ namespace JPOS.Service.Implementations
                     CreateDate = DateTime.Now,
                     Email = model.Email
                 };
-                var result = await _userrepository.InsertAsync(newUser);
+                var result = await UserRepository.Instance.InsertAsync(newUser);
 
                 return result;
             }
@@ -123,16 +126,16 @@ namespace JPOS.Service.Implementations
 
         public async Task<List<User>> GetAllUsersAsync()
         {
-            return await _userrepository.GetAllAsync();
+            return await UserRepository.Instance.GetAllAsync();
         }
 
         public async Task<User?> GetUserByIdAsync(string id)
         {
-            return await _userrepository.GetByIdAsync(id);
+            return await UserRepository.Instance.GetByIdAsync(id);
         }
         public async Task<User?> GetUserByUsernameAsync(string username)
         {
-            return await _userrepository.GetByUsernameAsync(username);
+            return await UserRepository.Instance.GetByUsernameAsync(username);
         }
         public async Task<bool> CreateUserAsync(User user)
         {
@@ -140,13 +143,13 @@ namespace JPOS.Service.Implementations
             user.UserId = nextUserID;
             var hashedInputPasswordString = HashAndTruncatePassword(user.Password);
             user.Password = hashedInputPasswordString;
-            var result = await _userrepository.InsertAsync(user);
+            var result = await UserRepository.Instance.InsertAsync(user);
             return result;
         }
 
         public async Task<bool> UpdateUserAsync(User user)
         {
-            var result = await _userrepository.UpdateAsync(user);
+            var result = await UserRepository.Instance.UpdateAsync(user);
             return result;
         }
 
@@ -156,7 +159,7 @@ namespace JPOS.Service.Implementations
             {
                 return null;
             }
-            return await _userrepository.GetUserByEmail(email);
+            return await UserRepository.Instance.GetUserByEmail(email);
         }
 
         public string HashAndTruncatePassword(string password)
@@ -173,10 +176,10 @@ namespace JPOS.Service.Implementations
             return password;
         }
 
-        /*public async Task<List<Role>> GetAllRolesAsync()
+        public async Task<List<Role>> GetAllRolesAsync()
         {
-            return await _userrepository.Users.GetAllRolesAsync();
-        }*/
+            return await UserRepository.Instance.GetAllRolesAsync();
+        }
 
         public void sendmail(string mail, string body)
         {
@@ -290,7 +293,7 @@ namespace JPOS.Service.Implementations
 
         public async Task<bool> HasRelatedRecordsAsync(string userId)
         {
-            return await _userrepository.HasRelatedRecordsAsync(userId);
+            return await UserRepository.Instance.HasRelatedRecordsAsync(userId);
         }
 
         public async Task<bool> DeleteUserAsync(string id)
@@ -302,7 +305,7 @@ namespace JPOS.Service.Implementations
                 return false; // User has related records, cannot delete
             }
 
-            var result = await _userrepository.DeleteAsync(id);
+            var result = await UserRepository.Instance.DeleteAsync(id);
             return result;
         }
     }

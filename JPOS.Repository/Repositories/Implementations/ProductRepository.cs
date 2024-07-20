@@ -14,13 +14,19 @@ namespace JPOS.Repository.Repositories.Implementations
 {
     public class ProductRepository : GenericRepository<Product>, IProductRepository
     {
-        private readonly JPOS_DatabaseContext _context;
+        private static ProductRepository _instance;
 
-        public ProductRepository(JPOS_DatabaseContext context) : base(context)
+        public static ProductRepository Instance
         {
-            _context = context;
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new ProductRepository();
+                }
+                return _instance;
+            }
         }
-
         public async Task<List<Product>?> GetAllproduct()
         {
             return await _context.Products.ToListAsync();

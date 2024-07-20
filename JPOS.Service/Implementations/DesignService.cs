@@ -8,17 +8,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using JPOS.Repository.Repositories.Interfaces;
+using JPOS.Repository.Repositories.Implementations;
 
 namespace JPOS.Service.Implementations
 {
     public class DesignService : IDesignService
     {
-        private readonly IDesignRepository _designrepository;
+        /*private readonly IDesignRepository _designrepository;
 
         public DesignService(IDesignRepository designrepository)
         {
             _designrepository = designrepository;
-        }
+        }*/
         public async Task<bool> CreateDesignAsync(Design design, int idProduct)
         {
             try
@@ -53,12 +54,12 @@ namespace JPOS.Service.Implementations
                         design.Picture = uploadResult.Url.ToString();
 
                         // Insert the design into database using your _designrepository or repository
-                        if (await _designrepository.InsertAsync(design))
+                        if (await DesignRepository.Instance.InsertAsync(design))
                         {
-                            var designupdate = await _designrepository.GetLastDesign();
-                            var updateProduct = await _designrepository.GetByIdAsync(idProduct);
+                            var designupdate = await DesignRepository.Instance.GetLastDesign();
+                            var updateProduct = await DesignRepository.Instance.GetByIdAsync(idProduct);
                             updateProduct.DesignId = designupdate.DesignId;
-                            await _designrepository.UpdateAsync(updateProduct);
+                            await DesignRepository.Instance.UpdateAsync(updateProduct);
                             return true;
                         }
                     }
@@ -81,7 +82,7 @@ namespace JPOS.Service.Implementations
 
         public async Task<List<Design>?> GetAllDesignAsync()
         {
-            return await _designrepository.GetAllDesign();
+            return await DesignRepository.Instance.GetAllDesign();
         }
 
         public Task<Design> GetDesignByIdAsync(int id)
@@ -124,7 +125,7 @@ namespace JPOS.Service.Implementations
                         design.Picture = uploadResult.Url.ToString();
 
                         // Insert the design into database using your _designrepository or repository
-                      return await _designrepository.UpdateAsync(design);
+                      return await DesignRepository.Instance.UpdateAsync(design);
                        
                     }
                 }

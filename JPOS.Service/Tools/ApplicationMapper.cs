@@ -1,4 +1,4 @@
-﻿/*using AutoMapper;
+﻿using AutoMapper;
 using BusinessObject.Entities;
 using JPOS.Model.Models;
 
@@ -16,9 +16,8 @@ namespace JPOS.Service.Tools
             CreateMap<User, UserModel>().ReverseMap();
             CreateMap<User, UserProfileModel>().ReverseMap();
             CreateMap<Product, ProductModel>().ReverseMap();
-            CreateMap<ProductMaterial,ProductMaterialModel>().ReverseMap();
+            CreateMap<ProductMaterial, ProductMaterialModel>().ReverseMap();
             CreateMap<ProductMaterial, ProdMatModel>().ReverseMap();
         }
     }
 }
-*/

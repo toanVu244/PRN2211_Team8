@@ -7,16 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using JPOS.Repository.Repositories.Interfaces;
+using JPOS.Repository.Repositories.Implementations;
 
 namespace JPOS.Service.Implementations
 {
     public class ProductMaterialService : IProductMaterialService
     {
-        private readonly IProductMaterialRepository _productmaterialrepository;
+        /*private readonly IProductMaterialRepository _productmaterialrepository;
         public ProductMaterialService(IProductMaterialRepository productmaterialrepository)
         {
             _productmaterialrepository = productmaterialrepository;
-        }
+        }*/
         public Task<bool?> AddMaterialProduct(List<ProductMaterial> listdata)
         {
             throw new NotImplementedException();
@@ -24,7 +25,7 @@ namespace JPOS.Service.Implementations
 
         public Task<List<ProductMaterial>?> GetmaterialByProductID(int id)
         {
-            return _productmaterialrepository.GetMaterialsByProductID(id);
+            return ProductMaterialRepository.Instance.GetMaterialsByProductID(id);
         }
 
         public async Task<bool> UpdateMaterialProduct(int id, List<ProductMaterial> newUpdate)
@@ -34,7 +35,7 @@ namespace JPOS.Service.Implementations
                 foreach (var item in newUpdate)
                 {
                     item.ProductId = id;
-                    await _productmaterialrepository.UpdateAsync(item);
+                    await ProductMaterialRepository.Instance.UpdateAsync(item);
                 }
 
                 return true;

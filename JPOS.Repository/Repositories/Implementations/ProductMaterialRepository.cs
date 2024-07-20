@@ -13,11 +13,19 @@ namespace JPOS.Repository.Repositories.Implementations
 {
     public class ProductMaterialRepository : GenericRepository<ProductMaterial>, IProductMaterialRepository
     {
-        private readonly JPOS_DatabaseContext _context;
+        private static ProductMaterialRepository _instance;
 
-        public ProductMaterialRepository(JPOS_DatabaseContext context) : base(context)
+        public static ProductMaterialRepository Instance
         {
-            _context = context;
+            get
+            {
+                if (_instance == null)
+                {
+
+                    _instance = new ProductMaterialRepository();
+                }
+                return _instance;
+            }
         }
 
         public async Task<List<ProductMaterial>> GetMaterialsByProductID(int pid)

@@ -13,10 +13,18 @@ namespace JPOS.Repository.Repositories.Implementations
 {
     public class FeedbackRepository : GenericRepository<Feedback>, IFeedbackRepository
     {
-        private readonly JPOS_DatabaseContext _context;
-        public FeedbackRepository(JPOS_DatabaseContext context) : base(context)
+        private static FeedbackRepository _instance;
+
+        public static FeedbackRepository Instance
         {
-            _context = context;
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new FeedbackRepository();
+                }
+                return _instance;
+            }
         }
 
         public async Task<Feedback> GetFeedbacByID(int Id)

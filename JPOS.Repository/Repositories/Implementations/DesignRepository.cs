@@ -13,21 +13,28 @@ namespace JPOS.Repository.Repositories.Implementations
 {
     public class DesignRepository : GenericRepository<Design>, IDesignRepository
     {
-        private readonly JPOS_DatabaseContext context;
+        private static DesignRepository _instance;
 
-        public DesignRepository(JPOS_DatabaseContext context) : base(context)
+        public static DesignRepository Instance
         {
-            this.context = context;
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new DesignRepository();
+                }
+                return _instance;
+            }
         }
 
         public async Task<List<Design>?> GetAllDesign()
         {
-            return await context.Designs.OrderByDescending(p => p.CreateDate).ToListAsync();
+            return await _context.Designs.OrderByDescending(p => p.CreateDate).ToListAsync();
         }
 
         public async Task<Design?> GetLastDesign()
         {
-            var lastRequest = await context.Designs
+            var lastRequest = await _context.Designs
                .OrderByDescending(r => r.DesignId)
                .FirstOrDefaultAsync();
             return lastRequest;

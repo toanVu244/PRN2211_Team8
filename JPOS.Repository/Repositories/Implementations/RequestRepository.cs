@@ -12,10 +12,18 @@ namespace JPOS.Repository.Repositories.Implementations
 {
     public class RequestRepository : GenericRepository<Request>, IRequestRepository
     {
-        private readonly JPOS_DatabaseContext _context;
-        public RequestRepository(JPOS_DatabaseContext context) : base(context)
+        private static RequestRepository _instance;
+
+        public static RequestRepository Instance
         {
-            _context = context;
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new RequestRepository();
+                }
+                return _instance;
+            }
         }
 
         public async Task<Request?> GetLastRequestID()

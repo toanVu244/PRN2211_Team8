@@ -1,8 +1,6 @@
 ﻿using JPOS.Model;
 using BusinessObject.Entities;
 using JPOS.Model.Models.AppConfig;
-using JPOS.Model.Repositories.Implementations;
-using JPOS.Model.Repositories.Interfaces;
 using JPOS.Service.Implementations;
 using JPOS.Service.Interfaces;
 using JPOS.Service.Tools;
@@ -10,6 +8,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using JPOS.Repository.Repositories.Interfaces;
+using JPOS.DAO.EntitiesDAO;
+using JPOS.Repository.Repositories.Implementations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,20 +23,12 @@ builder.Services.AddSession(options =>
 });
 builder.Services.AddRazorPages();
 builder.Services.AddAutoMapper(typeof(ApplicationMapper));
-
-// Database Context
-builder.Services.AddDbContext<JPOS_ProjectContext>(options =>
-{
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DB"));
-    options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
-});
-
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 // Register Services
-builder.Services.AddScoped<IProductService, ProductService>();
-builder.Services.AddScoped<IUserServices, UserServices>();
+
+
 builder.Services.AddScoped<IBlogService, BlogService>();
 builder.Services.AddScoped<IMaterialService, MaterialService>();
-builder.Services.AddScoped<ICategoryService, CatergoryService>();
 builder.Services.AddScoped<IRequestService, RequestService>();
 builder.Services.AddScoped<ICategoryService, CatergoryService>();
 builder.Services.AddScoped<IDesignService, DesignService>();
@@ -43,10 +36,10 @@ builder.Services.AddScoped<IBlogService, BlogService>();
 builder.Services.AddScoped<ITransactionServices, TransactionServices>();
 builder.Services.AddScoped<IProductMaterialService, ProductMaterialService>();
 builder.Services.AddScoped<IDesignService, DesignService>();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IUserServices, UserServices>();
+builder.Services.AddScoped<ICategoryService, CatergoryService>();
 
-
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddHttpClient();
 
 var app = builder.Build();

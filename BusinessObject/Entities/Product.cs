@@ -8,7 +8,7 @@ namespace BusinessObject.Entities
         public Product()
         {
             ProductMaterials = new HashSet<ProductMaterial>();
-            RequestsDetails = new HashSet<RequestsDetail>();
+            Requests = new HashSet<Request>();
         }
 
         public int ProductId { get; set; }
@@ -27,6 +27,6 @@ namespace BusinessObject.Entities
         public virtual Category? Category { get; set; }
         public virtual Design? Design { get; set; }
         public virtual ICollection<ProductMaterial> ProductMaterials { get; set; }
-        public virtual ICollection<RequestsDetail> RequestsDetails { get; set; }
+        public virtual ICollection<Request> Requests { get; set; }
     }
 }

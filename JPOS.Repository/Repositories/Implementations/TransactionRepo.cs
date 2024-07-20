@@ -13,11 +13,18 @@ namespace JPOS.Repository.Repositories.Implementations
 {
     public class TransactionRepo : GenericRepository<Transaction>, ITransactionRepo
     {
-        private readonly JPOS_DatabaseContext _context;
+        private static TransactionRepo _instance;
 
-        public TransactionRepo(JPOS_DatabaseContext context) : base(context)
+        public static TransactionRepo Instance
         {
-            _context = context;
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new TransactionRepo();
+                }
+                return _instance;
+            }
         }
 
         public async Task<List<Transaction?>> GetTransactionByUserID(string id)

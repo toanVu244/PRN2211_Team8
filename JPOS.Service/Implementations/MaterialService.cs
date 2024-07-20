@@ -10,18 +10,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using JPOS.Repository.Repositories.Interfaces;
+using JPOS.Repository.Repositories.Implementations;
 
 namespace JPOS.Service.Implementations
 {
     public class MaterialService : IMaterialService
     {
-
-        private readonly IMaterialRepository _materialrepository;
         private readonly IMapper _map;
 
-        public MaterialService(IMaterialRepository materialrepository, IMapper map)
+        public MaterialService(IMapper map)
         {
-            _materialrepository = materialrepository;
             _map = map;
         }
         public async Task<bool?> CreateMaterial(MaterialModel material)
@@ -32,7 +30,7 @@ namespace JPOS.Service.Implementations
                 {
                     return false;
                 }
-                return await _materialrepository.CreateMaterial(_map.Map<Material>(material));
+                return await MaterialRepository.Instance.CreateMaterial(_map.Map<Material>(material));
 
 
             }
@@ -63,7 +61,7 @@ namespace JPOS.Service.Implementations
         {
             try
             {
-                return await _materialrepository.DeleteMaterial(id);
+                return await MaterialRepository.Instance.DeleteMaterial(id);
             }
             catch (Exception ex)
             {
@@ -78,7 +76,7 @@ namespace JPOS.Service.Implementations
         {
             try
             {
-                var materials = await _materialrepository.GetAllMaterial();
+                var materials = await MaterialRepository.Instance.GetAllMaterial();
                 return _map.Map<List<MaterialModel>>(materials);
             }
             catch (Exception ex)
@@ -96,7 +94,7 @@ namespace JPOS.Service.Implementations
                 {
                     return new Material();
                 }
-                return await _materialrepository.GetMaterialById(id);
+                return await MaterialRepository.Instance.GetMaterialById(id);
 
             }
             catch (Exception ex)
@@ -112,7 +110,7 @@ namespace JPOS.Service.Implementations
             {
                 if (material != null)
                 {
-                    return await _materialrepository.UpdateMaterial(material.MaterialId, _map.Map<Material>(material));
+                    return await MaterialRepository.Instance.UpdateMaterial(material.MaterialId, _map.Map<Material>(material));
                 }
                 return false;
             }

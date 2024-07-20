@@ -9,17 +9,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using JPOS.Repository.Repositories.Interfaces;
+using JPOS.Repository.Repositories.Implementations;
 
 namespace JPOS.Service.Implementations
 {
     public class PolicyService : IPolicyService
     {
-        private readonly IPolicyRepository _policyrepository;
         private readonly IMapper _mapper;
 
-        public PolicyService(IPolicyRepository policyrepository, IMapper mapper)
+        public PolicyService(IMapper mapper)
         {
-            _policyrepository = policyrepository;
             _mapper = mapper;
         }
 
@@ -29,7 +28,7 @@ namespace JPOS.Service.Implementations
             {
                 return false;
             }
-            return await _policyrepository.CreatePolicy(_mapper.Map<Policy>(policy));
+            return await PolicyRepository.Instance.CreatePolicy(_mapper.Map<Policy>(policy));
         }
 
         public Task<bool?> DeletePolicy(int id)
@@ -39,12 +38,12 @@ namespace JPOS.Service.Implementations
 
         public async Task<List<Policy>?> GetAllPolicy()
         {
-            return await _policyrepository.GetAllPolicy();
+            return await PolicyRepository.Instance.GetAllPolicy();
         }
 
         public async Task<Policy?> GetPolicyById(int id)
         {
-            return await _policyrepository.GetById(id);
+            return await PolicyRepository.Instance.GetById(id);
         }
 
         public async Task<bool?> UpdatePolicy(int id, PolicyModel policy)
@@ -54,7 +53,7 @@ namespace JPOS.Service.Implementations
 
                 return false;
             }
-         return await _policyrepository.UpdateAsync(_mapper.Map<Policy>(policy));
+         return await PolicyRepository.Instance.UpdateAsync(_mapper.Map<Policy>(policy));
 
 
         }

@@ -13,11 +13,20 @@ namespace JPOS.Repository.Repositories.Implementations
 {
     public class UserRepository : GenericRepository<User>, IUserRepository
     {
-        private readonly JPOS_DatabaseContext _context;
-        public UserRepository(JPOS_DatabaseContext context) : base(context)
+        private static UserRepository _instance;
+
+        public static UserRepository Instance
         {
-            _context = context;
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new UserRepository();
+                }
+                return _instance;
+            }
         }
+
         public async Task<User?> GetByUsernameAsync(string username)
         {
             return await _context.Users.SingleOrDefaultAsync(u => u.Username == username);
@@ -32,7 +41,7 @@ namespace JPOS.Repository.Repositories.Implementations
             var lastUser = await _context.Users
                 .OrderByDescending(u => u.UserId)
                 .FirstOrDefaultAsync();
-            return _context.Users.OrderByDescending(u => u.UserId).FirstOrDefault(); 
+            return _context.Users.OrderByDescending(u => u.UserId).FirstOrDefault();
         }
 
         public async Task<User?> GetUserByEmail(string email)

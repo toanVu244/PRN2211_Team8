@@ -13,11 +13,18 @@ namespace JPOS.Repository.Repositories.Implementations
 {
     public class PolicyRepository : GenericRepository<Policy>, IPolicyRepository
     {
-        private readonly JPOS_DatabaseContext _context;
+        private static PolicyRepository _instance;
 
-        public PolicyRepository(JPOS_DatabaseContext context) : base(context)
+        public static PolicyRepository Instance
         {
-            _context = context;
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new PolicyRepository();
+                }
+                return _instance;
+            }
         }
 
         public async Task<bool?> CreatePolicy(Policy policy)

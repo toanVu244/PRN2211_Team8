@@ -7,13 +7,13 @@ using Microsoft.Extensions.Configuration;
 
 namespace JPOS.DAO.EntitiesDAO
 {
-    public partial class JPOS_DatabaseContext : DbContext
+    public partial class JPOS_ProjectContext : DbContext
     {
-        public JPOS_DatabaseContext()
+        public JPOS_ProjectContext()
         {
         }
 
-        public JPOS_DatabaseContext(DbContextOptions<JPOS_DatabaseContext> options)
+        public JPOS_ProjectContext(DbContextOptions<JPOS_ProjectContext> options)
             : base(options)
         {
         }
@@ -27,7 +27,6 @@ namespace JPOS.DAO.EntitiesDAO
         public virtual DbSet<Product> Products { get; set; } = null!;
         public virtual DbSet<ProductMaterial> ProductMaterials { get; set; } = null!;
         public virtual DbSet<Request> Requests { get; set; } = null!;
-        public virtual DbSet<RequestsDetail> RequestsDetails { get; set; } = null!;
         public virtual DbSet<Role> Roles { get; set; } = null!;
         public virtual DbSet<Transaction> Transactions { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
@@ -41,8 +40,8 @@ namespace JPOS.DAO.EntitiesDAO
         }
         public string getConnectionString()
         {
-            var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsetting.json");
-            IConfiguration configuration = builder.Build();
+            var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json");
+            var configuration = builder.Build();
             return configuration.GetConnectionString("DB");
         }
 
@@ -138,42 +137,21 @@ namespace JPOS.DAO.EntitiesDAO
 
             modelBuilder.Entity<Request>(entity =>
             {
-                entity.ToTable("Request");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
-                entity.Property(e => e.RequestId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("RequestID");
+                entity.Property(e => e.ProductId).HasColumnName("ProductID");
 
                 entity.Property(e => e.UserId)
                     .HasMaxLength(450)
                     .HasColumnName("UserID");
 
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.Requests)
+                    .HasForeignKey(d => d.ProductId);
+
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Requests)
-                    .HasForeignKey(d => d.UserId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Request_Users");
-            });
-
-            modelBuilder.Entity<RequestsDetail>(entity =>
-            {
-                entity.ToTable("RequestsDetail");
-
-                entity.Property(e => e.Id).HasColumnName("ID");
-
-                entity.Property(e => e.ProductId).HasColumnName("ProductID");
-
-                entity.Property(e => e.RequestId).HasColumnName("RequestID");
-
-                entity.HasOne(d => d.Product)
-                    .WithMany(p => p.RequestsDetails)
-                    .HasForeignKey(d => d.ProductId)
-                    .HasConstraintName("FK_Requests_Products_ProductID");
-
-                entity.HasOne(d => d.Request)
-                    .WithMany(p => p.RequestsDetails)
-                    .HasForeignKey(d => d.RequestId)
-                    .HasConstraintName("FK_RequestsDetail_Request");
+                    .HasForeignKey(d => d.UserId);
             });
 
             modelBuilder.Entity<Role>(entity =>

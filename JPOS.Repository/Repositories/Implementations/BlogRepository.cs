@@ -1,5 +1,4 @@
-﻿
-using BusinessObject.Entities;
+﻿using BusinessObject.Entities;
 using JPOS.DAO.EntitiesDAO;
 using JPOS.Repository.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -13,11 +12,18 @@ namespace JPOS.Repository.Repositories.Implementations
 {
     public class BlogRepository : GenericRepository<Blog>, IBlogRepository
     {
-        private readonly JPOS_DatabaseContext _context;
+        private static BlogRepository _instance;
 
-        public BlogRepository(JPOS_DatabaseContext context) : base(context)
+        public static BlogRepository Instance
         {
-            _context = context;
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new BlogRepository();
+                }
+                return _instance;
+            }
         }
 
         public async Task<Blog> GetBlogByID(int blogID)

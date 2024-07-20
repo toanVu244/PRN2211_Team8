@@ -1,4 +1,5 @@
 using BusinessObject.Entities;
+using JPOS.Repository.Repositories.Interfaces;
 using JPOS.Service.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -8,21 +9,26 @@ namespace JPOS.Controller.Pages
 {
     public class LoginPageModel : PageModel
     {
-        private readonly IUserServices _userService;
+        private readonly IUserServices _userServices;
+
+        public LoginPageModel(IUserServices userServices)
+        {
+            _userServices = userServices;
+        }
 
         [BindProperty]
         public string Email { get; set; }
         [BindProperty]
         public string Password { get; set; }
 
-        public LoginPageModel(IUserServices userService)
+        /*public LoginPageModel(IUserServices userService)
         {
             _userService = userService;
-        }
+        }*/
 
         public async Task<IActionResult> OnPostAsync()
         {
-            var user = await _userService.AuthenticateAsync(Email, Password);           
+            var user = await _userServices.AuthenticateAsync(Email, Password);     
             if (user != null)
             {
                 HttpContext.Session.SetString("UserName", user.Username.ToString());

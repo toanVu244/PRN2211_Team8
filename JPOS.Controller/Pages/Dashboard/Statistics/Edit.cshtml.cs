@@ -7,36 +7,37 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BusinessObject.Entities;
+using JPOS.Service.Interfaces;
 
 namespace JPOS.Controller.Pages.Dashboard.Statistics
 {
     public class EditModel : PageModel
     {
-        private readonly JPOS.Model.Entities.JPOS_ProjectContext _context;
+        private readonly IRequestService _requestService;
 
-        public EditModel(JPOS.Model.Entities.JPOS_ProjectContext context)
+        public EditModel(IRequestService requestService)
         {
-            _context = context;
+            _requestService = requestService;
         }
 
         [BindProperty]
         public Request Request { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
-            if (id == null || _context.Requests == null)
+            if (id == null || _requestService.GetAllRequestAsync == null)
             {
                 return NotFound();
             }
 
-            var request =  await _context.Requests.FirstOrDefaultAsync(m => m.Id == id);
+            var request = await _requestService.GetRequestByIDAsync(id);
             if (request == null)
             {
                 return NotFound();
             }
             Request = request;
-           ViewData["ProductId"] = new SelectList(_context.Products, "ProductId", "ProductId");
-           ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserId");
+/*           ViewData["ProductId"] = new SelectList(_requestService.Products, "ProductId", "ProductId");
+           ViewData["UserId"] = new SelectList(_requestService.Users, "UserId", "UserId");*/
             return Page();
         }
 
@@ -44,35 +45,16 @@ namespace JPOS.Controller.Pages.Dashboard.Statistics
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
-
-            _context.Attach(Request).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
+                await _requestService.UpdateRequestAsync(Request);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!RequestExists(Request.Id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw;                
             }
 
             return RedirectToPage("./Index");
-        }
-
-        private bool RequestExists(int id)
-        {
-          return (_context.Requests?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

@@ -12,20 +12,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using JPOS.Repository.Repositories.Interfaces;
+using JPOS.DAO.EntitiesDAO;
+using JPOS.Repository.Repositories.Implementations;
 
 namespace JPOS.Service.Implementations
 {
     public class ProductService : IProductService
     {
-        private readonly IProductRepository _productrepository;
         private readonly IMapper _mapper;
-        private readonly IProductMaterialRepository productMaterialRepository;
 
-        public ProductService(IProductRepository productrepository, IMapper mapper,IProductMaterialRepository productMaterialRepository)
+        public ProductService(IMapper mapper)
         {
-            _productrepository = productrepository;
             _mapper = mapper;
-            this.productMaterialRepository = productMaterialRepository;
         }
 
         public async Task<bool> CreateProduct(ProductModel model, List<ProductMaterialModel> materialofproduct)
@@ -34,12 +32,12 @@ namespace JPOS.Service.Implementations
             {
                 return false;
             }
-            await _productrepository.InsertAsync(_mapper.Map<Product>(model));
-            var GetIdProduct = await _productrepository.GetLastproduct();
+            await ProductRepository.Instance.InsertAsync(_mapper.Map<Product>(model));
+            var GetIdProduct = await ProductRepository.Instance.GetLastproduct();
             for (int i = 0; i < materialofproduct.Count(); i++)
             {
                 materialofproduct[i].ProductID = GetIdProduct.ProductId;
-                await productMaterialRepository.InsertAsync(_mapper.Map<ProductMaterial>(materialofproduct[i]));
+                await ProductMaterialRepository.Instance.InsertAsync(_mapper.Map<ProductMaterial>(materialofproduct[i]));
             }
 
             return true;
@@ -47,24 +45,24 @@ namespace JPOS.Service.Implementations
 
         public async Task<int> DuplicateProduct(int id)
         {
-            var product = await _productrepository.GetByIdAsync(id);
-            var listProductMaterial = await productMaterialRepository.GetMaterialsByProductID(product.ProductId);
+            var product = await ProductRepository.Instance.GetByIdAsync(id);
+            var listProductMaterial = await ProductMaterialRepository.Instance.GetMaterialsByProductID(product.ProductId);
             product.ProductId = 0;
             product.Status = "Pending";
-            await _productrepository.InsertAsync(product);
-            var LastProduct = await _productrepository.GetLastproduct();
+            await ProductRepository.Instance.InsertAsync(product);
+            var LastProduct = await ProductRepository.Instance.GetLastproduct();
             for (int i = 0; i < listProductMaterial.Count; i++)
             {
                 listProductMaterial[i].ProductId = LastProduct.ProductId;
                 listProductMaterial[i].ProductMaterialId = 0;
-                await productMaterialRepository.InsertAsync(listProductMaterial[i]);
+                await ProductMaterialRepository.Instance.InsertAsync(listProductMaterial[i]);
             }
             return LastProduct.ProductId;
         }
 
         public async Task<List<ProductModel>?> GetAllProduct()
         {
-            List<Product> listProduct = await _productrepository.GetAllAsync();
+            List<Product> listProduct = await ProductRepository.Instance.GetAllAsync();
             List<ProductModel> products = new List<ProductModel>();
             foreach (var product in listProduct)
             {
@@ -89,7 +87,7 @@ namespace JPOS.Service.Implementations
         {
             if (id != null)
             {
-                var product = await _productrepository.GetByIdAsync(id);
+                var product = await ProductRepository.Instance.GetByIdAsync(id);
                 var productModel = new ProductModel
                 {
 
@@ -115,7 +113,7 @@ namespace JPOS.Service.Implementations
             {
                 return null;
             }
-            var product = await _productrepository.GetproductByRequest(key);
+            var product = await ProductRepository.Instance.GetproductByRequest(key);
             var productModel = new ProductModel
             {
                 ProductId = product.ProductId,
@@ -130,7 +128,7 @@ namespace JPOS.Service.Implementations
 
         public async Task<ProductDetailModel?> GetProductDetail(int productId)
         {
-            var product = await _productrepository.GetProductWithMaterialsAsync(productId);
+            var product = await ProductRepository.Instance.GetProductWithMaterialsAsync(productId);
             if (product == null)
             {
                 return null;
@@ -163,7 +161,7 @@ namespace JPOS.Service.Implementations
         {
             if (model != null)
             {
-                await _productrepository.UpdateAsync(_mapper.Map<Product>(model));                return true;
+                await ProductRepository.Instance.UpdateAsync(_mapper.Map<Product>(model));                return true;
             }
             return false;
 
@@ -217,7 +215,7 @@ namespace JPOS.Service.Implementations
 
         public async Task<bool> DeleteProductAsync(int id)
         {
-            var result = await _productrepository.DeleteAsync(id);
+            var result = await ProductRepository.Instance.DeleteAsync(id);
             return result;
         }
     }

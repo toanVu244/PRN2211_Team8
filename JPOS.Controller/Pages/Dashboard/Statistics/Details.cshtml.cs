@@ -6,28 +6,29 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using BusinessObject.Entities;
+using JPOS.Service.Interfaces;
 
 namespace JPOS.Controller.Pages.Dashboard.Statistics
 {
     public class DetailsModel : PageModel
     {
-        private readonly JPOS.Model.Entities.JPOS_ProjectContext _context;
+        private readonly IRequestService _requestService;
 
-        public DetailsModel(JPOS.Model.Entities.JPOS_ProjectContext context)
+        public DetailsModel(IRequestService requestService)
         {
-            _context = context;
+            _requestService = requestService;
         }
 
         public Request Request { get; set; } = default!; 
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
-            if (id == null || _context.Requests == null)
+            if (id == null || _requestService.GetAllRequestAsync == null)
             {
                 return NotFound();
             }
 
-            var request = await _context.Requests.FirstOrDefaultAsync(m => m.Id == id);
+            var request = await _requestService.GetRequestByIDAsync(id);
             if (request == null)
             {
                 return NotFound();

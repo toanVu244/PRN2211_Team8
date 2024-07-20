@@ -13,10 +13,18 @@ namespace JPOS.Repository.Repositories.Implementations
 {
     public class MaterialRepository : GenericRepository<Material>, IMaterialRepository
     {
-        private readonly JPOS_DatabaseContext _context;
-        public MaterialRepository(JPOS_DatabaseContext context) : base(context)
+        private static MaterialRepository _instance;
+
+        public static MaterialRepository Instance
         {
-            _context = context;
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new MaterialRepository();
+                }
+                return _instance;
+            }
         }
 
         public async Task<bool?> CreateMaterial(Material material)
