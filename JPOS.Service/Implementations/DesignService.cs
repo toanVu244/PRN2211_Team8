@@ -76,7 +76,7 @@ namespace JPOS.Service.Implementations
 
         public Task<bool> DeleteDesignAsync(int id)
         {
-            throw new NotImplementedException();
+            return _unitOfWork.Designs.DeleteAsync(id);
         }
 
         public async Task<List<Design>?> GetAllDesignAsync()
@@ -84,9 +84,9 @@ namespace JPOS.Service.Implementations
            return await _unitOfWork.Designs.GetAllDesign();
         }
 
-        public Task<Design> GetDesignByIdAsync(int id)
+        public async Task<Design> GetDesignByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _unitOfWork.Designs.GetByIdAsync(id);
         }
 
         public async Task<bool> UpdateDesignAsync(Design design)
