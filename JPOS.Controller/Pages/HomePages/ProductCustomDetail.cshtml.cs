@@ -53,8 +53,9 @@ namespace JPOS.Controller.Pages.HomePages
         public async Task<IActionResult> OnPost()
         {
             int productId = int.Parse(Request.Form["ProductId"]);
-            Materials = new List<ProductMaterial>();
-
+            int newProductId = await productService.DuplicateProduct(productId);
+            //Materials = new List<ProductMaterial>();
+            var newMaterial = await productMaterialService.GetmaterialByProductID(newProductId);
             for (int i = 0; ; i++)
             {
                 var materialIdKey = $"Materials[{i}].MaterialId";
@@ -64,25 +65,27 @@ namespace JPOS.Controller.Pages.HomePages
                 if (!Request.Form.ContainsKey(materialIdKey))
                     break;
 
-                var material = new ProductMaterial
+               /* var material = new ProductMaterial
                 {
                     MaterialId = int.Parse(Request.Form[materialIdKey]),
                     Quantity = int.Parse(Request.Form[quantityKey]),
                     Price = int.Parse(Request.Form[priceKey])
-                };
-                Materials.Add(material);
+                };*/
+                newMaterial[i].Quantity = int.Parse(Request.Form[quantityKey]);             
             }
-            var ListmateGetPrice = await materialService.GetAllMaterials();
-            foreach (var item in Materials)
+           
+
+            foreach (var item in newMaterial)
             {
-                MaterialModel price = ListmateGetPrice.First(x => x.MaterialId == item.MaterialId);
+                //MaterialModel price = ListmateGetPrice.First(x => x.MaterialId == item.MaterialId);
+                Material price = await materialService.GetmaterialByID(item.MaterialId);
                 item.Price = item.Quantity * price.Price;
             }
-
-            int newProductId = await productService.DuplicateProduct(productId);
-            await productMaterialService.UpdateMaterialProduct(newProductId, Materials);
-            var newProduct = await productService.GetProductByID(newProductId);
-            string usID = HttpContext.Session.GetString("UserId");
+            var finalPrice = newMaterial.Sum(m => m.Price);
+            
+            await productMaterialService.UpdateMaterialProduct(newProductId, newMaterial);
+/*            var newProduct = await productService.GetProductByID(newProductId);
+*/            string usID = HttpContext.Session.GetString("UserId");
 
             Request request = new Request()
             {
@@ -94,7 +97,7 @@ namespace JPOS.Controller.Pages.HomePages
             };
 
             await requestService.CreateRequestAsync(request);
-            TempData["TotalMoney"] = TotalPrice;
+            TempData["TotalMoney"] = finalPrice;
             TempData["RID"] = request.Id;
 
             return RedirectToPage("/HomePages/Checkout");

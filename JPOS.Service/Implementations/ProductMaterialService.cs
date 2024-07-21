@@ -32,12 +32,10 @@ namespace JPOS.Service.Implementations
         {
             if (newUpdate != null)
             {
-                foreach (var item in newUpdate)
-                {
-                    item.ProductId = id;
-                    await ProductMaterialRepository.Instance.UpdateAsync(item);
-                }
 
+                for (int i = 0;i < newUpdate.Count; i ++) {
+                    await ProductMaterialRepository.Instance.UpdateAsync(newUpdate[i]);
+                }                                
                 return true;
 
             }
