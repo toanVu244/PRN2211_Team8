@@ -7,11 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JPOS.Controller", "JPOS.Con
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JPOS.Service", "JPOS.Service\JPOS.Service.csproj", "{90AF0EE2-EF8C-496D-BA00-F606F3863260}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessObject", "BusinessObject\BusinessObject.csproj", "{2486DF30-6F8C-4BAD-BD53-D1FEDA07AA8C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessObject", "BusinessObject\BusinessObject.csproj", "{2486DF30-6F8C-4BAD-BD53-D1FEDA07AA8C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JPOS.Repository", "JPOS.Repository\JPOS.Repository.csproj", "{5A22ADDD-4E5A-4AA4-A2BE-A28BE088690B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JPOS.Repository", "JPOS.Repository\JPOS.Repository.csproj", "{5A22ADDD-4E5A-4AA4-A2BE-A28BE088690B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JPOS.DAO", "JPOS.DAO\JPOS.DAO.csproj", "{E16193DE-2ECB-4321-8F3E-B233E49FDA8E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JPOS.DAO", "JPOS.DAO\JPOS.DAO.csproj", "{E16193DE-2ECB-4321-8F3E-B233E49FDA8E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

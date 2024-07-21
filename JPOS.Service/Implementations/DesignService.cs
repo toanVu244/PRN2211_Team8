@@ -56,10 +56,10 @@ namespace JPOS.Service.Implementations
                         // Insert the design into database using your _designrepository or repository
                         if (await DesignRepository.Instance.InsertAsync(design))
                         {
-                            var designupdate = await DesignRepository.Instance.GetLastDesign();
+                           /* var designupdate = await DesignRepository.Instance.GetLastDesign();
                             var updateProduct = await DesignRepository.Instance.GetByIdAsync(idProduct);
                             updateProduct.DesignId = designupdate.DesignId;
-                            await DesignRepository.Instance.UpdateAsync(updateProduct);
+                            await DesignRepository.Instance.UpdateAsync(updateProduct);*/
                             return true;
                         }
                     }
@@ -74,6 +74,22 @@ namespace JPOS.Service.Implementations
             return false;
         }
 
+        public async Task<bool> CreateDesign(Design design)
+        {
+            try
+            {
+                if(design != null && await DesignRepository.Instance.InsertAsync(design))
+                {
+                    
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
 
         public Task<bool> DeleteDesignAsync(int id)
         {
@@ -85,9 +101,9 @@ namespace JPOS.Service.Implementations
             return await DesignRepository.Instance.GetAllDesign();
         }
 
-        public Task<Design> GetDesignByIdAsync(int id)
+        public async Task<Design> GetDesignByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await DesignRepository.Instance.GetByIdAsync(id);
         }
 
         public async Task<bool> UpdateDesignAsync(Design design)
