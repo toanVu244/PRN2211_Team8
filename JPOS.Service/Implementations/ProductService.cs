@@ -101,8 +101,18 @@ namespace JPOS.Service.Implementations
                     ProcessPrice = product.ProcessPrice,
                     PriceDesign = product.PriceDesign,
                     PriceMaterial = product.PriceMaterial
-                };
+                };               
                 return productModel;
+            }
+            return null;
+        }
+
+        public async Task<Product?> GetProductByIDTest(int? id)
+        {
+            if (id != null)
+            {
+                var product = await ProductRepository.Instance.GetByIdAsync(id);
+                return product;
             }
             return null;
         }
@@ -161,14 +171,23 @@ namespace JPOS.Service.Implementations
         {
             if (model != null)
             {
-                await ProductRepository.Instance.UpdateAsync(_mapper.Map<Product>(model));                return true;
+                Product product = _mapper.Map<Product>(model);
+                ProductRepository.Instance.Detach(product);
+                await ProductRepository.Instance.UpdateAsync(product);                
+                return true;
             }
             return false;
-
         }
 
-
-
+        public async Task<bool?> DeatachProduct(Product model)
+        {
+            if (model != null)
+            {
+                ProductRepository.Instance.Detach(model);
+                return true;
+            }
+            return false;
+        }
 
         public async Task<string> UploadImageToCloudinary(string design)
         {
@@ -217,6 +236,18 @@ namespace JPOS.Service.Implementations
         {
             var result = await ProductRepository.Instance.DeleteAsync(id);
             return result;
+        }
+
+        public async Task<bool?> UpdateProductTest(Product model)
+        {
+            if (model != null)
+            {
+                Product product = _mapper.Map<Product>(model);
+                ProductRepository.Instance.Detach(product);
+                await ProductRepository.Instance.UpdateAsync(product);
+                return true;
+            }
+            return false;
         }
     }
 

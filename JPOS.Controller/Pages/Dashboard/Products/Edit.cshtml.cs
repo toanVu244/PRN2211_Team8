@@ -37,13 +37,14 @@ namespace JPOS.Controller.Pages.Dashboard.Products
             {
                 return NotFound();
             }
-
-            var product = await _productService.GetProductByID(id);
+            var productmodel = await _productService.GetProductByID(id);
+            var product = await _productService.GetProductByIDTest(id);
+            await _productService.DeatachProduct(product);
             if (product == null)
             {
                 return NotFound();
             }
-            Product = product;
+            Product = productmodel;
             ViewData["CategoryId"] = new SelectList(await categoryService.GetAllCategoryAsync(), "CatId", "CatId");
             ViewData["DesignId"] = new SelectList(await designService.GetAllDesignAsync(), "DesignId", "DesignId");
             return Page();

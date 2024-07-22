@@ -228,5 +228,15 @@ namespace JPOS.Service.Implementations
         {
             throw new NotImplementedException();
         }
+
+        public async Task<bool?> DeatachRequest(Request model)
+        {
+            if (model != null)
+            {
+                RequestRepository.Instance.Detach(model);
+                return true;
+            }
+            return false;
+        }
     }
 }

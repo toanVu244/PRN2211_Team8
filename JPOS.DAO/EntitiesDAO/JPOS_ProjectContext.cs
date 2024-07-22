@@ -4,6 +4,7 @@ using BusinessObject.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 
 namespace JPOS.DAO.EntitiesDAO
 {
@@ -36,6 +37,7 @@ namespace JPOS.DAO.EntitiesDAO
             if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder.UseSqlServer(getConnectionString());
+                optionsBuilder.EnableSensitiveDataLogging();
             }
         }
         public string getConnectionString()

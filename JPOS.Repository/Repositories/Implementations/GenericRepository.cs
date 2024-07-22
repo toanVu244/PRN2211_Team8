@@ -120,4 +120,13 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
         return await _context.FindAsync<T>(id);
     }
+
+    public void Detach(T entity)
+    {
+        var entry = _context.Entry(entity);
+        if (entry != null)
+        {
+            entry.State = EntityState.Detached;
+        }
+    }
 }

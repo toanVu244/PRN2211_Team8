@@ -39,7 +39,7 @@
                     </td>
                     <td>@request.Type</td>
                     <td>
-                        @if (request.Status == "Finished" || request.Status == "Processing")
+                        @if (request.Status == "Finished")
                         {
                             <form method="post" asp-page-handler="Checkout" asp-route-id="@request.Id">
                                 <button type="submit" class="btn btn-primary btn-sm">Checkout</button>

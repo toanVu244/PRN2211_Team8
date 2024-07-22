@@ -86,7 +86,6 @@ namespace JPOS.Repository.Repositories.Implementations
                 return await _context.SaveChangesAsync() > 0;
             }
             return false;
-
         }
     }
 }

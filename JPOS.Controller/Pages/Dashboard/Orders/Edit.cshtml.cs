@@ -40,6 +40,7 @@ namespace JPOS.Controller.Pages.Dashboard.Orders
             }
 
             Request = await _requestService.GetRequestByIDAsync(id.Value);
+            await _requestService.DeatachRequest(Request);
 
             if (Request == null)
             {

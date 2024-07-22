@@ -60,11 +60,11 @@ namespace JPOS.Controller.Pages.HomePages
 
         public async Task<IActionResult> OnPost()
         {
-            int productId = int.Parse(Request.Form["ProductId"]);
-            var getPriceProduct = await productService.GetProductByID(productId);
+            int productId = int.Parse(Request.Form["ProductId"]);            
             int newProductId = await productService.DuplicateProduct(productId);
             var newMaterial = await productMaterialService.GetmaterialByProductID(newProductId);
-
+            var getPriceProduct = await productService.GetProductByIDTest(newProductId);
+            await productService.DeatachProduct(getPriceProduct);
             for (int i = 0; ; i++)
             {
                 var materialIdKey = $"Materials[{i}].MaterialId";
@@ -85,17 +85,18 @@ namespace JPOS.Controller.Pages.HomePages
                 item.Price = item.Quantity * price.Price;
             }
             var finalPrice = newMaterial.Sum(m => m.Price);
-            
-            await productMaterialService.UpdateMaterialProduct(newProductId, newMaterial);
-/*            var newProduct = await productService.GetProductByID(newProductId);
-*/            string usID = HttpContext.Session.GetString("UserId");
+            getPriceProduct.PriceMaterial = finalPrice;
+
+            productMaterialService.UpdateMaterialProduct(newProductId, newMaterial);
+            await productService.UpdateProductTest(getPriceProduct);
+            string usID = HttpContext.Session.GetString("UserId");
 
             Request request = new Request()
             {
                 CreateDate = DateTime.Now,
                 Status = "Pending",
                 ProductId = newProductId,
-                Type = 1,
+                Type = 2,
                 UserId = usID
             };
 

@@ -12,6 +12,7 @@ namespace JPOS.Service.Interfaces
     {
         public Task<List<Request>> GetAllRequestAsync();
         public Task<Request> GetRequestByIDAsync(int RequestID);
+        public Task<bool?> DeatachRequest(Request model);
         public Task<Request> GetLastRequest();
         public Task<bool> CreateRequestAsync(Request request);
         public Task<bool> UpdateRequestAsync(Request request);
