@@ -17,7 +17,7 @@ namespace JPOS.Service.Tools
             {
                 return ValidationResult.Success;
             }
-            return new ValidationResult(ErrorMessage ?? "File is required");
+            return new ValidationResult(ErrorMessage);
         }
     }
 }
