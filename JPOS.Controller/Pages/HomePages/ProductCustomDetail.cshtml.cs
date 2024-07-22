@@ -1,6 +1,8 @@
+using AutoMapper;
 using BusinessObject.Entities;
 using JPOS.Model.Models;
 using JPOS.Service.Interfaces;
+using JPOS.Service.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
@@ -17,13 +19,16 @@ namespace JPOS.Controller.Pages.HomePages
         private readonly IMaterialService materialService;
         private readonly IProductMaterialService productMaterialService;
         private readonly IRequestService requestService;
+        private readonly IMapper mapper;
 
-        public ProductCustomDetailModel(IProductService productService, IMaterialService materialService, IProductMaterialService productMaterialService, IRequestService requestService)
+        public ProductCustomDetailModel(IProductService productService, IMaterialService materialService, 
+            IProductMaterialService productMaterialService, IRequestService requestService, IMapper mapper)
         {
             this.productService = productService;
             this.materialService = materialService;
             this.productMaterialService = productMaterialService;
             this.requestService = requestService;
+            this.mapper = mapper;
         }
 
         [BindProperty]
@@ -32,15 +37,18 @@ namespace JPOS.Controller.Pages.HomePages
         public Category category { get; set; }
 
         [BindProperty]
-        public List<ProductMaterial> Materials { get; set; }
+        public List<MaterialShow> Materials { get; set; }
 
+        public double ? Total { get; set; } 
         public int? TotalPrice { get; set; }
 
         public async Task<IActionResult> OnGet(int idProduct)
         {
             Product = await productService.GetProductByID(idProduct);
-            Materials = await productMaterialService.GetmaterialByProductID(idProduct);
+            Materials = mapper.Map<List<MaterialShow>>(await productMaterialService.GetmaterialByProductID(idProduct));
+            Total = Product.ProcessPrice + Product.PriceMaterial + Product.PriceDesign;
             TotalPrice = Materials.Sum(m => m.Price);
+
 
             if (Product == null)
             {
@@ -53,9 +61,10 @@ namespace JPOS.Controller.Pages.HomePages
         public async Task<IActionResult> OnPost()
         {
             int productId = int.Parse(Request.Form["ProductId"]);
+            var getPriceProduct = await productService.GetProductByID(productId);
             int newProductId = await productService.DuplicateProduct(productId);
-            //Materials = new List<ProductMaterial>();
             var newMaterial = await productMaterialService.GetmaterialByProductID(newProductId);
+
             for (int i = 0; ; i++)
             {
                 var materialIdKey = $"Materials[{i}].MaterialId";
@@ -63,15 +72,9 @@ namespace JPOS.Controller.Pages.HomePages
                 var priceKey = $"Materials[{i}].Price";
 
                 if (!Request.Form.ContainsKey(materialIdKey))
-                    break;
-
-               /* var material = new ProductMaterial
-                {
-                    MaterialId = int.Parse(Request.Form[materialIdKey]),
-                    Quantity = int.Parse(Request.Form[quantityKey]),
-                    Price = int.Parse(Request.Form[priceKey])
-                };*/
-                newMaterial[i].Quantity = int.Parse(Request.Form[quantityKey]);             
+                    break;                
+                double a = Math.Round(double.Parse(Request.Form[quantityKey]), 1, MidpointRounding.AwayFromZero) * 10;
+                newMaterial[i].Quantity = Convert.ToInt32(a);             
             }
            
 
@@ -97,10 +100,12 @@ namespace JPOS.Controller.Pages.HomePages
             };
 
             await requestService.CreateRequestAsync(request);
-            TempData["TotalMoney"] = finalPrice;
+            TempData["TotalMoney"] = finalPrice + getPriceProduct.ProcessPrice + getPriceProduct.PriceDesign;
             TempData["RID"] = request.Id;
 
             return RedirectToPage("/HomePages/Checkout");
         }
     }
+
+ 
 }

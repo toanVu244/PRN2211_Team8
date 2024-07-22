@@ -51,7 +51,7 @@ namespace JPOS.Controller.Pages.Dashboard.Products
             var materialList = materials.Select(m => new SelectListItem
             {
                 Value = m.MaterialId.ToString(),
-                Text = $"{m.Name} - ${m.Price}" // Displaying name and price together
+                Text = $"{m.Name} - ${m.Price} Per 0.1g" // Displaying name and price together
             });
 
             Material = new SelectList(materialList, "Value", "Text");
@@ -63,12 +63,18 @@ namespace JPOS.Controller.Pages.Dashboard.Products
 
         public async Task<IActionResult> OnPostAsync()
        {
+            if (ImageFile == null || SelectedMaterials.Count < 1)
+            {
+                ModelState.AddModelError(string.Empty, "Fill all attribute before create.");
+                return Page();
+            }
             List<ProductMaterialModel> check = new List<ProductMaterialModel>();
             foreach (var material in SelectedMaterials)
             {
                 var parts = material.Split(':');
                 int materialId = int.Parse(parts[0]);
-                int quantity = int.Parse(parts[1]);
+                double a = Math.Round(double.Parse(parts[1]), 1, MidpointRounding.AwayFromZero) *10;
+                int quantity = Convert.ToInt32(a);
                 ProductMaterialModel mate = new ProductMaterialModel()
                 {
                     MaterialID = materialId,
