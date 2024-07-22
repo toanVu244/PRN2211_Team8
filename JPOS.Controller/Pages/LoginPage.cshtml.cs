@@ -4,6 +4,7 @@ using JPOS.Service.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.ComponentModel.DataAnnotations;
 
 namespace JPOS.Controller.Pages
 {
@@ -17,9 +18,13 @@ namespace JPOS.Controller.Pages
         }
 
         [BindProperty]
-        public string Email { get; set; }
+        [Required(ErrorMessage = "Username is required")]
+        [StringLength(16, ErrorMessage = "Name cannot be longer than 16 characters")]
+        public string Username { get; set; } = null;
         [BindProperty]
-        public string Password { get; set; }
+        [Required(ErrorMessage = "Pass is required")]
+        [StringLength(16, ErrorMessage = "Name cannot be longer than 16 characters")]
+        public string Password { get; set; } = null;
 
         /*public LoginPageModel(IUserServices userService)
         {
@@ -28,7 +33,11 @@ namespace JPOS.Controller.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
-            var user = await _userServices.AuthenticateAsync(Email, Password);     
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+            var user = await _userServices.AuthenticateAsync(Username, Password);
             if (user != null)
             {
                 HttpContext.Session.SetString("UserName", user.Username.ToString());

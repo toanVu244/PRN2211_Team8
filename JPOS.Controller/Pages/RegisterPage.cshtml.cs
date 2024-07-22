@@ -21,6 +21,10 @@ namespace JPOS.Controller.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
             if (User == null)
             {
                 return Page();

@@ -12,32 +12,32 @@
             <div style="width: 48%; margin-right: 2%; margin-bottom: 10px;">
                 <label for="username" style="display: block; margin-bottom: 4px; font-weight: bold;">Username</label>
                 <input id="username" name="User.Username" type="text" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px;">
-                <span style="color: #dc3545; font-size: 12px;"></span>
+                <span asp-validation-for="User.Username" style="color: #dc3545; font-size: 12px;"></span>
             </div>
             <div style="width: 48%; margin-bottom: 10px;">
                 <label for="password" style="display: block; margin-bottom: 4px; font-weight: bold;">Password</label>
                 <input id="password" name="User.Password" type="password" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px;">
-                <span style="color: #dc3545; font-size: 12px;"></span>
+                <span asp-validation-for="User.Password" style="color: #dc3545; font-size: 12px;"></span>
             </div>
             <div style="width: 48%; margin-right: 2%; margin-bottom: 10px;">
                 <label for="fullname" style="display: block; margin-bottom: 4px; font-weight: bold;">Full Name</label>
                 <input id="fullname" name="User.FullName" type="text" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px;">
-                <span style="color: #dc3545; font-size: 12px;"></span>
+                <span asp-validation-for="User.FullName" style="color: #dc3545; font-size: 12px;"></span>
             </div>
             <div style="width: 48%; margin-bottom: 10px;">
                 <label for="phone" style="display: block; margin-bottom: 4px; font-weight: bold;">Phone Number</label>
                 <input id="phone" name="User.PhoneNum" type="text" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px;">
-                <span style="color: #dc3545; font-size: 12px;"></span>
+                <span asp-validation-for="User.PhoneNum" style="color: #dc3545; font-size: 12px;"></span>
             </div>
             <div style="width: 48%; margin-right: 2%; margin-bottom: 10px;">
                 <label for="address" style="display: block; margin-bottom: 4px; font-weight: bold;">Address</label>
                 <input id="address" name="User.Address" type="text" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px;">
-                <span style="color: #dc3545; font-size: 12px;"></span>
+                <span asp-validation-for="User.Address" style="color: #dc3545; font-size: 12px;"></span>
             </div>
             <div style="width: 48%; margin-bottom: 10px;">
                 <label for="email" style="display: block; margin-bottom: 4px; font-weight: bold;">Email</label>
                 <input id="email" name="User.Email" type="text" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px;">
-                <span style="color: #dc3545; font-size: 12px;"></span>
+                <span asp-validation-for="User.Email" style="color: #dc3545; font-size: 12px;"></span>
             </div>
             <div style="width: 100%; margin-bottom: 12px;">
                 <input type="submit" value="Create" style="width: 100%; padding: 8px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">
@@ -48,3 +48,7 @@
         </div>
     </div>
 </body>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -10,11 +10,13 @@
         <form method="POST">
             <p>
                 <label for="email" style="display: block; margin-bottom: 5px;">Username</label>
-                <input type="text" id="email" name="Email" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 10px;" />
+                <input type="text" id="email" name="Username" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 10px;" />
+                <span asp-validation-for="Username" class="text-danger"></span>
             </p>
             <p>
                 <label for="password" style="display: block; margin-bottom: 5px;">Password</label>
                 <input type="password" id="password" name="Password" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 10px;" />
+                <span asp-validation-for="Password" class="text-danger"></span>
             </p>
             <button type="submit" name="btnLogin" style="width: 100%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">Login</button>
             <p style="margin-top: 20px; text-align: center;">
@@ -24,4 +26,5 @@
             </p>
         </form>
     </div>
+
 </body>

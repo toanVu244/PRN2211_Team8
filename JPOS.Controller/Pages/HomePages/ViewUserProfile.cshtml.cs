@@ -21,23 +21,26 @@ namespace JPOS.Controller.Pages.HomePages
         public async Task<IActionResult> OnGetAsync()
         {
             string usID = HttpContext.Session.GetString("UserId");
-            if (usID == null || _userServices.GetAllUsersAsync == null)
+            if (usID == null || _userServices == null)
             {
                 return NotFound();
             }
 
-            var user = await _userServices.GetUserByIdAsync(usID);          
+            var user = await _userServices.GetUserByIdAsync(usID);
             if (user == null)
             {
                 return NotFound();
             }
             else
             {
-                UserProfileModel model = new UserProfileModel();
-                model.FullName = user.FullName;
-                model.Email = user.Email;
-                model.Address = user.Address;
-                model.PhoneNum = user.PhoneNum;
+                UserProfileModel model = new UserProfileModel
+                {
+                    UserId = user.UserId,
+                    FullName = user.FullName,
+                    Email = user.Email,
+                    Address = user.Address,
+                    PhoneNum = user.PhoneNum
+                };
                 User = model;
             }
             return Page();
