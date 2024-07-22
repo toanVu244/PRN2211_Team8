@@ -12,6 +12,8 @@ using JPOS.Service.Interfaces;
 using System.Text;
 using static System.Net.Mime.MediaTypeNames;
 using JPOS.Service.Implementations;
+using System.ComponentModel.DataAnnotations;
+using JPOS.Service.Tools;
 
 namespace JPOS.Controller.Pages.Dashboard.Designs
 {
@@ -34,15 +36,25 @@ namespace JPOS.Controller.Pages.Dashboard.Designs
         [BindProperty]
         public Design Design { get; set; } = default!;
         [BindProperty]
+        [Required(ErrorMessage ="Description is required")]
+        public string Description { get; set; }
+        [BindProperty]
+        [RequiredFile(ErrorMessage = "File is required !!!")]
         public IFormFile ImageFiles { get; set; }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
             if (Design == null)
             {
                 return Page();
             }
+            Design.Description = Description;
             string linkIMG = await ConvertImageToBase64AndUpload(ImageFiles);
             Design.Picture = linkIMG;
             Design.CreateBy = HttpContext.Session.GetString("UserName");

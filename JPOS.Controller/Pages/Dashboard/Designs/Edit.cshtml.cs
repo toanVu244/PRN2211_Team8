@@ -9,6 +9,8 @@ using Microsoft.EntityFrameworkCore;
 using BusinessObject.Entities;
 using JPOS.DAO.EntitiesDAO;
 using JPOS.Service.Interfaces;
+using System.ComponentModel.DataAnnotations;
+using JPOS.Service.Tools;
 
 namespace JPOS.Controller.Pages.Dashboard.Designs
 {
@@ -22,10 +24,16 @@ namespace JPOS.Controller.Pages.Dashboard.Designs
             _service = _repo;
             productService = _productService;
         }
-
+        
         [BindProperty]
         public Design Design { get; set; } = default!;
+
         [BindProperty]
+        [Required(ErrorMessage ="Description is required !!")]
+        public string Description {  get; set; }
+
+        [BindProperty]
+        [RequiredFile(ErrorMessage = "This must not be null")]
         public IFormFile ImageFiles { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int id)
@@ -50,9 +58,13 @@ namespace JPOS.Controller.Pages.Dashboard.Designs
         {
             try
             {
+                if (!ModelState.IsValid)
+                {
+                    return Page();
+                }
 
                 var design = await _service.GetDesignByIdAsync(Design.DesignId);
-                design.Description = Design.Description;
+                design.Description =  Description;
                 string linkIMG = await ConvertImageToBase64AndUpload(ImageFiles);
                 design.Picture = linkIMG;
                 await _service.UpdateDesignAsync(design);
