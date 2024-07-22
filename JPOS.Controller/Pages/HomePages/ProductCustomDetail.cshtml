@@ -16,15 +16,27 @@
                     <div class="card-body">
                         <h4>@Model.Product.ProductName</h4>
                         <p class="card-text">@Model.Product.Description</p>
-                        <p class="card-text">Price: @Model.Product.ProcessPrice $</p>
+                      @*   <p class="card-text"> Total Price:
+                            @Model.Total
+                                $</p> *@
+                        <p class="card-text">
+                            Process Price:
+                            @Model.Product.ProcessPrice
+                            $
+                        </p>
+                        <p class="card-text">
+                            Design Price:
+                            @Model.Product.PriceDesign
+                            $
+                        </p>
                         <div class="card" style="width: 18rem;">
                             <ul class="list-group list-group-flush" id="materialsList">
                                 @for (int i = 0; i < Model.Materials.Count; i++)
                                 {
                                     <li class="list-group-item">
-                                        Name: @Model.Materials[i].MaterialId -
-                                        Quantity: <input type="number" min="1" value="@Model.Materials[i].Quantity" name="Materials[@i].Quantity" data-index="@i" class="material-quantity" /> -
-                                        Price: <span class="material-price">@Model.Materials[i].Price</span> $
+                                        Name: @Model.Materials[i].MaterialId -                                      
+                                        Quantity: <input type="number" min="0.1" value="@Model.Materials[i].Quantity" name="Materials[@i].Quantity" data-index="@i" class="material-quantity" step="0.1" /> -
+                                        Price: <span class="material-price"> @Model.Materials[i].Price</span> $
                                         <input type="hidden" name="Materials[@i].MaterialId" value="@Model.Materials[i].MaterialId" />
                                         <input type="hidden" name="Materials[@i].Price" value="@Model.Materials[i].Price" />
                                     </li>
@@ -60,9 +72,9 @@
                 materialsList.forEach((item, index) => {
                     const quantityInput = item.querySelector('.material-quantity');
                     const priceElement = item.querySelector('.material-price');
-                    const originalQuantity = parseInt(quantityInput.getAttribute('data-original-quantity'));
+                    const originalQuantity = parseFloat(quantityInput.getAttribute('data-original-quantity'));
                     const originalPrice = parseFloat(priceElement.getAttribute('data-original-price'));
-                    const newQuantity = parseInt(quantityInput.value);
+                    const newQuantity = parseFloat(quantityInput.value);
 
                     const newPrice = (originalPrice / originalQuantity) * newQuantity;
                     priceElement.innerText = newPrice.toFixed(2);
@@ -77,7 +89,7 @@
             materialsList.forEach(item => {
                 const quantityInput = item.querySelector('.material-quantity');
                 const priceElement = item.querySelector('.material-price');
-                const originalQuantity = parseInt(quantityInput.value);
+                const originalQuantity = parseFloat(quantityInput.value);
                 const originalPrice = parseFloat(priceElement.innerText);
 
                 quantityInput.setAttribute('data-original-quantity', originalQuantity);

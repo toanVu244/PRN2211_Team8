@@ -9,6 +9,7 @@
 
 <h4>Product</h4>
 <hr />
+<!-- Validation summary to display errors -->
 <div class="row">
     <div class="col-md-8">
         <form method="post" enctype="multipart/form-data">
@@ -66,9 +67,9 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label class="control-label">Quantity</label>
-                        <input id="quantityInput" type="number" class="form-control" value="1" />
+                        <input id="quantityInput" type="number" class="form-control" value="1" step="0.1" min="0" />
                     </div>
-                </div>
+                </div>              
                 <div class="col-md-3">
                     <div class="form-group">
                         <label class="control-label">&nbsp;</label>
@@ -76,14 +77,18 @@
                     </div>
                 </div>
             </div>
-
+            <div class="col-md-12">
+                <div id="warningMessage" class="alert alert-danger" style="display: none;">
+                    Quantity cannot be negative.
+                </div>
+            </div>
             <div class="form-group">
                 <label class="control-label">Selected Materials</label>
                 <ul id="selectedMaterials" class="list-group"></ul>
             </div>
-
             <!-- Hidden inputs to store selected materials -->
             <div id="selectedMaterialsHiddenInputs"></div>
+            <div asp-validation-summary="All" class="text-danger"></div>
 
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -117,7 +122,17 @@
             var materialSelect = document.getElementById('materialList');
             var selectedMaterial = materialSelect.options[materialSelect.selectedIndex].text;
             var materialId = materialSelect.value;
-            var quantity = document.getElementById('quantityInput').value;
+            var quantity = parseFloat(document.getElementById('quantityInput').value);
+
+            // Check if the quantity is negative
+            if (quantity < 0) {
+                var warningMessage = document.getElementById('warningMessage');
+                warningMessage.style.display = 'block';
+                return;
+            } else {
+                var warningMessage = document.getElementById('warningMessage');
+                warningMessage.style.display = 'none';
+            }
 
             // Create a new list item with material and quantity
             var li = document.createElement('li');
