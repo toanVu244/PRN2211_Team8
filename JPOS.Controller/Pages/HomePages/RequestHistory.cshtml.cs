@@ -47,7 +47,7 @@ namespace JPOS.Controller.Pages.HomePages
                 var product = await _productService.GetProductByID(request.ProductId);
                 if(product != null)
                 {
-                    TempData["TotalMoney"] = 10;
+                    TempData["TotalMoney"] = product.PriceDesign + product.PriceMaterial + product.ProcessPrice;
                     TempData["RID"] = request.Id;
                 }
 

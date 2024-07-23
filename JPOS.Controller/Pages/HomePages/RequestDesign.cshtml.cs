@@ -54,7 +54,7 @@ namespace JPOS.Controller.Pages.HomePages
 
 
             await requestService.CreateRequestAsync(request);
-            TempData["TotalMoney"] = 10;
+            TempData["TotalMoney"] = 50;
             TempData["RID"] = request.Id;
             Category = await categoryService.GetAllCategoryAsync();
 
