@@ -4,6 +4,7 @@ using JPOS.Service.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using JPOS.Model.Models;
+using System;
 
 namespace JPOS.Controller.Pages.Dashboard.Statistics
 {
@@ -20,17 +21,18 @@ namespace JPOS.Controller.Pages.Dashboard.Statistics
 
         public async Task OnGetAsync()
         {
-            var statistics = await _requestService.GetRequestStatistic();
+            var statistics = await _requestService.GetRequestStatistic(DateTime.Now.Year);
             if (statistics != null)
             {
                 Statistics = statistics;
             }
         }
 
-        public async Task<JsonResult> OnGetGetStatisticsAsync()
+        public async Task<JsonResult> OnGetGetStatisticsAsync(int year)
         {
-            var statistics = await _requestService.GetRequestStatistic();
+            var statistics = await _requestService.GetRequestStatistic(year);
             return new JsonResult(statistics);
         }
+
     }
 }

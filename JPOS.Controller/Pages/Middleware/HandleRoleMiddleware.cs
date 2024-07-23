@@ -14,7 +14,7 @@ public class HandleRoleMiddleware
     public async Task InvokeAsync(HttpContext context)
     {
         var path = context.Request.Path.ToString().ToLower();
-        if (path.StartsWith("/loginpage") || path.StartsWith("/registerpage") || path.StartsWith("/forgetpasswordpage")|| path.StartsWith("/homepages"))
+        if (path.StartsWith("/loginpage") || path.StartsWith("/registerpage") || path.StartsWith("/forgetpasswordpage")|| path.StartsWith("/homepages") || path.StartsWith("/accessdeniedpage"))
         {
             await _next(context);
             return;
@@ -33,7 +33,7 @@ public class HandleRoleMiddleware
 
         if (role == "1" || role == "2" || role == "3" || role == "4"|| role == "5")
         {
-            if (path.StartsWith("/dashboard") || path.StartsWith("/homepages") || path.StartsWith("/accessdeniedpage") || path.StartsWith("/logout"))
+            if (path.StartsWith("/dashboard") || path.StartsWith("/homepages") || path.StartsWith("/accessdeniedpage") || path.StartsWith("/logout") || path.StartsWith("/accessdeniedpage"))
             {
                 // Deny access to Users page for roles other than 1
                 if (role != "1" && path.StartsWith("/users"))
