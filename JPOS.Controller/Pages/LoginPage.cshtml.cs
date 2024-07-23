@@ -26,11 +26,6 @@ namespace JPOS.Controller.Pages
         [StringLength(16, ErrorMessage = "Name cannot be longer than 16 characters")]
         public string Password { get; set; } = null;
 
-        /*public LoginPageModel(IUserServices userService)
-        {
-            _userService = userService;
-        }*/
-
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
@@ -40,6 +35,10 @@ namespace JPOS.Controller.Pages
             var user = await _userServices.AuthenticateAsync(Username, Password);
             if (user != null)
             {
+                if(user.Status == false)
+                {
+                    return RedirectToPage("AccessDeniedPage");
+                }
                 HttpContext.Session.SetString("UserName", user.Username.ToString());
                 HttpContext.Session.SetString("UserId", user.UserId.ToString());
                 HttpContext.Session.SetString("Role", user.RoleId.ToString());
