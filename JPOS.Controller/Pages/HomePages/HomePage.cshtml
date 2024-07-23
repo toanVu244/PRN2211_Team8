@@ -126,7 +126,7 @@
 
         <!-- Search Bar -->
         <div class="search-bar mb-4">
-            <form method="post" class="w-100">
+            <form method="post" class="w-100" asp-page-handler="Search">
                 <div class="input-group">
                     <input type="text" name="SearchTerm" class="form-control" placeholder="Search for products..." aria-label="Search" value="@Model.SearchTerm">
                     <div class="input-group-append">

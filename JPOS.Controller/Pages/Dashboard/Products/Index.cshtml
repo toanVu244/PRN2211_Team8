@@ -51,13 +51,13 @@
                     @truncatedName
                 </td>
 @*                 <td>@Html.DisplayFor(modelItem => item.CreateBy)</td> *@
-                <td>@Html.DisplayFor(modelItem => item.TotalPrice)</td>
+                <td>@Html.DisplayFor(modelItem => item.TotalPrice) $</td>
 @*                 <td>@Html.DisplayFor(modelItem => item.PriceDesign)</td>
                 <td>@Html.DisplayFor(modelItem => item.ProcessPrice)</td> *@
 @*                 <td>@Html.DisplayFor(modelItem => item.CreateDate)</td> *@
                 <td>@Html.DisplayFor(modelItem => item.Status)</td>
                 <td>
-                    <img src="https://res.cloudinary.com/dkyv1vp1c/image/upload/v1719498274/qhc3ccgjiove18ldf5fz.jpg" alt="Product Image" style="width: 70px; height: 70px;" />
+                    <img src="@item.Image" alt="Product Image" style="width: 70px; height: 70px;" />
                 </td>
                 <td style="max-height:30px; max-width:100px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;">
                     @{
