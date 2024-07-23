@@ -86,7 +86,7 @@ namespace JPOS.Controller.Pages.HomePages
                 return Page();
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./ViewUserProfile");
         }
 
 
