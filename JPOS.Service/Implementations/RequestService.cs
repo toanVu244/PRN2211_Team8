@@ -213,6 +213,30 @@ namespace JPOS.Service.Implementations
             return data;
         }
 
+        public async Task<List<StatisticRequest>> GetRequestStatistic(int year)
+        {
+            int currentMonth = DateTime.Now.Month;
+            int targetYear = DateTime.Now.Year;
+            List<StatisticRequest> data = new List<StatisticRequest>();
+
+            for (int i = 1; i <= (year == targetYear ? currentMonth : 12); i++)
+            {
+                var getAllInMonth = await RequestRepository.Instance.GetRequestByTime(year, i);
+                StatisticRequest statisticRequest = new StatisticRequest
+                {
+                    Time = "Month " + i,
+                    OrderExist = getAllInMonth.Count(r => r.Type == 1),
+                    OrderCustome = getAllInMonth.Count(r => r.Type == 2),
+                    OrderDesign = getAllInMonth.Count(r => r.Type == 3)
+                };
+
+                data.Add(statisticRequest);
+            }
+            return data;
+        }
+
+
+
 
         public Task<Request> GetLastRequest()
         {
