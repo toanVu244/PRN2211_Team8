@@ -45,6 +45,10 @@ namespace JPOS.Controller.Pages.HomePages
         public async Task<IActionResult> OnPost()
         {
             string usID = HttpContext.Session.GetString("UserId");
+            if(usID == null)
+            {
+                return RedirectToPage("/loginpage");
+            }
             Request request = new Request()
             {
                 CreateDate = DateTime.Now,

@@ -44,6 +44,11 @@ namespace JPOS.Controller.Pages.HomePages
 
         public async Task<IActionResult> OnGet(int idProduct)
         {
+            string usID = HttpContext.Session.GetString("UserId");
+            if (usID == null)
+            {
+                return RedirectToPage("/loginpage");
+            }
             Product = await productService.GetProductByID(idProduct);
             Materials = mapper.Map<List<MaterialShow>>(await productMaterialService.GetmaterialByProductID(idProduct));
             Total = Product.ProcessPrice + Product.PriceMaterial + Product.PriceDesign;
