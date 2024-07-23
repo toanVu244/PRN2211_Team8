@@ -298,15 +298,15 @@ namespace JPOS.Service.Implementations
 
         public async Task<bool> DeleteUserAsync(string id)
         {
-            var hasRelatedRecords = await HasRelatedRecordsAsync(id);
-
-            if (hasRelatedRecords)
+            var currentUser = await UserRepository.Instance.GetByIdAsync(id);
+            if (currentUser != null)
             {
-                return false; // User has related records, cannot delete
+                currentUser.Status = false; // Set the status to false
+                await UserRepository.Instance.UpdateAsync(currentUser); // Save the changes to the database
+                return true;
             }
-
-            var result = await UserRepository.Instance.DeleteAsync(id);
-            return result;
+            return false;
         }
+
     }
 }
