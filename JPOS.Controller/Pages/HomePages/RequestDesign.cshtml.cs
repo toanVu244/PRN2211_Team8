@@ -29,9 +29,13 @@ namespace JPOS.Controller.Pages.HomePages
         public IFormFile ImageUpload { get; set; }
         public async Task<IActionResult> OnGet()
         {
+            string usID = HttpContext.Session.GetString("UserId");
+            if (usID == null)
+            {
+                return RedirectToPage("/loginpage");
+            }
             Category =await categoryService.GetAllCategoryAsync();
             return Page();
-
         }
 
         public async Task<IActionResult> OnPost()

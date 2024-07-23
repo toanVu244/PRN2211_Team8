@@ -38,12 +38,12 @@ namespace JPOS.Controller.Pages.HomePages
          await callData();
         }
 
-        public async Task OnPost()
+        public async Task OnPostSearch()
         {
             await callData();
             if (!string.IsNullOrEmpty(SearchTerm))
             {
-                Product = Product.Where(p => p.ProductName.Contains(SearchTerm)).ToList();
+                Product = Product.Where(p => p.ProductName.ToLower().Contains(SearchTerm.ToLower())).ToList();
             }
         }
 
