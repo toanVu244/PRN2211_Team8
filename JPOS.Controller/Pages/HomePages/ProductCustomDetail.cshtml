@@ -34,7 +34,7 @@
                                 @for (int i = 0; i < Model.Materials.Count; i++)
                                 {
                                     <li class="list-group-item">
-                                        Name: @Model.Materials[i].MaterialId -                                      
+                                        Name: @Model.Materials[i].Material.Name -                                      
                                         Quantity: <input type="number" min="0.1" value="@Model.Materials[i].Quantity" name="Materials[@i].Quantity" data-index="@i" class="material-quantity" step="0.1" /> -
                                         Price: <span class="material-price"> @Model.Materials[i].Price</span> $
                                         <input type="hidden" name="Materials[@i].MaterialId" value="@Model.Materials[i].MaterialId" />

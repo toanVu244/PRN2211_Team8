@@ -30,7 +30,7 @@ namespace JPOS.Repository.Repositories.Implementations
 
         public async Task<List<ProductMaterial>> GetMaterialsByProductID(int pid)
         {
-            return await _context.ProductMaterials.Where(pm => pm.ProductId == pid).ToListAsync();
+            return await _context.ProductMaterials.Include(x => x.Material).Where(pm => pm.ProductId == pid).ToListAsync();
         }
     }
 }
