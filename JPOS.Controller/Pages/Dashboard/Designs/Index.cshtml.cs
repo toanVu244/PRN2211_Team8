@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using BusinessObject.Entities;
 using JPOS.Service.Interfaces;
+using JPOS.Service.Implementations;
+using static JPOS.Controller.Pages.Dashboard.Orders.IndexModel;
 
 namespace JPOS.Controller.Pages.Dashboard.Designs
 {
@@ -18,11 +20,16 @@ namespace JPOS.Controller.Pages.Dashboard.Designs
             _designService = designService;
         }
 
-        public IList<Design> Designs { get; set; } = default!;
+        [BindProperty]
+        public IList<Design> Design { get; set; } = default!;
+
+
+        [BindProperty(SupportsGet = true)]
+        public string SearchTerm { get; set; }
 
         public async Task OnGetAsync()
         {
-            Designs = await _designService.GetAllDesignAsync();
+            Design = await _designService.GetAllDesignAsync();
         }
 
         public async Task<IActionResult> OnPostDeleteAsync(int id)
@@ -30,5 +37,26 @@ namespace JPOS.Controller.Pages.Dashboard.Designs
             var result = await _designService.DeleteDesignAsync(id);
             return RedirectToPage();
         }
+
+        public async Task OnPostSearchingDesign()
+        {
+            var designs = await _designService.GetAllDesignAsync();
+
+            Design = designs.Select(c => new Design
+            {
+                DesignId = c.DesignId,
+                Description = c.Description,
+                CreateBy = c.CreateBy,
+                Picture = c.Picture,
+                CreateDate = c.CreateDate
+            }).ToList();
+
+            if (!string.IsNullOrEmpty(SearchTerm))
+            {
+                Design = Design.Where(d => d.Description.ToLower().Contains(SearchTerm.ToLower())
+                                        || d.CreateBy.ToLower().Contains(SearchTerm.ToLower())).ToList();
+            }
+        }
+
     }
 }
