@@ -27,7 +27,7 @@ namespace JPOS.Controller.Pages.HomePages
         {
             Product = await productService.GetProductByID(idProduct);
             /*TempData["TotalMoney"] = Product.ProcessPrice + Product.PriceMaterial + Product.PriceDesign;*/
-            TempData["TotalMoney"] = "10";
+            TempData["TotalMoney"] = Product.PriceMaterial + Product.PriceDesign + Product.ProcessPrice;
             TempData["UID"] = "US00000";
             TempData["Description"] = Product.Description;
             TempData["Status"] = Product.Status;
@@ -55,7 +55,7 @@ namespace JPOS.Controller.Pages.HomePages
             };
 
             await requestService.CreateRequestAsync(request);
-            TempData["TotalMoney"] = 10;
+            TempData["TotalMoney"] = Product.PriceMaterial + Product.ProcessPrice + Product.PriceDesign;
             TempData["RID"] = request.Id;
 
             return RedirectToPage("/HomePages/Checkout");

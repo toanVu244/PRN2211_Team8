@@ -76,19 +76,18 @@ namespace JPOS.Controller.Pages.HomePages
                 double a = Math.Round(double.Parse(Request.Form[quantityKey]), 1, MidpointRounding.AwayFromZero) * 10;
                 newMaterial[i].Quantity = Convert.ToInt32(a);             
             }
-           
-
-            foreach (var item in newMaterial)
-            {
-                //MaterialModel price = ListmateGetPrice.First(x => x.MaterialId == item.MaterialId);
-                Material price = await materialService.GetmaterialByID(item.MaterialId);
-                item.Price = item.Quantity * price.Price;
-            }
-            var finalPrice = newMaterial.Sum(m => m.Price);
+            var ListmateGetPrice = await materialService.GetAllMaterials();
             
-            await productMaterialService.UpdateMaterialProduct(newProductId, newMaterial);
-/*            var newProduct = await productService.GetProductByID(newProductId);
-*/            string usID = HttpContext.Session.GetString("UserId");
+            foreach (var item in Materials)
+            {
+                MaterialModel price = ListmateGetPrice.First(x => x.MaterialId == item.MaterialId);
+                item.Price = item.Quantity * price.Price;               
+            }
+            var sumPrice = Materials.Sum(x => x.Price);
+            int newProductId = await productService.DuplicateProduct(productId);
+            await productMaterialService.UpdateMaterialProduct(newProductId, Materials);
+            var newProduct = await productService.GetProductByID(newProductId);
+            string usID = HttpContext.Session.GetString("UserId");
 
             Request request = new Request()
             {
@@ -100,7 +99,7 @@ namespace JPOS.Controller.Pages.HomePages
             };
 
             await requestService.CreateRequestAsync(request);
-            TempData["TotalMoney"] = finalPrice + getPriceProduct.ProcessPrice + getPriceProduct.PriceDesign;
+            TempData["TotalMoney"] = newProduct.PriceDesign + newProduct.ProcessPrice + sumPrice;
             TempData["RID"] = request.Id;
 
             return RedirectToPage("/HomePages/Checkout");
