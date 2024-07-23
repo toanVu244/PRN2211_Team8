@@ -33,7 +33,7 @@ public class HandleRoleMiddleware
 
         if (role == "1" || role == "2" || role == "3" || role == "4"|| role == "5")
         {
-            if (path.StartsWith("/dashboard") || path.StartsWith("/homepages") || path.StartsWith("/accessdeniedpage") || path.StartsWith("/logout"))
+            if (path.StartsWith("/dashboard") || path.StartsWith("/homepages") || path.StartsWith("/accessdeniedpage") ||path.StartsWith("/logout"))
             {
                 // Deny access to Users page for roles other than 1
                 if (role != "1" && path.StartsWith("/users"))
