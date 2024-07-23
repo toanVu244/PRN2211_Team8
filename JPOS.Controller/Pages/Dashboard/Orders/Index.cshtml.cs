@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using BusinessObject.Entities;
 using JPOS.Service.Interfaces;
 using JPOS.Service.Implementations;
+using static JPOS.Controller.Pages.Dashboard.Products.IndexModel;
+using JPOS.Model.Models;
 
 namespace JPOS.Controller.Pages.Dashboard.Orders
 {
@@ -66,5 +68,31 @@ namespace JPOS.Controller.Pages.Dashboard.Orders
             public string Image { get; set; }
             public int? Type { get; set; }
         }
+
+        public async Task OnPostSearchingOrder()
+        {
+            var requests = await _requestService.GetAllRequestAsync();
+            var users = await _userService.GetAllUsersAsync();
+            var products = await _productService.GetAllProduct();
+
+            Requests = requests.Select(r => new RequestViewModel
+            {
+                Id = r.Id,
+                User = users.FirstOrDefault(u => u.UserId == r.UserId)?.FullName,
+                Description = r.Description,
+                CreateDate = r.CreateDate,
+                Status = r.Status,
+                ProductName = products.FirstOrDefault(p => p.ProductId == r.ProductId)?.ProductName,
+                Image = r.Image,
+                Type = r.Type
+            }).ToList();
+            if (!string.IsNullOrEmpty(SearchTerm))
+            {
+                Requests = Requests.Where(p => p.ProductName.ToLower().Contains(SearchTerm.ToLower()) 
+                                            || p.User.ToLower().Contains(SearchTerm.ToLower())).ToList();
+            }
+        }
+
     }
+
 }

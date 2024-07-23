@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using JPOS.Service.Interfaces;
 using BusinessObject.Entities;
 using JPOS.Service.Implementations;
+using static JPOS.Controller.Pages.Dashboard.Products.IndexModel;
 
 namespace JPOS.Controller.Pages.Dashboard.Users
 {
@@ -20,6 +21,10 @@ namespace JPOS.Controller.Pages.Dashboard.Users
         }
 
         public IList<UserViewModel> Users { get; set; } = new List<UserViewModel>(); // Khởi tạo thuộc tính Users
+
+        
+        [BindProperty(SupportsGet = true)]
+        public string SearchTerm { get; set; }
 
         public async Task<IActionResult> OnPostDeleteAsync(string userId)
         {
@@ -86,5 +91,30 @@ namespace JPOS.Controller.Pages.Dashboard.Users
             public string Status { get; set; }
             public string Email { get; set; }
         }
+
+        public async Task OnPostSearchingUser()
+        {
+            var users = await _userService.GetAllUsersAsync();
+            var roles = await _userService.GetAllRolesAsync();
+
+            Users = users.Select(user => new UserViewModel
+            {
+                UserId = user.UserId,
+                Username = user.Username,
+                FullName = user.FullName,
+                PhoneNum = user.PhoneNum,
+                Address = user.Address,
+                RoleName = roles.FirstOrDefault(role => role.RoleId == user.RoleId)?.RoleName,
+                CreateDate = user.CreateDate ?? DateTime.MinValue,
+                Status = user.Status.HasValue && user.Status.Value ? "Active" : "Inactive",
+                Email = user.Email
+            }).ToList();
+            if (!string.IsNullOrEmpty(SearchTerm))
+            {
+                Users = Users.Where(u => u.FullName.ToLower().Contains(SearchTerm.ToLower()) || u.Email.ToLower().Contains(SearchTerm.ToLower()) || 
+                                         u.PhoneNum.Contains(SearchTerm) ).ToList();
+            }
+        }
+
     }
 }
