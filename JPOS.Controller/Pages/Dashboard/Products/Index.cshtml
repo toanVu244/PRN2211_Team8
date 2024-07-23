@@ -11,9 +11,13 @@
 <hr />
 
 <div class="input-group input-group-prefix input-group-lg">
-    <form method="post" asp-page-handler="SearchingProduct">
-        <input type="text" name="SearchTerm" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" value="@Model.SearchTerm">
-        <button class="input-group-text" id="inputGroup-sizing-lg" style="background-color: #4CAF50; color: white;" type="submit">Search</button>
+    <form method="post" asp-page-handler="SearchingProduct" class="w-100">
+        <div class="input-group">
+            <input type="text" name="SearchTerm" class="form-control" aria-label="Search" placeholder="Search for products..." value="@Model.SearchTerm">
+            <div class="input-group-append">
+                <button class="btn btn-success" type="submit">Search</button>
+            </div>
+        </div>       
     </form>
 </div>
 
