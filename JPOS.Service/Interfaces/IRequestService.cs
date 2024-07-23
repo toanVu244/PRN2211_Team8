@@ -25,6 +25,8 @@ namespace JPOS.Service.Interfaces
 
         public Task<List<StatisticRequest>?> GetRequestStatistic();
 
+        Task<List<StatisticRequest>> GetRequestStatistic(int year);
+
         Task<List<Request>> GetRequestsByUserIdAsync(string userId);
 
     }
